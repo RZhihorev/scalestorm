@@ -30,7 +30,6 @@
                 min="0"
                 max="122"
             >
-            <br>
             
             <label for="height">Рост (см):</label>
             <input
@@ -41,7 +40,6 @@
                 min="0"
                 max="250"
             >
-            <br>
 
             <label for="weight">Вес (кг):</label>
             <input
@@ -66,11 +64,9 @@
                 min="0"
                 max="300"
             >
-            <br>
             
             <label for="erythropoietin">Получает эритропоэтин</label>
             <input type="checkbox" id="erythropoietin" name="erythropoietin">
-            <br>
 
             <label for="leukocytes">Лейкоциты (* 10^9/л):</label>
             <input
@@ -81,7 +77,6 @@
                 min="0"
                 max="250"
             >
-            <br>
 
             <label for="platelets">Тромбоциты (* 10^9/л):</label>
             <input
@@ -386,11 +381,84 @@
             </fieldset>
 
             <p>
-                <strong>Дисклеймер</strong>: Ручной ввод значения PPS исключен во избежание путаницы со шкалой Карновского!<br>
+                <strong>Дисклеймер</strong>: ручной ввод значения PPS исключен во избежание путаницы со шкалой Карновского!<br>
                 PPS (Palliative Performance Scale) и шкала Карновского (Karnofsky Performance Status, KPS) являются разными инструментами оценки функционального статуса и не должны автоматически заменять друг друга.<br>
                 <strong>KPS</strong> преимущественно применяется в онкологии для оценки общего состояния пациента, возможности проведения активного противоопухолевого лечения и сопоставления с критериями клинических исследований.<br>
                 <strong>PPS</strong> предназначена преимущественно для паллиативной помощи: оценки функционального снижения, потребности в уходе и паллиативных вмешательствах; она дополнительно учитывает питание/питьё и уровень сознания.
             </p>
+        </section>
+
+        <section>
+            <h2>Расчёт PPI</h2>
+
+            <fieldset>
+                <legend>Приём пищи</legend>
+
+                <label>
+                    <input type="radio" name="ppi-food-intake">
+                    Несколько глотков или ложек пищи/жидкости за прием
+                </label>
+
+                <label>
+                    <input type="radio" name="ppi-food-intake">
+                    Приём пищи снижен, но больше нескольких глотков/ложек за приём
+                </label>
+
+                <label>
+                    <input type="radio" name="ppi-food-intake" checked>
+                    Нормальный приём пищи
+                </label>
+            </fieldset>
+
+            <fieldset>
+                <legend>Отёки</legend>
+
+                <label>
+                    <input type="radio" name="ppi-swelling">
+                    Да
+                </label>
+
+                <label>
+                    <input type="radio" name="ppi-swelling" checked>
+                    Нет
+                </label>
+            </fieldset>
+
+            <fieldset>
+                <legend>Одышка в покое</legend>
+
+                <label>
+                    <input type="radio" name="ppi-dyspnoea">
+                    Да
+                </label>
+
+                <label>
+                    <input type="radio" name="ppi-dyspnoea" checked>
+                    Нет
+                </label>
+            </fieldset>
+
+            <fieldset>
+                <legend>Делирий</legend>
+
+                <label>
+                    <input type="radio" name="ppi-delirium">
+                    Да
+                </label>
+
+                <label>
+                    <input type="radio" name="ppi-delirium" checked>
+                    Нет
+                </label>
+
+                <p>
+                    <strong>Дисклеймер</strong>
+                    <br>
+                    <strong>Делирий</strong> - острое и флуктуирующее нарушение внимания, осознания окружающего и когнитивных функций, с изменением уровня бодрствования и/или дезорганизацией мышления/нарушениями восприятия (диагностированное по критериям DSM-IV).
+                    <br>
+                    <u>В исследовании Stone et al. лекарственно-индуцированное состояние, обусловленное одним препаратом, учитывали как отсутствие делирия!</u>
+                </p>
+            </fieldset>
         </section>
     </body>
 </html>
