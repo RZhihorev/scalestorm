@@ -7,17 +7,36 @@
     <body>
         <h1>Scalestorm</h1>
 
-        <label for="palliative-scenario">
+        <label>
+            <input
+                type="checkbox"
+                id="palliative-scenario"
+                name="palliative-scenario"
+                checked
+            >
             Радикальное лечение невозможно (на текущем этапе и/или в будущем)
         </label>
-        <input type="checkbox" id="palliative-scenario" name="palliative-scenario" checked>
         <br>
 
-        <label for="gok-mode">
+        <label>
+            <input
+                type="checkbox"
+                id="gok-mode"
+                name="gok-mode"
+            >
             GOK MODE (принудительный расчёт основных шкал для ГОК)
         </label>
-        <input type="checkbox" id="gok-mode" name="gok-mode">
+        <br>
 
+        <label>
+            <input
+                type="checkbox"
+                id="imdc-activator"
+                name="imdc-activator"
+            >
+            Почечноклеточный рак (нужен расчёт IMDC)
+        </label>
+        
         <fieldset>
             <legend>Антропометрия</legend>
 
