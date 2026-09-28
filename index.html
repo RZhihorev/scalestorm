@@ -8,771 +8,786 @@
     </head>
 
     <body>
-        <h1>Scalestorm</h1>
-
-        <label>
-            <input
-                type="checkbox"
-                id="palliative-scenario"
-                name="palliative-scenario"
-                checked
-            >
-            Радикальное лечение невозможно (на текущем этапе и/или в будущем)
-        </label>
-        <br>
-
-        <label>
-            <input
-                type="checkbox"
-                id="gok-mode"
-                name="gok-mode"
-            >
-            GOK MODE (принудительный расчёт основных шкал для ГОК)
-        </label>
-        <br>
-
-        <label>
-            <input
-                type="checkbox"
-                id="imdc-activator"
-                name="imdc-activator"
-            >
-            Почечноклеточный рак (нужен расчёт IMDC)
-        </label>
-        
-        <fieldset>
-            <legend>Антропометрия</legend>
-
-            <label for="age">Возраст (лет):</label>
-            <input
-                type="number"
-                id="age"
-                name="age"
-                step="1"
-                min="0"
-                max="122"
-            >
-            
-            <label for="height">Рост (см):</label>
-            <input
-                type="number"
-                id="height"
-                name="height"
-                step="1"
-                min="0"
-                max="250"
-            >
-
-            <label for="weight">Вес (кг):</label>
-            <input
-                type="number"
-                id="weight"
-                name="weight"
-                step="1"
-                min="20"
-                max="300"
-            >
-        </fieldset>
-
-        <fieldset>
-            <legend>Пол</legend>
-            
-            <label>
-                <input type="radio" id="female" name="sex">
-                Женский
-            </label>
-            
-            <label>
-                <input type="radio" id="male" name="sex">
-                Мужской
-            </label>
-        </fieldset>
-
-        <fieldset>
-            <legend>Лабораторные показатели</legend>
-
-            <label for="hemoglobin">Гемоглобин (г/л):</label>
-            <input
-                type="number"
-                id="hemoglobin"
-                name="hemoglobin"
-                step="1"
-                min="0"
-                max="300"
-            >
-            
-            <label for="erythropoietin">Получает эритропоэтин</label>
-            <input type="checkbox" id="erythropoietin" name="erythropoietin">
-
-            <label for="leukocytes">Лейкоциты (* 10^9/л):</label>
-            <input
-                type="number"
-                id="leukocytes"
-                name="leukocytes"
-                step="1"
-                min="0"
-                max="250"
-            >
-
-            <label for="platelets">Тромбоциты (* 10^9/л):</label>
-            <input
-                type="number"
-                id="platelets"
-                name="platelets"
-                step="1"
-                min="0"
-                max="3000"
-            >
-        </fieldset>
-
-        <fieldset>
-            <legend>Тип рака</legend>
-            
-            <label>
-                <input type="radio" id="khorana-rbt-very-high-risk" name="khorana-site">
-                Очень высокий риск (желудок, поджелудочная железа)
-            </label>
-            
-            <label>
-                <input type="radio" id="khorana-rbt-high-risk" name="khorana-site">
-                Высокий риск (лёгкое, лимфома, гинекология, урология исключая простату)
-            </label>
-            
-            <label>
-                <input type="radio" id="khorana-rbt-low-risk" name="khorana-site" checked>
-                Низкий риск (молочная железа, колоректальный рак, голова и шея, прочие нозологии)
-            </label>
-        </fieldset>
-
-        <section>
-            <h2>Расчёт G8</h2>
-
-            <fieldset>
-                <legend>Приём пищи за последние 3 месяца</legend>
-
-                <label>
-                    <input type="radio" name="food-intake" value="0">
-                    Выраженное снижение
-                </label>
-
-                <label>
-                    <input type="radio" name="food-intake" value="1">
-                    Умеренное снижение
-                </label>
-
-                <label>
-                    <input type="radio" name="food-intake" value="2" checked>
-                    Снижения не было
-                </label>
-            </fieldset>
-
-            <fieldset>
-                <legend>Потеря массы за последние 3 месяца</legend>
-
-                <label>
-                    <input type="radio" name="weight-loss" value="0">
-                    Более 3 кг
-                </label>
-
-                <label>
-                    <input type="radio" name="weight-loss" value="1">
-                    Пациент не знает
-                </label>
-
-                <label>
-                    <input type="radio" name="weight-loss" value="2">
-                    От 1 до 3 кг
-                </label>
-
-                <label>
-                    <input type="radio" name="weight-loss" value="3" checked>
-                    Потери массы не было
-                </label>
-            </fieldset>
-
-            <fieldset>
-                <legend>Приём более трёх рецептурных препаратов в сутки</legend>
-                <label>
-                    <input type="radio" name="more-three-drugs" value="0">
-                    Да
-                </label>
-
-                <label>
-                    <input type="radio" name="more-three-drugs" value="1" checked>
-                    Нет
-                </label>
-            </fieldset>
-
-            <fieldset>
-                <legend>Нейропсихологические проблемы</legend>
-
-                <label>
-                    <input type="radio" name="dementia" value="0">
-                    Тяжелая деменция или депрессия
-                </label>
-
-                <label>
-                    <input type="radio" name="dementia" value="1">
-                    Лёгкая деменция
-                </label>
-
-                <label>
-                    <input type="radio" name="dementia" value="2" checked>
-                    Психологических проблем нет
-                </label>
-            </fieldset>
-
-            <fieldset>
-                <legend>Самооценка здоровья по сравнению со сверстниками</legend>
-
-                <label>
-                    <input type="radio" name="self-esteem" value="0">
-                    Хуже
-                </label>
-
-                <label>
-                    <input type="radio" name="self-esteem" value="0.5">
-                    Затрудняется ответить
-                </label>
-
-                <label>
-                    <input type="radio" name="self-esteem" value="1">
-                    Такое же
-                </label>
-
-                <label>
-                    <input type="radio" name="self-esteem" value="2" checked>
-                    Лучше
-                </label>
-            </fieldset>
-
-            <fieldset>
-                <legend>Мобильность</legend>
-                <label>
-                    <input type="radio" name="mobility" value="0">
-                    Прикован к постели или креслу
-                </label>
-
-                <label>
-                    <input type="radio" name="mobility" value="1">
-                    Может встать с постели/кресла, но не выходит из дома
-                </label>
-
-                <label>
-                    <input type="radio" name="mobility" value="2" checked>
-                    Выходит из дома
-                </label>
-            </fieldset>
-        </section>
-
-        <section>
-            <h2>Расчёт CARG</h2>
-
-            <fieldset>
-                <label>
-                    <input type="checkbox">
-                    Гастроинтестинальный или мочеполовой рак
-                </label>
-
-                <label>
-                    <input type="checkbox">
-                    Стандартные дозы химиотерапии (нет редукции)
-                </label>
-
-                <label>
-                    <input type="checkbox">
-                    Полихимиотерапия (2 и более препаратов)
-                </label>
-
-                <label>
-                    <input type="checkbox">
-                    Сниженный слух или глухота
-                </label>
-
-                <label>
-                    <input type="checkbox">
-                    Было 1 или более падений за последние 6 месяцев
-                </label>
-
-                <label>
-                    <input type="checkbox">
-                    Прием лекарств с посторонней помощью
-                </label>
-
-                <label>
-                    <input type="checkbox">
-                    Состояние здоровья ограничивает ходьбу на 1 квартал
-                </label>
-
-                <label>
-                    <input type="checkbox">
-                    Здоровье ограничивает социальную активность
-                </label>
-            </fieldset>
-        </section>
-
-        <section>
-            <h2>Расчёт PPS</h2>
-
-            <fieldset>
-                <legend>1. Способность передвигаться</legend>
-
-                <label>
-                    <input type="radio" name="pps-mobility" checked>
-                    Полноценная
-                </label>
-
-                <label>
-                    <input type="radio" name="pps-mobility">
-                    Снижена
-                </label>
-
-                <label>
-                    <input type="radio" name="pps-mobility">
-                    Преимущественно сидит/лежит
-                </label>
-
-                <label>
-                    <input type="radio" name="pps-mobility">
-                    Преимущественно лежит
-                </label>
-                
-                <label>
-                    <input type="radio" name="pps-mobility">
-                    Прикован к постели
-                </label>
-
-                <label>
-                    <input type="radio" name="pps-mobility">
-                    Смерть
-                </label>
-            </fieldset>
-
-            <fieldset>
-                <legend>2. Степерь активности и выраженность заболевания</legend>
-
-                <label>
-                    <input type="radio" name="pps-illness" checked>
-                    Нормальная деятельность и работоспособность.<br>
-                    Нет признаков заболевания
-                </label>
-
-                <label>
-                    <input type="radio" name="pps-illness">
-                    Нормальная деятельность и работоспособность.<br>
-                    Заметны некоторые признаки заболевания
-                </label>
-
-                <label>
-                    <input type="radio" name="pps-illness">
-                    Нормальная деятельность требует усилий.<br>
-                    Заметны некоторые признаки заболевания
-                </label>
-
-                <label>
-                    <input type="radio" name="pps-illness">
-                    Неспособность к профессиональной деятельности/работе.<br>
-                    Серьёзные признаки заболевания
-                </label>
-
-                <label>
-                    <input type="radio" name="pps-illness">
-                    Неспособность заниматься хобии и выполнять работу по дому.<br>
-                    Серьёзные признаки заболевания
-                </label>
-
-                <label>
-                    <input type="radio" name="pps-illness">
-                    Полная нетрудоспособность.<br>
-                    Распространённый патологический процесс
-                </label>
-
-                <label>
-                    <input type="radio" name="pps-illness">
-                    Неспособность к большинству видов деятельности.<br>
-                    Распространённый патологический процесс
-                </label>
-                
-                <label>
-                    <input type="radio" name="pps-illness">
-                    Неспособность к какой-либо деятельности.<br>
-                    Распространённый патологический процесс
-                </label>
-            </fieldset>
-
-            <fieldset>
-                <legend>3. Самообслуживание</legend>
-
-                <label>
-                    <input type="radio" name="pps-self-care" checked>
-                    Полное
-                </label>
-                
-                <label>
-                    <input type="radio" name="pps-self-care">
-                    Периодически необходима помощь
-                </label>
-
-                <label>
-                    <input type="radio" name="pps-self-care">
-                    Необходима значительная помощь
-                </label>
-
-                <label>
-                    <input type="radio" name="pps-self-care">
-                    Помощь необходима большую часть времени
-                </label>
-
-                <label>
-                    <input type="radio" name="pps-self-care">
-                    Необходима постоянная помощь
-                </label>
-            </fieldset>
-
-            <fieldset>
-                <legend>4. Приём пищи</legend>
-
-                <label>
-                    <input type="radio" name="pps-food-intake" checked>
-                    В норме
-                </label>
-
-                <label>
-                    <input type="radio" name="pps-food-intake">
-                    В норме или сокращен
-                </label>
-
-                <label>
-                    <input type="radio" name="pps-food-intake">
-                    Только пьёт маленькими глотками
-                </label>
-
-                <label>
-                    <input type="radio" name="pps-food-intake">
-                    Только уход за полостью рта
-                </label>
-            </fieldset>
-
-            <fieldset>
-                <legend>5. Степень расстройства сознания</legend>
-
-                <label>
-                    <input type="radio" name="pps-consciousness" checked>
-                    Ясное сознание
-                </label>
-
-                <label>
-                    <input type="radio" name="pps-consciousness">
-                    Ясное или спутанность сознания
-                </label>
-
-                <label>
-                    <input type="radio" name="pps-consciousness">
-                    Ясное или присутствует вялость +/- спутанность сознания
-                </label>
-
-                <label>
-                    <input type="radio" name="pps-consciousness">
-                    Вялость или кома +/- спутанность сознания
-                </label>
-            </fieldset>
-
-            <p>
-                <strong>Дисклеймер</strong>: ручной ввод значения PPS исключен во избежание путаницы со шкалой Карновского!<br>
-                PPS (Palliative Performance Scale) и шкала Карновского (Karnofsky Performance Status, KPS) являются разными инструментами оценки функционального статуса и не должны автоматически заменять друг друга.<br>
-                <strong>KPS</strong> преимущественно применяется в онкологии для оценки общего состояния пациента, возможности проведения активного противоопухолевого лечения и сопоставления с критериями клинических исследований.<br>
-                <strong>PPS</strong> предназначена преимущественно для паллиативной помощи: оценки функционального снижения, потребности в уходе и паллиативных вмешательствах; она дополнительно учитывает питание/питьё и уровень сознания.
-            </p>
-        </section>
-
-        <section>
-            <h2>Расчёт PPI</h2>
-
-            <fieldset>
-                <legend>Приём пищи</legend>
-
-                <label>
-                    <input type="radio" name="ppi-food-intake">
-                    Несколько глотков или ложек пищи/жидкости за прием
-                </label>
-
-                <label>
-                    <input type="radio" name="ppi-food-intake">
-                    Приём пищи снижен, но больше нескольких глотков/ложек за приём
-                </label>
-
-                <label>
-                    <input type="radio" name="ppi-food-intake" checked>
-                    Нормальный приём пищи
-                </label>
-            </fieldset>
-
-            <fieldset>
-                <legend>Отёки</legend>
-
-                <label>
-                    <input type="radio" name="ppi-swelling">
-                    Да
-                </label>
-
-                <label>
-                    <input type="radio" name="ppi-swelling" checked>
-                    Нет
-                </label>
-            </fieldset>
-
-            <fieldset>
-                <legend>Одышка в покое</legend>
-
-                <label>
-                    <input type="radio" name="ppi-dyspnoea">
-                    Да
-                </label>
-
-                <label>
-                    <input type="radio" name="ppi-dyspnoea" checked>
-                    Нет
-                </label>
-            </fieldset>
-
-            <fieldset>
-                <legend>Делирий</legend>
-
-                <label>
-                    <input type="radio" name="ppi-delirium">
-                    Да
-                </label>
-
-                <label>
-                    <input type="radio" name="ppi-delirium" checked>
-                    Нет
-                </label>
-
-                <p>
-                    <strong>Делирий</strong> - острое и флуктуирующее нарушение внимания, осознания окружающего и когнитивных функций, с изменением уровня бодрствования и/или дезорганизацией мышления/нарушениями восприятия (диагностированное по критериям DSM-IV).
-                    <br>
-                    <u>В исследовании Stone et al. лекарственно-индуцированное состояние, обусловленное одним препаратом, учитывали как отсутствие делирия!</u>
-                </p>
-            </fieldset>
-        </section>
-
-        <section>
-            <h2>Расчёт риска развития ВТЭО по Caprini</h2>
-
-            <fieldset>
-                <legend>1 балл</legend>
-
-                <label>
-                    <input type="checkbox">
-                    Отёк нижних конечностей
-                </label>
-
-                 <label>
-                    <input type="checkbox">
-                    Варикозные вены
-                </label>
-                
-                <label>
-                    <input type="checkbox">
-                    Малое хирургическое вмешательство
-                </label>
-
-                <label>
-                    <input type="checkbox">
-                    Сепсис (давностью до 1 месяца)
-                </label>
-
-                <label>
-                    <input type="checkbox">
-                    Серьёзное заболевание лёгких (в том числе пневмония давностью до 1 месяца)
-                </label>
-
-                <label>
-                    <input type="checkbox">
-                    Приём оральных контрацептивов, гормонозаместительная терапия
-                </label>
-
-                <label>
-                    <input type="checkbox">
-                    Беременность и послеродовой период (до 1 месяца)
-                </label>
-
-                <label>
-                    <input type="checkbox">
-                    В анамнезе: необъяснимые мертворождения, выкидыши (от 3 и более), преждевременные роды с токсикозом или задержка внутриутробного развития
-                </label>
-
-                <label>
-                    <input type="checkbox">
-                    Острый инфаркт миокарда
-                </label>
-
-                <label>
-                    <input type="checkbox">
-                    Хроническая сердечная недостаточность (давностью до 1 месяца)
-                </label>
-
-                <label>
-                    <input type="checkbox">
-                    Постельный режим у нехирургического пациента
-                </label>
-
-                <label>
-                    <input type="checkbox">
-                    Воспалительные заболевания толстой кишки в анамнезе
-                </label>
-
-                <label>
-                    <input type="checkbox">
-                    Большое хирургическое вмешательство давностью до 1 месяца в анамнезе
-                </label>
-
-                <label>
-                    <input type="checkbox">
-                    Хроническая обструктивная болезнь лёгких
-                </label>
-            </fieldset>
-
-            <fieldset>
-                <legend>2 балла</legend>
-
-                <label>
-                    <input type="checkbox">
-                    Артроскопическая хирургия
-                </label>
-
-                <label>
-                    <input type="checkbox" checked>
-                    Злокачественное новообразование
-                </label>
-
-                <label>
-                    <input type="checkbox">
-                    Лапароскопическое вмешательство (длительностью более 45 минут)
-                </label>
-
-                <label>
-                    <input type="checkbox">
-                    Постельный режим более 72 часов
-                </label>
-
-                <label>
-                    <input type="checkbox">
-                    Иммобилизация конечности (давностью до 1 месяца)
-                </label>
-
-                <label>
-                    <input type="checkbox">
-                    Катетеризация центральных вен
-                </label>
-
-                <label>
-                    <input type="checkbox">
-                    Большое хирургическое вмешательство (длительностью более 45 минут)
-                </label>
-            </fieldset>
-
-            <fieldset>
-                <legend>3 балла</legend>
-
-                <label>
-                    <input type="checkbox">
-                    Личный анамнез ВТЭО
-                </label>
-
-                <label>
-                    <input type="checkbox">
-                    Семейный анамнез ВТЭО
-                </label>
-
-                <label>
-                    <input type="checkbox">
-                    Мутация типа Лейден
-                </label>
-
-                <label>
-                    <input type="checkbox">
-                    Мутация протромбина 20210A
-                </label>
-
-                <label>
-                    <input type="checkbox">
-                    Гипергомоцистеинемия
-                </label>
-
-                <label>
-                    <input type="checkbox">
-                    Гепарининдуцированная тромбоцитопения
-                </label>
-
-                <label>
-                    <input type="checkbox">
-                    Повышенный уровень антител к кардиолипину
-                </label>
-
-                <label>
-                    <input type="checkbox">
-                    Волчаночный антикоагулянт
-                </label>
-            </fieldset>
-
-            <fieldset>
-                <legend>5 баллов</legend>
-                
-                <label>
-                    <input type="checkbox">
-                    Инсульт (давностью до 1 месяца)
-                </label>
-
-                <label>
-                    <input type="checkbox">
-                    Множественная травма (давностью до 1 месяца)
-                </label>
-
-                <label>
-                    <input type="checkbox">
-                    Эндопротезирование крупных суставов
-                </label>
-
-                <label>
-                    <input type="checkbox">
-                    Перелом костей бедра и голени (давностью до 1 месяца)
-                </label>
-
-                <label>
-                    <input type="checkbox">
-                    Травма спинного мозга/паралич (давностью до 1 месяца)
-                </label>
-            </fieldset>
-        </section>
-
-        <section>
-            <h2>Расчёт IMDC (только почечноклеточный рак)</h2>
-            <fieldset>
-                <label>
-                    <input type="checkbox">
-                    Общее состояние по шкале Карновского 70% и ниже
-                </label>
-
-                <label>
-                    <input type="checkbox">
-                    Время от постановки диагноза до начала лекарственного лечения менее 1 года
-                </label>
-
-                <label>
-                    <input type="checkbox">
-                    Нейтрофилёз
-                </label>
-
-                <label>
-                    <input type="checkbox">
-                    Гиперкальциемия
-                </label>
-            </fieldset>
-        </section>
-
-        <button type="button" id="main-button">
-            Запуск расчётов шкал
-        </button>
+        <main class="app-container">
+            <section class="input-panel">
+                <h1>Scalestorm</h1>
+
+                <div class="settings-block">
+                    <label>
+                        <input
+                            type="checkbox"
+                            id="palliative-scenario"
+                            name="palliative-scenario"
+                            checked
+                        >
+                        Радикальное лечение невозможно (на текущем этапе и/или в будущем)
+                    </label>
+
+                    <label>
+                        <input
+                            type="checkbox"
+                            id="gok-mode"
+                            name="gok-mode"
+                        >
+                        GOK MODE (принудительный расчёт основных шкал для ГОК)
+                    </label>
+
+                    <label>
+                        <input
+                            type="checkbox"
+                            id="imdc-activator"
+                            name="imdc-activator"
+                        >
+                        Почечноклеточный рак (нужен расчёт IMDC)
+                    </label>
+                </div>
+
+                <div class="calculator-block">
+                    <fieldset>
+                        <legend>Антропометрия</legend>
+
+                        <label for="age">Возраст (лет):</label>
+                        <input
+                            type="number"
+                            id="age"
+                            name="age"
+                            step="1"
+                            min="0"
+                            max="122"
+                        >
+                        
+                        <label for="height">Рост (см):</label>
+                        <input
+                            type="number"
+                            id="height"
+                            name="height"
+                            step="1"
+                            min="0"
+                            max="250"
+                        >
+
+                        <label for="weight">Вес (кг):</label>
+                        <input
+                            type="number"
+                            id="weight"
+                            name="weight"
+                            step="1"
+                            min="20"
+                            max="300"
+                        >
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Пол</legend>
+                        
+                        <label>
+                            <input type="radio" id="female" name="sex">
+                            Женский
+                        </label>
+                        
+                        <label>
+                            <input type="radio" id="male" name="sex">
+                            Мужской
+                        </label>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Лабораторные показатели</legend>
+
+                        <label for="hemoglobin">Гемоглобин (г/л):</label>
+                        <input
+                            type="number"
+                            id="hemoglobin"
+                            name="hemoglobin"
+                            step="1"
+                            min="0"
+                            max="300"
+                        >
+                        
+                        <label for="erythropoietin">Получает эритропоэтин</label>
+                        <input type="checkbox" id="erythropoietin" name="erythropoietin">
+
+                        <label for="leukocytes">Лейкоциты (* 10^9/л):</label>
+                        <input
+                            type="number"
+                            id="leukocytes"
+                            name="leukocytes"
+                            step="1"
+                            min="0"
+                            max="250"
+                        >
+
+                        <label for="platelets">Тромбоциты (* 10^9/л):</label>
+                        <input
+                            type="number"
+                            id="platelets"
+                            name="platelets"
+                            step="1"
+                            min="0"
+                            max="3000"
+                        >
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Тип рака</legend>
+                        
+                        <label>
+                            <input type="radio" id="khorana-rbt-very-high-risk" name="khorana-site">
+                            Очень высокий риск (желудок, поджелудочная железа)
+                        </label>
+                        
+                        <label>
+                            <input type="radio" id="khorana-rbt-high-risk" name="khorana-site">
+                            Высокий риск (лёгкое, лимфома, гинекология, урология исключая простату)
+                        </label>
+                        
+                        <label>
+                            <input type="radio" id="khorana-rbt-low-risk" name="khorana-site" checked>
+                            Низкий риск (молочная железа, колоректальный рак, голова и шея, прочие нозологии)
+                        </label>
+                    </fieldset>
+                </div>
+
+
+                <div class="calculator-block">
+                    <h2>Расчёт G8</h2>
+
+                    <fieldset>
+                        <legend>Приём пищи за последние 3 месяца</legend>
+
+                        <label>
+                            <input type="radio" name="food-intake" value="0">
+                            Выраженное снижение
+                        </label>
+
+                        <label>
+                            <input type="radio" name="food-intake" value="1">
+                            Умеренное снижение
+                        </label>
+
+                        <label>
+                            <input type="radio" name="food-intake" value="2" checked>
+                            Снижения не было
+                        </label>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Потеря массы за последние 3 месяца</legend>
+
+                        <label>
+                            <input type="radio" name="weight-loss" value="0">
+                            Более 3 кг
+                        </label>
+
+                        <label>
+                            <input type="radio" name="weight-loss" value="1">
+                            Пациент не знает
+                        </label>
+
+                        <label>
+                            <input type="radio" name="weight-loss" value="2">
+                            От 1 до 3 кг
+                        </label>
+
+                        <label>
+                            <input type="radio" name="weight-loss" value="3" checked>
+                            Потери массы не было
+                        </label>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Приём более трёх рецептурных препаратов в сутки</legend>
+                        <label>
+                            <input type="radio" name="more-three-drugs" value="0">
+                            Да
+                        </label>
+
+                        <label>
+                            <input type="radio" name="more-three-drugs" value="1" checked>
+                            Нет
+                        </label>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Нейропсихологические проблемы</legend>
+
+                        <label>
+                            <input type="radio" name="dementia" value="0">
+                            Тяжелая деменция или депрессия
+                        </label>
+
+                        <label>
+                            <input type="radio" name="dementia" value="1">
+                            Лёгкая деменция
+                        </label>
+
+                        <label>
+                            <input type="radio" name="dementia" value="2" checked>
+                            Психологических проблем нет
+                        </label>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Самооценка здоровья по сравнению со сверстниками</legend>
+
+                        <label>
+                            <input type="radio" name="self-esteem" value="0">
+                            Хуже
+                        </label>
+
+                        <label>
+                            <input type="radio" name="self-esteem" value="0.5">
+                            Затрудняется ответить
+                        </label>
+
+                        <label>
+                            <input type="radio" name="self-esteem" value="1">
+                            Такое же
+                        </label>
+
+                        <label>
+                            <input type="radio" name="self-esteem" value="2" checked>
+                            Лучше
+                        </label>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Мобильность</legend>
+                        <label>
+                            <input type="radio" name="mobility" value="0">
+                            Прикован к постели или креслу
+                        </label>
+
+                        <label>
+                            <input type="radio" name="mobility" value="1">
+                            Может встать с постели/кресла, но не выходит из дома
+                        </label>
+
+                        <label>
+                            <input type="radio" name="mobility" value="2" checked>
+                            Выходит из дома
+                        </label>
+                    </fieldset>
+                </div>
+
+                <div class="calculator-block">
+                    <h2>Расчёт CARG</h2>
+
+                    <fieldset>
+                        <label>
+                            <input type="checkbox">
+                            Гастроинтестинальный или мочеполовой рак
+                        </label>
+
+                        <label>
+                            <input type="checkbox">
+                            Стандартные дозы химиотерапии (нет редукции)
+                        </label>
+
+                        <label>
+                            <input type="checkbox">
+                            Полихимиотерапия (2 и более препаратов)
+                        </label>
+
+                        <label>
+                            <input type="checkbox">
+                            Сниженный слух или глухота
+                        </label>
+
+                        <label>
+                            <input type="checkbox">
+                            Было 1 или более падений за последние 6 месяцев
+                        </label>
+
+                        <label>
+                            <input type="checkbox">
+                            Прием лекарств с посторонней помощью
+                        </label>
+
+                        <label>
+                            <input type="checkbox">
+                            Состояние здоровья ограничивает ходьбу на 1 квартал
+                        </label>
+
+                        <label>
+                            <input type="checkbox">
+                            Здоровье ограничивает социальную активность
+                        </label>
+                    </fieldset>
+                </div>
+
+                <div class="calculator-block">
+                    <h2>Расчёт PPS</h2>
+
+                    <fieldset>
+                        <legend>1. Способность передвигаться</legend>
+
+                        <label>
+                            <input type="radio" name="pps-mobility" checked>
+                            Полноценная
+                        </label>
+
+                        <label>
+                            <input type="radio" name="pps-mobility">
+                            Снижена
+                        </label>
+
+                        <label>
+                            <input type="radio" name="pps-mobility">
+                            Преимущественно сидит/лежит
+                        </label>
+
+                        <label>
+                            <input type="radio" name="pps-mobility">
+                            Преимущественно лежит
+                        </label>
+                        
+                        <label>
+                            <input type="radio" name="pps-mobility">
+                            Прикован к постели
+                        </label>
+
+                        <label>
+                            <input type="radio" name="pps-mobility">
+                            Смерть
+                        </label>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>2. Степерь активности и выраженность заболевания</legend>
+
+                        <label>
+                            <input type="radio" name="pps-illness" checked>
+                            Нормальная деятельность и работоспособность.<br>
+                            Нет признаков заболевания
+                        </label>
+
+                        <label>
+                            <input type="radio" name="pps-illness">
+                            Нормальная деятельность и работоспособность.<br>
+                            Заметны некоторые признаки заболевания
+                        </label>
+
+                        <label>
+                            <input type="radio" name="pps-illness">
+                            Нормальная деятельность требует усилий.<br>
+                            Заметны некоторые признаки заболевания
+                        </label>
+
+                        <label>
+                            <input type="radio" name="pps-illness">
+                            Неспособность к профессиональной деятельности/работе.<br>
+                            Серьёзные признаки заболевания
+                        </label>
+
+                        <label>
+                            <input type="radio" name="pps-illness">
+                            Неспособность заниматься хобии и выполнять работу по дому.<br>
+                            Серьёзные признаки заболевания
+                        </label>
+
+                        <label>
+                            <input type="radio" name="pps-illness">
+                            Полная нетрудоспособность.<br>
+                            Распространённый патологический процесс
+                        </label>
+
+                        <label>
+                            <input type="radio" name="pps-illness">
+                            Неспособность к большинству видов деятельности.<br>
+                            Распространённый патологический процесс
+                        </label>
+                        
+                        <label>
+                            <input type="radio" name="pps-illness">
+                            Неспособность к какой-либо деятельности.<br>
+                            Распространённый патологический процесс
+                        </label>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>3. Самообслуживание</legend>
+
+                        <label>
+                            <input type="radio" name="pps-self-care" checked>
+                            Полное
+                        </label>
+                        
+                        <label>
+                            <input type="radio" name="pps-self-care">
+                            Периодически необходима помощь
+                        </label>
+
+                        <label>
+                            <input type="radio" name="pps-self-care">
+                            Необходима значительная помощь
+                        </label>
+
+                        <label>
+                            <input type="radio" name="pps-self-care">
+                            Помощь необходима большую часть времени
+                        </label>
+
+                        <label>
+                            <input type="radio" name="pps-self-care">
+                            Необходима постоянная помощь
+                        </label>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>4. Приём пищи</legend>
+
+                        <label>
+                            <input type="radio" name="pps-food-intake" checked>
+                            В норме
+                        </label>
+
+                        <label>
+                            <input type="radio" name="pps-food-intake">
+                            В норме или сокращен
+                        </label>
+
+                        <label>
+                            <input type="radio" name="pps-food-intake">
+                            Только пьёт маленькими глотками
+                        </label>
+
+                        <label>
+                            <input type="radio" name="pps-food-intake">
+                            Только уход за полостью рта
+                        </label>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>5. Степень расстройства сознания</legend>
+
+                        <label>
+                            <input type="radio" name="pps-consciousness" checked>
+                            Ясное сознание
+                        </label>
+
+                        <label>
+                            <input type="radio" name="pps-consciousness">
+                            Ясное или спутанность сознания
+                        </label>
+
+                        <label>
+                            <input type="radio" name="pps-consciousness">
+                            Ясное или присутствует вялость +/- спутанность сознания
+                        </label>
+
+                        <label>
+                            <input type="radio" name="pps-consciousness">
+                            Вялость или кома +/- спутанность сознания
+                        </label>
+                    </fieldset>
+
+                    <p>
+                        <strong>Дисклеймер</strong>: ручной ввод значения PPS исключен во избежание путаницы со шкалой Карновского!<br>
+                        PPS (Palliative Performance Scale) и шкала Карновского (Karnofsky Performance Status, KPS) являются разными инструментами оценки функционального статуса и не должны автоматически заменять друг друга.<br>
+                        <strong>KPS</strong> преимущественно применяется в онкологии для оценки общего состояния пациента, возможности проведения активного противоопухолевого лечения и сопоставления с критериями клинических исследований.<br>
+                        <strong>PPS</strong> предназначена преимущественно для паллиативной помощи: оценки функционального снижения, потребности в уходе и паллиативных вмешательствах; она дополнительно учитывает питание/питьё и уровень сознания.
+                    </p>
+                </div>
+
+                <div class="calculator-block">
+                    <h2>Расчёт PPI</h2>
+
+                    <fieldset>
+                        <legend>Приём пищи</legend>
+
+                        <label>
+                            <input type="radio" name="ppi-food-intake">
+                            Несколько глотков или ложек пищи/жидкости за прием
+                        </label>
+
+                        <label>
+                            <input type="radio" name="ppi-food-intake">
+                            Приём пищи снижен, но больше нескольких глотков/ложек за приём
+                        </label>
+
+                        <label>
+                            <input type="radio" name="ppi-food-intake" checked>
+                            Нормальный приём пищи
+                        </label>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Отёки</legend>
+
+                        <label>
+                            <input type="radio" name="ppi-swelling">
+                            Да
+                        </label>
+
+                        <label>
+                            <input type="radio" name="ppi-swelling" checked>
+                            Нет
+                        </label>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Одышка в покое</legend>
+
+                        <label>
+                            <input type="radio" name="ppi-dyspnoea">
+                            Да
+                        </label>
+
+                        <label>
+                            <input type="radio" name="ppi-dyspnoea" checked>
+                            Нет
+                        </label>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Делирий</legend>
+
+                        <label>
+                            <input type="radio" name="ppi-delirium">
+                            Да
+                        </label>
+
+                        <label>
+                            <input type="radio" name="ppi-delirium" checked>
+                            Нет
+                        </label>
+
+                        <p>
+                            <strong>Делирий</strong> - острое и флуктуирующее нарушение внимания, осознания окружающего и когнитивных функций, с изменением уровня бодрствования и/или дезорганизацией мышления/нарушениями восприятия (диагностированное по критериям DSM-IV).
+                            <br>
+                            <u>В исследовании Stone et al. лекарственно-индуцированное состояние, обусловленное одним препаратом, учитывали как отсутствие делирия!</u>
+                        </p>
+                    </fieldset>
+                </div>
+
+                <div class="calculator-block">
+                    <h2>Расчёт риска развития ВТЭО по Caprini</h2>
+
+                    <fieldset>
+                        <legend>1 балл</legend>
+
+                        <label>
+                            <input type="checkbox">
+                            Отёк нижних конечностей
+                        </label>
+
+                        <label>
+                            <input type="checkbox">
+                            Варикозные вены
+                        </label>
+                        
+                        <label>
+                            <input type="checkbox">
+                            Малое хирургическое вмешательство
+                        </label>
+
+                        <label>
+                            <input type="checkbox">
+                            Сепсис (давностью до 1 месяца)
+                        </label>
+
+                        <label>
+                            <input type="checkbox">
+                            Серьёзное заболевание лёгких (в том числе пневмония давностью до 1 месяца)
+                        </label>
+
+                        <label>
+                            <input type="checkbox">
+                            Приём оральных контрацептивов, гормонозаместительная терапия
+                        </label>
+
+                        <label>
+                            <input type="checkbox">
+                            Беременность и послеродовой период (до 1 месяца)
+                        </label>
+
+                        <label>
+                            <input type="checkbox">
+                            В анамнезе: необъяснимые мертворождения, выкидыши (от 3 и более), преждевременные роды с токсикозом или задержка внутриутробного развития
+                        </label>
+
+                        <label>
+                            <input type="checkbox">
+                            Острый инфаркт миокарда
+                        </label>
+
+                        <label>
+                            <input type="checkbox">
+                            Хроническая сердечная недостаточность (давностью до 1 месяца)
+                        </label>
+
+                        <label>
+                            <input type="checkbox">
+                            Постельный режим у нехирургического пациента
+                        </label>
+
+                        <label>
+                            <input type="checkbox">
+                            Воспалительные заболевания толстой кишки в анамнезе
+                        </label>
+
+                        <label>
+                            <input type="checkbox">
+                            Большое хирургическое вмешательство давностью до 1 месяца в анамнезе
+                        </label>
+
+                        <label>
+                            <input type="checkbox">
+                            Хроническая обструктивная болезнь лёгких
+                        </label>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>2 балла</legend>
+
+                        <label>
+                            <input type="checkbox">
+                            Артроскопическая хирургия
+                        </label>
+
+                        <label>
+                            <input type="checkbox" checked>
+                            Злокачественное новообразование
+                        </label>
+
+                        <label>
+                            <input type="checkbox">
+                            Лапароскопическое вмешательство (длительностью более 45 минут)
+                        </label>
+
+                        <label>
+                            <input type="checkbox">
+                            Постельный режим более 72 часов
+                        </label>
+
+                        <label>
+                            <input type="checkbox">
+                            Иммобилизация конечности (давностью до 1 месяца)
+                        </label>
+
+                        <label>
+                            <input type="checkbox">
+                            Катетеризация центральных вен
+                        </label>
+
+                        <label>
+                            <input type="checkbox">
+                            Большое хирургическое вмешательство (длительностью более 45 минут)
+                        </label>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>3 балла</legend>
+
+                        <label>
+                            <input type="checkbox">
+                            Личный анамнез ВТЭО
+                        </label>
+
+                        <label>
+                            <input type="checkbox">
+                            Семейный анамнез ВТЭО
+                        </label>
+
+                        <label>
+                            <input type="checkbox">
+                            Мутация типа Лейден
+                        </label>
+
+                        <label>
+                            <input type="checkbox">
+                            Мутация протромбина 20210A
+                        </label>
+
+                        <label>
+                            <input type="checkbox">
+                            Гипергомоцистеинемия
+                        </label>
+
+                        <label>
+                            <input type="checkbox">
+                            Гепарининдуцированная тромбоцитопения
+                        </label>
+
+                        <label>
+                            <input type="checkbox">
+                            Повышенный уровень антител к кардиолипину
+                        </label>
+
+                        <label>
+                            <input type="checkbox">
+                            Волчаночный антикоагулянт
+                        </label>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>5 баллов</legend>
+                        
+                        <label>
+                            <input type="checkbox">
+                            Инсульт (давностью до 1 месяца)
+                        </label>
+
+                        <label>
+                            <input type="checkbox">
+                            Множественная травма (давностью до 1 месяца)
+                        </label>
+
+                        <label>
+                            <input type="checkbox">
+                            Эндопротезирование крупных суставов
+                        </label>
+
+                        <label>
+                            <input type="checkbox">
+                            Перелом костей бедра и голени (давностью до 1 месяца)
+                        </label>
+
+                        <label>
+                            <input type="checkbox">
+                            Травма спинного мозга/паралич (давностью до 1 месяца)
+                        </label>
+                    </fieldset>
+                </div>
+
+                <div class="calculator-block">
+                    <h2>Расчёт IMDC (только почечноклеточный рак)</h2>
+                    <fieldset>
+                        <label>
+                            <input type="checkbox">
+                            Общее состояние по шкале Карновского 70% и ниже
+                        </label>
+
+                        <label>
+                            <input type="checkbox">
+                            Время от постановки диагноза до начала лекарственного лечения менее 1 года
+                        </label>
+
+                        <label>
+                            <input type="checkbox">
+                            Нейтрофилёз
+                        </label>
+
+                        <label>
+                            <input type="checkbox">
+                            Гиперкальциемия
+                        </label>
+                    </fieldset>
+                </div>
+
+                <button type="button" id="main-button">
+                    Запуск расчётов шкал
+                </button>
+            </section>
+
+            <section class="output-panel">
+                <h2 id="output-panel-title">Результаты расчётов</h2>
+
+                <div class="results-output" id="results-output">
+                    Заполните параметры и нажмите «Запуск расчётов шкал».
+                </div>
+            </section>
+        </main>
     </body>
 </html>
