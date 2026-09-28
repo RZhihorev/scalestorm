@@ -95,3 +95,17 @@ input[type="number"] {
   border: 1px solid #94a3b8;
   border-radius: 6px;
 }
+
+.erythropoietin-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+#erythropoietin {
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  accent-color: #2563eb;
+}
