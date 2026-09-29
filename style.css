@@ -93,6 +93,11 @@ label {
   line-height: 1.35;
 }
 
+label:has(input[type="radio"]),
+label:has(input[type="checkbox"]) {
+  cursor: pointer;
+}
+
 .settings-block label {
   margin: 0;
   font-size: 13px;
@@ -120,7 +125,6 @@ p {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  cursor: pointer;
 }
 
 #erythropoietin {
