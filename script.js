@@ -19,7 +19,7 @@ function showCalculationTest() {
         reportLines.push('3. Мобильность:');
         reportLines.push('4. Нейропсихологические проблемы:');
         reportLines.push('5. Индекс массы тела (кг/м.кв.):');
-        reportLines.push('6. Прием более чем 3 лекарств в течение дня:');
+        reportLines.push('6. Приём более трёх лекарственных препаратов в сутки:');
         reportLines.push('7. Самооценка здоровья по сравнению со сверстниками:');
         reportLines.push('8. Возраст (лет):');
         reportLines.push('');
@@ -32,14 +32,14 @@ function showCalculationTest() {
         reportLines.push('Не применима (возраст пациента менее 65 лет)');
     } else {
         reportLines.push('1. Возраст (лет):');
-        reportLines.push('2. Тип рака гастроинтестинальный или генитоуретральный:');
+        reportLines.push('2. Гастроинтестинальная или генитоуретральная локализация опухоли:');
         reportLines.push('3. Стандартное дозирование химиотерапии (без редукции):');
-        reportLines.push('4. Более 1 противоопухолевого препарата в схеме лечения:');
+        reportLines.push('4. Более одного противоопухолевого препарата:');
         reportLines.push('5. Гемоглобин:');
-        reportLines.push('6. Качество слуха:');
-        reportLines.push('7. Количество падений за последние 6 месяцев:');
+        reportLines.push('6. Снижение слуха:');
+        reportLines.push('7. Падения за последние 6 месяцев:');
         reportLines.push('8. Способность самостоятельно принимать лекарства:');
-        reportLines.push('9. Способность пройти 1 квартал:');
+        reportLines.push('9. Способность пройти один квартал:');
         reportLines.push('10. Снижение социальной активности из-за состояния физического или эмоционального здоровья (ограничения возникают по меньшей мере иногда):');
         reportLines.push('');
         reportLines.push('Итоговый показатель CARG:');
@@ -52,7 +52,7 @@ function showCalculationTest() {
     reportLines.push('[PPS — шкала функционального статуса в паллиативной помощи]');
     if (isPalliativeScenario) {
         reportLines.push('1. Способность передвигаться:');
-        reportLines.push('2. Степерь активности и выраженность заболевания:');
+        reportLines.push('2. Степень активности и выраженность заболевания:');
         reportLines.push('3. Способность к самообслуживанию:');
         reportLines.push('4. Приём пищи и жидкости:');
         reportLines.push('5. Уровень сознания:');
@@ -69,7 +69,7 @@ function showCalculationTest() {
         reportLines.push('2. Приём пищи:');
         reportLines.push('3. Отёки:');
         reportLines.push('4. Одышка в покое:');
-        reportLines.push('5. Делирий (диагностированный по критериям DSM-IV):');
+        reportLines.push('5. Делирий по критериям DSM-IV:');
         reportLines.push('');
         reportLines.push('Итоговый показатель PPI: ____ баллов');
         reportLines.push('Прогностическая интерпретация:');
