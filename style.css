@@ -186,3 +186,8 @@ button:disabled,
   transform: none;
   box-shadow: none;
 }
+
+.results-output {
+  white-space: pre-wrap;
+  font-size: 12px;
+}
