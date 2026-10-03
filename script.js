@@ -18,10 +18,10 @@ function showCalculationTest() {
         reportLines.push('2. Потеря массы за последние 3 месяца:');
         reportLines.push('3. Мобильность:');
         reportLines.push('4. Нейропсихологические проблемы:');
-        reportLines.push('5. Индекс массы тела (кг/м.кв.):');
+        reportLines.push('5. Индекс массы тела, кг/м.кв.:');
         reportLines.push('6. Приём более трёх лекарственных препаратов в сутки:');
         reportLines.push('7. Самооценка здоровья по сравнению со сверстниками:');
-        reportLines.push('8. Возраст (лет):');
+        reportLines.push('8. Возраст, лет:');
         reportLines.push('');
         reportLines.push('Итоговый показатель G8:');
     }
@@ -31,7 +31,7 @@ function showCalculationTest() {
     if (age < 65) {
         reportLines.push('Не применима (возраст пациента менее 65 лет)');
     } else {
-        reportLines.push('1. Возраст (лет):');
+        reportLines.push('1. Возраст, лет:');
         reportLines.push('2. Гастроинтестинальная или генитоуретральная локализация опухоли:');
         reportLines.push('3. Стандартное дозирование химиотерапии (без редукции):');
         reportLines.push('4. Более одного противоопухолевого препарата:');
