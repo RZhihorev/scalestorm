@@ -78,6 +78,21 @@ function showCalculationTest() {
     }
     reportLines.push('');
 
+    reportLines.push('ШКАЛЫ ОЦЕНКИ РИСКОВ ВТЭО ');
+    reportLines.push('');
+
+    reportLines.push('[Шкала Khorana — оценка риска ВТЭО при лекарственной противоопухолевой терапии]');
+    reportLines.push('1. Локализация опухоли (первичный очаг):');
+    reportLines.push('2. Количество тромбоцитов до химиотерапии:');
+    reportLines.push('3. Концентрация гемоглобина <100 г/л или применение эритропоэтина:');
+    reportLines.push('4. Количество лейкоцитов до химиотерапии:');
+    reportLines.push('5. Индекс массы тела:');
+    reportLines.push('');
+
+    reportLines.push('Итоговый показатель Khorana: ____ баллов');
+    reportLines.push('Категория риска ВТЭО: ____________________');
+    reportLines.push('');
+
     output.textContent = reportLines.join('\n');
 }
 
