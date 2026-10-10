@@ -297,6 +297,32 @@ function showCalculationTest() {
     }
     const cargSocialActivityLossLabels = ['нет (0 баллов)', 'да (1 балл)'];
 
+    let cargTotalScore =
+        cargAgeScore +
+        cargGiGuCancerScore +
+        cargStandartDosageScore +
+        cargPolytherapyScore +
+        cargHemoglobinScore +
+        cargLowClearanceScore +
+        cargHearingLossScore +
+        cargFallsScore +
+        cargDrugsIntakeWithHelpScore +
+        cargNoOneBlockWalkingScore +
+        cargSocialActivityLossScore;
+    
+    let cargTotalScoreIndex;
+    if (cargTotalScore < 6) {
+        cargTotalScoreIndex = 0;
+    } else if (cargTotalScore > 5 && cargTotalScore < 10) {
+        cargTotalScoreIndex = 1;
+    } else if (cargTotalScore > 9) {
+        cargTotalScoreIndex = 2;
+    }
+    const cargTotalScoreLabels = [
+        '0-5 баллов:\n - низкий риск;\n - вероятность токсичности 3-5 степени - 30%',
+        '6-9 баллов:\n - умеренный риск;\n - вероятность токсичности 3-5 степени - 52%',
+        '10 и более баллов:\n - высокий риск;\n - вероятность токсичности 3-5 степени - 83%'
+    ];
 
     // СОСТАВЛЕНИЕ ОТЧЁТА ДЛЯ ПОЛЬЗОВАТЕЛЯ
     const reportLines = [];
@@ -438,7 +464,14 @@ function showCalculationTest() {
         );
 
         reportLines.push('');
-        reportLines.push('Сумма баллов CARG: ');
+        reportLines.push(
+            'Сумма баллов CARG: ' +
+            cargTotalScore
+        );
+        reportLines.push(
+            'Оценка риска токсичности химиотерапии по модели Cancer and Aging Research Group (Hurria et al., 2011): ' +
+            cargTotalScoreLabels[cargTotalScoreIndex] + '.'
+        );
     }
     reportLines.push('');
 
