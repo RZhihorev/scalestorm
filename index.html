@@ -133,6 +133,16 @@
                             min="0"
                             max="3000"
                         >
+
+                        <label for="creatinine">Креатинин (мкмоль/л):</label>
+                        <input
+                            type="number"
+                            id="creatinine"
+                            name="creatinine"
+                            step="1"
+                            min="0"
+                            max="3000"
+                        >
                     </fieldset>
 
                     <fieldset>
@@ -282,43 +292,43 @@
 
                     <fieldset>
                         <label>
-                            <input type="checkbox">
-                            Гастроинтестинальный или мочеполовой рак
+                            <input type="checkbox" id="carg-gi-gu-cancer">
+                            Гастроинтестинальная или генитоуретральная локализация опухоли
                         </label>
 
                         <label>
-                            <input type="checkbox">
-                            Стандартные дозы химиотерапии (нет редукции)
+                            <input type="checkbox" id="carg-standart-dosage" checked>
+                            Стандартное дозирование химиотерапии (без редукции)
                         </label>
 
                         <label>
-                            <input type="checkbox">
-                            Полихимиотерапия (2 и более препаратов)
+                            <input type="checkbox" id="carg-polytherapy">
+                            Более одного противоопухолевого препарата
                         </label>
 
                         <label>
-                            <input type="checkbox">
+                            <input type="checkbox" id="carg-hearing-loss">
                             Сниженный слух или глухота
                         </label>
 
                         <label>
-                            <input type="checkbox">
-                            Было 1 или более падений за последние 6 месяцев
+                            <input type="checkbox" id="carg-falls">
+                            Падения за последние 6 месяцев
                         </label>
 
                         <label>
-                            <input type="checkbox">
+                            <input type="checkbox" id="carg-grugs-intake-with-help">
                             Прием лекарств с посторонней помощью
                         </label>
 
                         <label>
-                            <input type="checkbox">
+                            <input type="checkbox" id="carg-no-one-block-walking">
                             Состояние здоровья ограничивает ходьбу на 1 квартал
                         </label>
 
                         <label>
-                            <input type="checkbox">
-                            Здоровье ограничивает социальную активность
+                            <input type="checkbox" id="carg-social-activity-loss">
+                            Снижение социальной активности из-за состояния физического или эмоционального здоровья (ограничения возникают по меньшей мере иногда)
                         </label>
                     </fieldset>
                 </div>

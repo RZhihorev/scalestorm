@@ -8,6 +8,10 @@ function showCalculationTest() {
     const hemoglobinInput = document.getElementById('hemoglobin');
     const leukocytesInput = document.getElementById('leukocytes');
     const plateletsInput = document.getElementById('platelets');
+    const creatinineInput = document.getElementById('creatinine');
+
+    const male = document.getElementById('male').checked
+    const female = document.getElementById('female').checked
 
     const isPalliativeScenario = palliativeScenarioCheckbox.checked;
 
@@ -17,6 +21,7 @@ function showCalculationTest() {
     const hemoglobin = hemoglobinInput.valueAsNumber;
     const leukocytes = leukocytesInput.valueAsNumber;
     const platelets = plateletsInput.valueAsNumber;
+    const creatinine = creatinineInput.valueAsNumber;
 
     const bmi = Number((weight / (height / 100) ** 2).toFixed(2));
 
@@ -120,6 +125,180 @@ function showCalculationTest() {
             nonHematologic: '24,1%'
         };
 
+    // Переменные для CARG
+    let cargAgeScore;
+    let cargAgeIndex;
+    if (age < 72) {
+        cargAgeScore = 0;
+        cargAgeIndex = 0;
+    } else if (age >= 72) {
+        cargAgeScore = 2;
+        cargAgeIndex = 1;
+    }
+    const cargAgeLabels = ['(0 баллов)', '(2 балла)'];
+
+    const cargGiCUCancerCheckbox = document.getElementById('carg-gi-gu-cancer')
+    const isCargGiGuCancer = cargGiCUCancerCheckbox.checked
+
+    let cargGiGuCancerScore;
+    let cargGiGuCancerIndex;
+    if (!isCargGiGuCancer) {
+        cargGiGuCancerScore = 0;
+        cargGiGuCancerIndex = 0;
+    } else {
+        cargGiGuCancerScore = 2;
+        cargGiGuCancerIndex = 1;
+    }
+    const cargGiGuCancerLabels = ['нет (0 баллов)', 'да (2 балла)'];   
+
+    const cargStandartDosageCheckbox = document.getElementById('carg-standart-dosage')
+    const isStandartDosage = cargStandartDosageCheckbox.checked
+
+    let cargStandartDosageScore;
+    let cargStandartDosageIndex;
+    if (!isStandartDosage) {
+        cargStandartDosageScore = 0;
+        cargStandartDosageIndex = 0;
+    } else {
+        cargStandartDosageScore = 2;
+        cargStandartDosageIndex = 1;
+    }
+    const cargStandartDosageLabels = ['нет (0 баллов)', 'да (2 балла)']; 
+
+    const cargPolytherapyCheckbox = document.getElementById('carg-polytherapy')
+    const isPolytherapy = cargPolytherapyCheckbox.checked
+
+    let cargPolytherapyScore;
+    let cargPolytherapyIndex;
+    if (!isPolytherapy) {
+        cargPolytherapyScore = 0;
+        cargPolytherapyIndex = 0;
+    } else {
+        cargPolytherapyScore = 2;
+        cargPolytherapyIndex = 1;
+    }
+    const cargPolytherapyLabels = ['нет (0 баллов)', 'да (2 балла)'];
+    
+    let cargHemoglobinScore;
+    let cargHemoglobinIndex;
+    if (male) {
+        if (hemoglobin >= 110) {
+            cargHemoglobinScore = 0;
+            cargHemoglobinIndex = 0;
+        } else if (hemoglobin < 110) {
+            cargHemoglobinScore = 3;
+            cargHemoglobinIndex = 1;
+        }
+    } else if (female) {
+        if (hemoglobin >= 100) {
+            cargHemoglobinScore = 0;
+            cargHemoglobinIndex = 2;
+        } else if (hemoglobin < 100) {
+            cargHemoglobinScore = 3;
+            cargHemoglobinIndex = 3;
+        }
+    }
+    const cargHemoglobinLabels = [
+        'мужской пол, концентрация гемоглобина 110 г/л и выше; 0 баллов',
+        'мужской пол, концентрация гемоглобина менее 110 г/л; 3 балла',
+        'женский пол, концентрация гемоглобина 100 г/л и выше; 0 баллов',
+        'женский пол, концентрация гемоглобина менее 100 г/л; 3 балла',
+    ];    
+
+    const baseWeight = male ? 50 : 45.5;
+    const idealWeight = baseWeight + (2.3 / 2.54) * (height - 152.4);
+
+    const BSA = 0.007184 * height ** 0.725 * idealWeight ** 0.425;
+    const sexFactorForJelliffe = male ? 1 : 0.9;
+    const clearanceCrJelliffeNorm =
+        ((98 - 0.8 * (age - 20)) * 88.4) /
+        creatinine *
+        sexFactorForJelliffe;
+    const clearanceCrJelliffeAbs = (clearanceCrJelliffeNorm * BSA / 1.73).toFixed(2);
+
+    let cargLowClearanceScore;
+    let cargLowClearanceIndex;
+    if (clearanceCrJelliffeAbs >= 34) {
+        cargLowClearanceScore = 0;
+        cargLowClearanceIndex = 0;
+    } else if (clearanceCrJelliffeAbs < 34) {
+        cargLowClearanceScore = 3;
+        cargLowClearanceIndex = 1;
+    }
+    const cargLowClearanceLabels = ['(34 мл/мин и выше; 0 баллов)', '(менее 34 мл/мин; 2 балла)'];
+
+    const cargHearingLossCheckbox = document.getElementById('carg-hearing-loss')
+    const isHearingLoss = cargHearingLossCheckbox.checked
+
+    let cargHearingLossScore;
+    let cargHearingLossIndex;
+    if (!isHearingLoss) {
+        cargHearingLossScore = 0;
+        cargHearingLossIndex = 0;
+    } else {
+        cargHearingLossScore = 2;
+        cargHearingLossIndex = 1;
+    }
+    const cargHearingLossLabels = ['нет (0 баллов)', 'да (2 балла)'];
+    
+    const cargFallsCheckbox = document.getElementById('carg-falls')
+    const isFalls = cargFallsCheckbox.checked
+
+    let cargFallsScore;
+    let cargFallsIndex;
+    if (!isFalls) {
+        cargFallsScore = 0;
+        cargFallsIndex = 0;
+    } else {
+        cargFallsScore = 3;
+        cargFallsIndex = 1;
+    }
+    const cargFallsLabels = ['нет (0 баллов)', 'да (3 балла)'];
+
+    const cargDrugsIntakeWithHelpCheckbox = document.getElementById('carg-grugs-intake-with-help')
+    const isDrugsIntakeWithHelp = cargDrugsIntakeWithHelpCheckbox.checked
+
+    let cargDrugsIntakeWithHelpScore;
+    let cargDrugsIntakeWithHelpIndex;
+    if (!isDrugsIntakeWithHelp) {
+        cargDrugsIntakeWithHelpScore = 0;
+        cargDrugsIntakeWithHelpIndex = 0;
+    } else {
+        cargDrugsIntakeWithHelpScore = 1;
+        cargDrugsIntakeWithHelpIndex = 1;
+    }
+    const cargDrugsIntakeWithHelpLabels = ['нет (0 баллов)', 'да (1 балл)'];
+
+    const cargNoOneBlockWalkingCheckbox = document.getElementById('carg-no-one-block-walking')
+    const isNoOneBlockWalking = cargNoOneBlockWalkingCheckbox.checked
+
+    let cargNoOneBlockWalkingScore;
+    let cargNoOneBlockWalkingIndex;
+    if (!isNoOneBlockWalking) {
+        cargNoOneBlockWalkingScore = 0;
+        cargNoOneBlockWalkingIndex = 0;
+    } else {
+        cargNoOneBlockWalkingScore = 2;
+        cargNoOneBlockWalkingIndex = 1;
+    }
+    const cargNoOneBlockWalkingLabels = ['нет (0 баллов)', 'да (2 балла)'];
+
+    const cargSocialActivityLossCheckbox = document.getElementById('carg-social-activity-loss')
+    const isSocialActivityLoss = cargSocialActivityLossCheckbox.checked
+
+    let cargSocialActivityLossScore;
+    let cargSocialActivityLossIndex;
+    if (!isSocialActivityLoss) {
+        cargSocialActivityLossScore = 0;
+        cargSocialActivityLossIndex = 0;
+    } else {
+        cargSocialActivityLossScore = 1;
+        cargSocialActivityLossIndex = 1;
+    }
+    const cargSocialActivityLossLabels = ['нет (0 баллов)', 'да (1 балл)'];
+
+
+    // СОСТАВЛЕНИЕ ОТЧЁТА ДЛЯ ПОЛЬЗОВАТЕЛЯ
     const reportLines = [];
 
     reportLines.push('ГЕРИАТРИЧЕСКИЕ ШКАЛЫ ');
@@ -152,7 +331,7 @@ function showCalculationTest() {
         );
 
         reportLines.push(
-            '5. Индекс массы тела, кг/м.кв.: ' +
+            '5. Индекс массы тела: ' +
             bmi + ' кг/м.кв. ' + g8BmiLabels[g8BmiScore] + ';'
         );
 
@@ -180,16 +359,16 @@ function showCalculationTest() {
 
         reportLines.push(
             'Прогностическая интерпретация (по Югай С. В. и соавт., 2022): ' +
-            g8Toxicity.group + ';'
+            g8Toxicity.group + ':'
         );
         reportLines.push(
-            'Риск развития гематологической токсичности 3-4 степени ' +
-            'в соответствующей группе исследования составляет ' +
+            ' - риск развития гематологической токсичности 3-4 степени ' +
+            'в соответствующей группе исследования - ' +
             g8Toxicity.hematologic + ';'
         );
         reportLines.push(
-            'Риск развития негематологической токсичности 3-4 степени ' +
-            'в соответствующей группе исследования составляет ' +
+            ' - риск развития негематологической токсичности 3-4 степени ' +
+            'в соответствующей группе исследования - ' +
             g8Toxicity.nonHematologic + '.'
         );
     }
@@ -199,18 +378,67 @@ function showCalculationTest() {
     if (age < 65) {
         reportLines.push('Не применима (возраст пациента менее 65 лет)');
     } else {
-        reportLines.push('1. Возраст, лет:');
-        reportLines.push('2. Гастроинтестинальная или генитоуретральная локализация опухоли:');
-        reportLines.push('3. Стандартное дозирование химиотерапии (без редукции):');
-        reportLines.push('4. Более одного противоопухолевого препарата:');
-        reportLines.push('5. Гемоглобин:');
-        reportLines.push('6. Снижение слуха:');
-        reportLines.push('7. Падения за последние 6 месяцев:');
-        reportLines.push('8. Способность самостоятельно принимать лекарства:');
-        reportLines.push('9. Способность пройти один квартал:');
-        reportLines.push('10. Снижение социальной активности из-за состояния физического или эмоционального здоровья (ограничения возникают по меньшей мере иногда):');
+        reportLines.push(
+            '1. Возраст, лет: ' + 
+            age + ' ' + cargAgeLabels[cargAgeIndex] + ';'
+        );
+
+        reportLines.push(
+            '2. Гастроинтестинальная или генитоуретральная локализация опухоли: ' +
+            cargGiGuCancerLabels[cargGiGuCancerIndex] + ';'
+        );
+
+        reportLines.push(
+            '3. Стандартное дозирование химиотерапии (без редукции): ' +
+            cargStandartDosageLabels[cargStandartDosageIndex] + ';'
+        );
+
+        reportLines.push(
+            '4. Более одного противоопухолевого препарата: ' +
+            cargPolytherapyLabels[cargPolytherapyIndex] + ';'
+        );
+
+        reportLines.push(
+            '5. Гемоглобин, г/л: ' + 
+            hemoglobin + ' (' + cargHemoglobinLabels[cargHemoglobinIndex] + ');'
+        );
+
+        reportLines.push(
+            '6. Клиренс креатинина, формула Jelliffe, с использованием идеальной массы тела (' + 
+            idealWeight.toFixed(2) + ' кг, формула Devine): ' +
+            clearanceCrJelliffeAbs + ' мл/мин ' +
+            cargLowClearanceLabels[cargLowClearanceIndex] + ';'
+        );
+
+        reportLines.push(
+            '7. Сниженный слух или глухота: ' +
+            cargHearingLossLabels[cargHearingLossIndex] + ';'
+        );
+
+        reportLines.push(
+            '8. Падения за последние 6 месяцев: ' +
+            cargFallsLabels[cargFallsIndex] + ';'
+        );
+
+        reportLines.push(
+            '9. Прием лекарств с посторонней помощью: ' +
+            cargDrugsIntakeWithHelpLabels[cargDrugsIntakeWithHelpIndex] + ';'
+        );
+
+        reportLines.push(
+            '10. Состояние здоровья ограничивает ходьбу на 1 квартал: ' +
+            cargNoOneBlockWalkingLabels[cargNoOneBlockWalkingIndex] + ';'
+        );
+
+        reportLines.push(
+            '11. Снижение социальной активности из-за ' +
+            'состояния физического или эмоционального здоровья ' +
+            '(ограничения возникают по меньшей мере иногда): ' +
+            cargSocialActivityLossLabels[cargSocialActivityLossIndex] + '.'
+        );
+
         reportLines.push('');
-        reportLines.push('Итоговый показатель CARG:');
+        reportLines.push('Сумма баллов CARG: ');
     }
     reportLines.push('');
 
