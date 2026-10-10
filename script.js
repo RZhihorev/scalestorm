@@ -91,12 +91,34 @@ function showCalculationTest() {
     let g8AgeScore;
     if (age > 85) {
         g8AgeScore = 0
-    } else if (80 <= age <= 85) {
+    } else if (age >= 80 && age <= 85) {
         g8AgeScore = 1
     } else if (age < 80) {
         g8AgeScore = 2
     }
     const g8AgeLabels = ['(0 баллов)', '(1 балл)', '(2 балла)'];
+
+    let g8TotalScore = 
+        g8FoodIntakeInput + 
+        g8WeightLossInput + 
+        g8MobilityInput + 
+        g8DementiaInput + 
+        g8BmiScore + 
+        g8MoreThreeDrugsInput + 
+        g8SelfEsteemInput + 
+        g8AgeScore;
+
+    const g8Toxicity = g8TotalScore < 14
+        ? {
+            group: 'менее 14 баллов',
+            hematologic: '43,0%',
+            nonHematologic: '50,6%'
+        }
+        : {
+            group: '14 баллов и более',
+            hematologic: '25,9%',
+            nonHematologic: '24,1%'
+        };
 
     const reportLines = [];
 
@@ -148,9 +170,28 @@ function showCalculationTest() {
             '8. Возраст, лет: ' +
             age + ' ' + g8AgeLabels[g8AgeScore] + '.'
         );
-
+        
         reportLines.push('');
-        reportLines.push('Итоговый показатель G8:');
+
+        reportLines.push(
+            'Сумма баллов G8: ' +
+            g8TotalScore
+        );
+
+        reportLines.push(
+            'Прогностическая интерпретация (по Югай С. В. и соавт., 2022): ' +
+            g8Toxicity.group + ';'
+        );
+        reportLines.push(
+            'Риск развития гематологической токсичности 3-4 степени ' +
+            'в соответствующей группе исследования составляет ' +
+            g8Toxicity.hematologic + ';'
+        );
+        reportLines.push(
+            'Риск развития негематологической токсичности 3-4 степени ' +
+            'в соответствующей группе исследования составляет ' +
+            g8Toxicity.nonHematologic + '.'
+        );
     }
     reportLines.push('');
 
