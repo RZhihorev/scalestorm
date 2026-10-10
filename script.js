@@ -1,10 +1,103 @@
 function showCalculationTest() {
     const output = document.getElementById('results-output');
     const palliativeScenarioCheckbox = document.getElementById('palliative-scenario');
+    
     const ageInput = document.getElementById('age');
+    const heightInput = document.getElementById('height');
+    const weightInput = document.getElementById('weight');
+    const hemoglobinInput = document.getElementById('hemoglobin');
+    const leukocytesInput = document.getElementById('leukocytes');
+    const plateletsInput = document.getElementById('platelets');
 
     const isPalliativeScenario = palliativeScenarioCheckbox.checked;
+
     const age = ageInput.valueAsNumber;
+    const height = heightInput.valueAsNumber;
+    const weight = weightInput.valueAsNumber;
+    const hemoglobin = hemoglobinInput.valueAsNumber;
+    const leukocytes = leukocytesInput.valueAsNumber;
+    const platelets = plateletsInput.valueAsNumber;
+
+    const bmi = Number((weight / (height / 100) ** 2).toFixed(2));
+
+    // Список переменных для расчёта G8
+    const g8FoodIntakeInput = Number(
+        document.querySelector('input[name="g8-food-intake"]:checked').value
+    );
+    const g8FoodIntakeAnswers = [
+        'выраженное снижение (0 баллов)',
+        'умеренное снижение (1 балл)',
+        'снижения не было (2 балла)'
+    ];
+
+    const g8WeightLossInput = Number(
+        document.querySelector('input[name="g8-weight-loss"]:checked').value
+    );
+    const g8WeightLossAnswers = [
+        'более 3 кг (0 баллов)',
+        'пациент не знает (1 балл)',
+        'от 1 до 3 кг (2 балла)',
+        'потери массы не было (3 балла)'
+    ];
+    
+    const g8MobilityInput = Number(
+        document.querySelector('input[name="g8-mobility"]:checked').value
+    );
+    const g8MobilityAnswers = [
+        'прикован к постели или креслу (0 баллов)',
+        'может встать с постели/кресла, но не выходит из дома (1 балл)',
+        'выходит из дома (2 балла)'
+    ];
+
+    const g8DementiaInput = Number(
+        document.querySelector('input[name="g8-dementia"]:checked').value
+    );
+    const g8DementiaAnswers = [
+        'тяжелая деменция или депрессия (0 баллов)',
+        'лёгкая деменция (1 балл)',
+        'психологических проблем нет (2 балла)'
+    ];
+
+    let g8BmiScore;
+    if (bmi < 19) {
+        g8BmiScore = 0
+    } else if (bmi < 21) {
+        g8BmiScore = 1
+    } else if (bmi < 23) {
+        g8BmiScore = 2
+    } else if (bmi >= 23) {
+        g8BmiScore = 3
+    }
+    const g8BmiLabels = ['(0 баллов)', '(1 балл)', '(2 балла)', '(3 балла)'];
+
+    const g8MoreThreeDrugsInput = Number(
+        document.querySelector('input[name="g8-more-three-drugs"]:checked').value
+    );
+    const g8MoreThreeDrugsAnswers = [
+        'да (0 баллов)',
+        'нет (1 балл)'
+    ];
+
+    const g8SelfEsteemInput = Number(
+        document.querySelector('input[name="g8-self-esteem"]:checked').value
+    );
+    const g8SelfEsteemAnswers = [
+        'хуже (0 баллов)',
+        'затрудняется ответить (1 балл)',
+        'такое же (2 балла)',
+        'лучше (3 балла)'
+    ];
+
+    let g8AgeScore;
+    if (age > 85) {
+        g8AgeScore = 0
+    } else if (80 <= age <= 85) {
+        g8AgeScore = 1
+    } else if (age < 80) {
+        g8AgeScore = 2
+    }
+    const g8AgeLabels = ['(0 баллов)', '(1 балл)', '(2 балла)'];
+
     const reportLines = [];
 
     reportLines.push('ГЕРИАТРИЧЕСКИЕ ШКАЛЫ ');
@@ -14,14 +107,48 @@ function showCalculationTest() {
     if (age < 70) {
         reportLines.push('Не применима (возраст пациента менее 70 лет)');
     } else {
-        reportLines.push('1. Снизилось ли потребление пищи за последние 3 месяца из-за потери аппетита, проблем с пищеварением или трудностей с жеванием или глотанием:');
-        reportLines.push('2. Потеря массы за последние 3 месяца:');
-        reportLines.push('3. Мобильность:');
-        reportLines.push('4. Нейропсихологические проблемы:');
-        reportLines.push('5. Индекс массы тела, кг/м.кв.:');
-        reportLines.push('6. Приём более трёх лекарственных препаратов в сутки:');
-        reportLines.push('7. Самооценка здоровья по сравнению со сверстниками:');
-        reportLines.push('8. Возраст, лет:');
+        reportLines.push(
+            '1. Снизилось ли потребление пищи за последние 3 месяца ' +
+            'из-за потери аппетита, проблем с пищеварением ' +
+            'или трудностей с жеванием или глотанием: ' +
+            g8FoodIntakeAnswers[g8FoodIntakeInput] + ';'
+        );
+        
+        reportLines.push(
+            '2. Потеря массы за последние 3 месяца: ' +
+            g8WeightLossAnswers[g8WeightLossInput] + ';'
+        );
+        
+        reportLines.push(
+            '3. Мобильность: ' +
+            g8MobilityAnswers[g8MobilityInput] + ';'
+        );
+
+        reportLines.push(
+            '4. Нейропсихологические проблемы: ' +
+            g8DementiaAnswers[g8DementiaInput] + ';'
+        );
+
+        reportLines.push(
+            '5. Индекс массы тела, кг/м.кв.: ' +
+            bmi + ' кг/м.кв. ' + g8BmiLabels[g8BmiScore] + ';'
+        );
+
+        reportLines.push(
+            '6. Приём более трёх лекарственных препаратов в сутки: ' +
+            g8MoreThreeDrugsAnswers[g8MoreThreeDrugsInput] + ';'
+        );
+
+        reportLines.push(
+            '7. Самооценка здоровья по сравнению со сверстниками: ' +
+            g8SelfEsteemAnswers[g8SelfEsteemInput] + ';'
+        );
+
+        reportLines.push(
+            '8. Возраст, лет: ' +
+            age + ' ' + g8AgeLabels[g8AgeScore] + '.'
+        );
+
         reportLines.push('');
         reportLines.push('Итоговый показатель G8:');
     }
