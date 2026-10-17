@@ -382,6 +382,10 @@ function showCalculationTest() {
         'вялость или кома +/- спутанность сознания'
     ];
 
+    const ppsTotalInput = Number(
+        document.querySelector('input[name="pps-total"]:checked').value
+    );
+
     // СОСТАВЛЕНИЕ ОТЧЁТА ДЛЯ ПОЛЬЗОВАТЕЛЯ
     const reportLines = [];
 
@@ -564,7 +568,10 @@ function showCalculationTest() {
         );
 
         reportLines.push('');
-        reportLines.push('Итоговый показатель PPS (ручная верификация): ____ %');
+        reportLines.push(
+            'Итоговый показатель PPS (ручная верификация): ' +
+            ppsTotalInput + '%.'
+        );
     } else {
         reportLines.push('Не применимо (пациент подлежит радикальному лечению).');
     }

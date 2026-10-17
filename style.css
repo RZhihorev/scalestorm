@@ -191,3 +191,15 @@ button:disabled,
   white-space: pre-wrap;
   font-size: 12px;
 }
+
+#pps-total {
+  display: flex;
+  justify-content: space-between;
+}
+
+#pps-total > label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
