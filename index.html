@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        <title>Scalestorm</title>
+        <title>Scalestorm 2.0</title>
 
         <link rel="stylesheet" href="style.css">
         <script src="script.js" defer></script>
@@ -11,7 +11,7 @@
     <body>
         <main class="app-container">
             <section class="input-panel">
-                <h1>Scalestorm</h1>
+                <h1>Scalestorm 2.0</h1>
 
                 <div class="settings-block">
                     <label>
@@ -345,6 +345,7 @@
                                 name="pps-mobility"
                                 data-min-value="80"
                                 data-max-value="100"
+                                value="0"
                                 checked
                             >
                             Полноценная
@@ -356,6 +357,7 @@
                                 name="pps-mobility"
                                 data-min-value="60"
                                 data-max-value="70"
+                                value="1"
                             >
                             Снижена
                         </label>
@@ -366,6 +368,7 @@
                                 name="pps-mobility"
                                 data-min-value="50"
                                 data-max-value="50"
+                                value="2"
                             >
                             Преимущественно сидит/лежит
                         </label>
@@ -376,6 +379,7 @@
                                 name="pps-mobility"
                                 data-min-value="40"
                                 data-max-value="40"
+                                value="3"
                             >
                             Преимущественно лежит
                         </label>
@@ -386,6 +390,7 @@
                                 name="pps-mobility"
                                 data-min-value="10"
                                 data-max-value="30"
+                                value=4
                             >
                             Прикован к постели
                         </label>
@@ -396,6 +401,7 @@
                                 name="pps-mobility"
                                 data-min-value="0"
                                 data-max-value="0"
+                                value="5"
                             >
                             Смерть
                         </label>
@@ -410,6 +416,7 @@
                                 name="pps-illness"
                                 data-min-value="100"
                                 data-max-value="100"
+                                value="0"
                                 checked
                             >
                             Нормальная деятельность и работоспособность.<br>
@@ -422,6 +429,7 @@
                                 name="pps-illness"
                                 data-min-value="80"
                                 data-max-value="90"
+                                value="1"
                             >
                             Нормальная деятельность и работоспособность.<br>
                             Заметны некоторые признаки заболевания
@@ -433,6 +441,7 @@
                                 name="pps-illness"
                                 data-min-value="80"
                                 data-max-value="80"
+                                value="2"
                             >
                             Нормальная деятельность требует усилий.<br>
                             Заметны некоторые признаки заболевания
@@ -444,6 +453,7 @@
                                 name="pps-illness"
                                 data-min-value="70"
                                 data-max-value="70"
+                                value="3"
                             >
                             Неспособность к профессиональной деятельности/работе.<br>
                             Серьёзные признаки заболевания
@@ -455,6 +465,7 @@
                                 name="pps-illness"
                                 data-min-value="60"
                                 data-max-value="60"
+                                value="4"
                             >
                             Неспособность заниматься хобби и выполнять работу по дому.<br>
                             Серьёзные признаки заболевания
@@ -466,6 +477,7 @@
                                 name="pps-illness"
                                 data-min-value="50"
                                 data-max-value="50"
+                                value="5"
                             >
                             Полная нетрудоспособность.<br>
                             Распространённый патологический процесс
@@ -477,6 +489,7 @@
                                 name="pps-illness"
                                 data-min-value="40"
                                 data-max-value="40"
+                                value="6"
                             >
                             Неспособность к большинству видов деятельности.<br>
                             Распространённый патологический процесс
@@ -488,6 +501,7 @@
                                 name="pps-illness"
                                 data-min-value="10"
                                 data-max-value="30"
+                                value="7"
                             >
                             Неспособность к какой-либо деятельности.<br>
                             Распространённый патологический процесс
@@ -495,7 +509,7 @@
                     </fieldset>
 
                     <fieldset>
-                        <legend>3. Способность к самообслуживанию</legend>
+                        <legend>3. Самообслуживание</legend>
 
                         <label>
                             <input
@@ -503,6 +517,7 @@
                                 name="pps-self-care"
                                 data-min-value="70"
                                 data-max-value="100"
+                                value="0"
                                 checked
                             >
                             Полное
@@ -514,6 +529,7 @@
                                 name="pps-self-care"
                                 data-min-value="60"
                                 data-max-value="60"
+                                value="1"
                             >
                             Периодически необходима помощь
                         </label>
@@ -524,6 +540,7 @@
                                 name="pps-self-care"
                                 data-min-value="50"
                                 data-max-value="50"
+                                value="2"
                             >
                             Необходима значительная помощь
                         </label>
@@ -534,6 +551,7 @@
                                 name="pps-self-care"
                                 data-min-value="40"
                                 data-max-value="40"
+                                value="3"
                             >
                             Помощь необходима большую часть времени
                         </label>
@@ -544,6 +562,7 @@
                                 name="pps-self-care"
                                 data-min-value="10"
                                 data-max-value="30"
+                                value="4"
                             >
                             Необходима постоянная помощь
                         </label>
@@ -558,6 +577,7 @@
                                 name="pps-food-intake"
                                 data-min-value="90"
                                 data-max-value="100"
+                                value="0"
                                 checked
                             >
                             В норме
@@ -569,6 +589,7 @@
                                 name="pps-food-intake"
                                 data-min-value="30"
                                 data-max-value="80"
+                                value="1"
                             >
                             В норме или сокращен
                         </label>
@@ -579,6 +600,7 @@
                                 name="pps-food-intake"
                                 data-min-value="20"
                                 data-max-value="20"
+                                value="2"
                             >
                             Только пьёт маленькими глотками
                         </label>
@@ -589,6 +611,7 @@
                                 name="pps-food-intake"
                                 data-min-value="10"
                                 data-max-value="10"
+                                value="3"
                             >
                             Только уход за полостью рта
                         </label>
@@ -603,6 +626,7 @@
                                 name="pps-consciousness"
                                 data-min-value="70"
                                 data-max-value="100"
+                                value="0"
                                 checked
                             >
                             Ясное сознание
@@ -614,6 +638,7 @@
                                 name="pps-consciousness"
                                 data-min-value="50"
                                 data-max-value="60"
+                                value="1"
                             >
                             Ясное или спутанность сознания
                         </label>
@@ -624,6 +649,7 @@
                                 name="pps-consciousness"
                                 data-min-value="20"
                                 data-max-value="40"
+                                value="2"
                             >
                             Ясное или присутствует вялость +/- спутанность сознания
                         </label>
@@ -634,13 +660,14 @@
                                 name="pps-consciousness"
                                 data-min-value="10"
                                 data-max-value="10"
+                                value="3"
                             >
                             Вялость или кома +/- спутанность сознания
                         </label>
                     </fieldset>
 
                     <p>
-                        <strong>Дисклеймер</strong>: ручной ввод значения PPS исключен во избежание путаницы со шкалой Карновского!<br>
+                        <strong>Дисклеймер</strong>: сокращенный ручной ввод значения PPS исключен во избежание путаницы со шкалой Карновского!<br>
                     </p>
                     <p>
                         PPS (Palliative Performance Scale) и шкала Карновского (Karnofsky Performance Status, KPS) являются разными инструментами оценки функционального статуса и не должны автоматически заменять друг друга.<br>

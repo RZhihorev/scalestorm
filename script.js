@@ -324,6 +324,64 @@ function showCalculationTest() {
         '10 и более баллов:\n - высокий риск;\n - вероятность токсичности 3-5 степени - 83%'
     ];
 
+    // Переменные для PPS
+    const ppsMobilityInput = Number(
+        document.querySelector('input[name="pps-mobility"]:checked').value
+    );
+    const ppsMobilityAnswers = [
+        'полноценная',
+        'снижена',
+        'преимущественно сидит/лежит',
+        'преимущественно лежит',
+        'прикован к постели',
+        'смерть'
+    ];
+
+    const ppsIllnessInput = Number(
+        document.querySelector('input[name="pps-illness"]:checked').value
+    );
+    const ppsIllnessAnswers = [
+        'нормальная деятельность и работоспособность, нет признаков заболевания',
+        'нормальная деятельность и работоспособность, заметны некоторые признаки заболевания',
+        'нормальная деятельность требует усилий, заметны некоторые признаки заболевания',
+        'неспособность к профессиональной деятельности/работе, серьёзные признаки заболевания',
+        'неспособность заниматься хобби и выполнять работу по дому, серьёзные признаки заболевания',
+        'полная нетрудособность, распространённый патологический процесс',
+        'неспособность к большинству видов деятельности, распространённый патологический процесс',
+        'неспособность к какой-либо деятельности, распространённый патологический процесс'
+    ];
+    
+    const ppsSelfCareInput = Number(
+        document.querySelector('input[name="pps-self-care"]:checked').value
+    );
+    const ppsSelfCareAnswers = [
+        'полное',
+        'периодически необходима помощь',
+        'необходима значительная помощь',
+        'помощь необходима большую часть времени',
+        'необходима постоянная помощь'
+    ];
+
+    const ppsFoodIntakeInput = Number(
+        document.querySelector('input[name="pps-food-intake"]:checked').value
+    );
+    const ppsFoodIntakeAnswers = [
+        'в норме',
+        'в норме или сокращен',
+        'только пьёт маленькими глотками',
+        'только уход за полостью рта'
+    ];
+
+    const ppsConsciousnessInput = Number(
+        document.querySelector('input[name="pps-consciousness"]:checked').value
+    );
+    const ppsConsciousnessAnswers = [
+        'ясное сознание',
+        'ясное или спутанность сознания',
+        'ясное или присутствует вялость +/- спутанность сознания',
+        'вялость или кома +/- спутанность сознания'
+    ];
+
     // СОСТАВЛЕНИЕ ОТЧЁТА ДЛЯ ПОЛЬЗОВАТЕЛЯ
     const reportLines = [];
 
@@ -480,13 +538,33 @@ function showCalculationTest() {
 
     reportLines.push('[PPS — шкала функционального статуса в паллиативной помощи]');
     if (isPalliativeScenario) {
-        reportLines.push('1. Способность передвигаться:');
-        reportLines.push('2. Степень активности и выраженность заболевания:');
-        reportLines.push('3. Способность к самообслуживанию:');
-        reportLines.push('4. Приём пищи и жидкости:');
-        reportLines.push('5. Уровень сознания:');
+        reportLines.push(
+            '1. Способность передвигаться: ' +
+            ppsMobilityAnswers[ppsMobilityInput] + ';'
+        );
+
+        reportLines.push(
+            '2. Степень активности и выраженность заболевания: ' +
+            ppsIllnessAnswers[ppsIllnessInput] + ';'
+        );
+
+        reportLines.push(
+            '3. Самообслуживание: ' +
+            ppsSelfCareAnswers[ppsSelfCareInput] + ';'
+        );
+
+        reportLines.push(
+            '4. Приём пищи и жидкости: ' +
+            ppsFoodIntakeAnswers[ppsFoodIntakeInput] + ';'
+        );
+
+        reportLines.push(
+            '5. Уровень сознания: ' +
+            ppsConsciousnessAnswers[ppsConsciousnessInput] + '.'
+        );
+
         reportLines.push('');
-        reportLines.push('Итоговый показатель PPS: ____ %');
+        reportLines.push('Итоговый показатель PPS (ручная верификация): ____ %');
     } else {
         reportLines.push('Не применимо (пациент подлежит радикальному лечению).');
     }
