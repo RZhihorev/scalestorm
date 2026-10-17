@@ -386,6 +386,93 @@ function showCalculationTest() {
         document.querySelector('input[name="pps-total"]:checked').value
     );
 
+    // Переменные для PPI
+    let ppiPpsScore;
+    let ppiPpsIndex;
+    if (ppsTotalInput >= 60) {
+        ppiPpsScore = 0;
+        ppiPpsIndex = 0;
+    } else if (ppsTotalInput >= 30 && ppsTotalInput <=50) {
+        ppiPpsScore = 2.5;
+        ppiPpsIndex = 1;
+    } else if (ppsTotalInput >= 10 && ppsTotalInput <=20) {
+        ppiPpsScore = 4;
+        ppiPpsIndex = 2; 
+    }
+
+    const ppiPpsAnswers = [
+        '(60% и выше; 0 баллов)',
+        '(от 30% до 50% включительно; 2,5 балла)',
+        '(от 10 до 20% включительно; 4 балла)'
+    ];
+
+    const ppiFoodIntakeInput = Number(
+        document.querySelector('input[name="ppi-food-intake"]:checked').value
+    );
+
+    let ppiFoodIntakeScore;
+    if (ppiFoodIntakeInput === 0) {
+        ppiFoodIntakeScore = 2.5;
+    } else if (ppiFoodIntakeInput === 1) {
+        ppiFoodIntakeScore = 1;
+    } else if (ppiFoodIntakeInput === 2) {
+        ppiFoodIntakeScore = 0;
+    }
+
+    const ppiFoodIntakeAnswers = [
+        'несколько глотков или ложек пищи/жидкости за прием (2,5 балла)',
+        'снижен, но больше нескольких глотков/ложек за приём (1 балл)',
+        'нормальный (0 баллов)'
+    ];
+
+    const ppiSwellingInput = Number(
+        document.querySelector('input[name="ppi-swelling"]:checked').value
+    );
+
+    let ppiSwellingScore;
+    if (ppiSwellingInput === 0) {
+        ppiSwellingScore = 1;
+    } else if (ppiSwellingInput === 1) {
+        ppiSwellingScore = 0;
+    } 
+
+    const ppiSwellingAnswers = [
+        'да (1 балл)',
+        'нет (0 баллов)'
+    ];
+
+    const ppiDyspnoeaInput = Number(
+        document.querySelector('input[name="ppi-dyspnoea"]:checked').value
+    );
+
+    let ppiDyspnoeaScore;
+    if (ppiDyspnoeaInput === 0) {
+        ppiDyspnoeaScore = 3.5;
+    } else if (ppiDyspnoeaInput === 1) {
+        ppiDyspnoeaScore = 0;
+    } 
+
+    const ppiDyspnoeaAnswers = [
+        'да (3,5 балла)',
+        'нет (0 баллов)'
+    ];
+
+    const ppiDeliriumInput = Number(
+        document.querySelector('input[name="ppi-delirium"]:checked').value
+    );
+
+    let ppiDeliriumScore;
+    if (ppiDeliriumInput === 0) {
+        ppiDeliriumScore = 4;
+    } else if (ppiDeliriumInput === 1) {
+        ppiDeliriumScore = 0;
+    } 
+
+    const ppiDeliriumAnswers = [
+        'да (4 балла)',
+        'нет (0 баллов)'
+    ];
+
     // СОСТАВЛЕНИЕ ОТЧЁТА ДЛЯ ПОЛЬЗОВАТЕЛЯ
     const reportLines = [];
 
@@ -579,13 +666,34 @@ function showCalculationTest() {
 
     reportLines.push('[PPI — паллиативный прогностический индекс]');
     if (isPalliativeScenario) {
-        reportLines.push('1. Значение PPS:');
-        reportLines.push('2. Приём пищи:');
-        reportLines.push('3. Отёки:');
-        reportLines.push('4. Одышка в покое:');
-        reportLines.push('5. Делирий по критериям DSM-IV:');
+        reportLines.push(
+            '1. Значение PPS: ' +
+            ppsTotalInput + '% ' +
+            ppiPpsAnswers[ppiPpsIndex] + ';'
+        );
+
+        reportLines.push(
+            '2. Приём пищи: ' +
+            ppiFoodIntakeAnswers[ppiFoodIntakeInput] + ';'
+        );
+
+        reportLines.push(
+            '3. Отёки: ' +
+            ppiSwellingAnswers[ppiSwellingInput] + ';'
+        );
+
+        reportLines.push(
+            '4. Одышка в покое: ' +
+            ppiDyspnoeaAnswers[ppiDyspnoeaInput] + ';'
+        );
+
+        reportLines.push(
+            '5. Делирий по критериям DSM-IV: ' +
+            ppiDeliriumAnswers[ppiDeliriumInput] + '.'
+        );
+
         reportLines.push('');
-        reportLines.push('Итоговый показатель PPI: ____ баллов');
+        reportLines.push('Сумма баллов PPI: ____ баллов');
         reportLines.push('Прогностическая интерпретация:');
     } else {
         reportLines.push('Не применимо (пациент подлежит радикальному лечению).');
