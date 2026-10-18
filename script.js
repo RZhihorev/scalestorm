@@ -473,6 +473,28 @@ function showCalculationTest() {
         'нет (0 баллов)'
     ];
 
+    let ppiTotalScore =
+        ppiPpsScore +
+        ppiFoodIntakeScore +
+        ppiSwellingScore +
+        ppiDyspnoeaScore +
+        ppiDeliriumScore;
+
+    let ppiTotalScoreIndex;
+    if (ppiTotalScore <= 4) {
+        ppiTotalScoreIndex = 0;
+    } else if (ppiTotalScore > 4 && ppiTotalScore <= 6) {
+        ppiTotalScoreIndex = 1;
+    } else if (ppiTotalScore > 6) {
+        ppiTotalScoreIndex = 2;
+    }
+
+    const ppiTotalScoreLabels = [
+        '4 балла и меньше (низкий риск)',
+        '5-6 баллов (умеренный риск)',
+        'более 6 баллов (высокий риск)'
+    ];
+
     // СОСТАВЛЕНИЕ ОТЧЁТА ДЛЯ ПОЛЬЗОВАТЕЛЯ
     const reportLines = [];
 
@@ -693,8 +715,15 @@ function showCalculationTest() {
         );
 
         reportLines.push('');
-        reportLines.push('Сумма баллов PPI: ____ баллов');
-        reportLines.push('Прогностическая интерпретация:');
+        reportLines.push(
+            'Сумма баллов PPI: ' +
+            ppiTotalScore
+        );
+
+        reportLines.push(
+            'Прогностическая интерпретация: ' +
+            ppiTotalScoreLabels[ppiTotalScoreIndex] + '.'
+        );
     } else {
         reportLines.push('Не применимо (пациент подлежит радикальному лечению).');
     }
