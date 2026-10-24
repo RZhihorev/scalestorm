@@ -6,6 +6,7 @@ function showCalculationTest() {
     const heightInput = document.getElementById('height');
     const weightInput = document.getElementById('weight');
     const hemoglobinInput = document.getElementById('hemoglobin');
+    const erythropoetinCheckbox = document.getElementById('cbx-erythropoietin');
     const leukocytesInput = document.getElementById('leukocytes');
     const plateletsInput = document.getElementById('platelets');
     const creatinineInput = document.getElementById('creatinine');
@@ -19,6 +20,7 @@ function showCalculationTest() {
     const height = heightInput.valueAsNumber;
     const weight = weightInput.valueAsNumber;
     const hemoglobin = hemoglobinInput.valueAsNumber;
+    const erythropoietin = erythropoetinCheckbox.checked;
     const leukocytes = leukocytesInput.valueAsNumber;
     const platelets = plateletsInput.valueAsNumber;
     const creatinine = creatinineInput.valueAsNumber;
@@ -495,6 +497,89 @@ function showCalculationTest() {
         'более 6 баллов (высокий риск)'
     ];
 
+    // Переменные для Khorana
+    const khoranaSiteInput = Number(
+        document.querySelector('input[name="khorana-site"]:checked').value
+    );
+
+    const khoranaSiteAnswers = [
+        'низкий риск (молочная железа, колоректальный рак, голова и шея, прочие нозологии; 0 баллов)',
+        'высокий риск (лёгкое, лимфома, гинекология, урология исключая простату; 1 балл)',
+        'очень высокий риск (желудок, поджелудочная железа; 2 балла)'
+    ];
+
+    let khoranaPlateletsScore;
+    if (platelets < 350) {
+        khoranaPlateletsScore = 0;
+    } else if (platelets >= 350) {
+        khoranaPlateletsScore = 1;
+    }
+
+    const khoranaPlateletsAnswers = [
+        '(менее 350 * 10^9/л; 0 баллов)',
+        '(350 * 10^9/л и более; 1 балл)'
+    ];
+
+    let khoranaHemoglobinScore;
+    if (hemoglobin >= 100) {
+        khoranaHemoglobinScore = 0;
+    } else if (hemoglobin < 100) {
+        khoranaHemoglobinScore = 1;
+    }
+
+    const khoranaHemoglobinAnswers = [
+        '(100 г/л и выше',
+        '(менее 100 г/л'
+    ];
+
+    let khoranaErythropoetinScore;
+    if (!erythropoietin) {
+        khoranaErythropoetinScore = 0;
+    } else if (erythropoietin) {
+        khoranaErythropoetinScore = 1;
+    }
+
+    const khoranaErythropoetinAnswers = [
+        'эритропоэтин не получает',
+        'эритропоэтин получает'
+    ];
+
+    let khoranaEryHemScore;
+    if (khoranaHemoglobinScore === 0 && khoranaErythropoetinScore === 0) {
+        khoranaEryHemScore = 0;
+    } else {
+        khoranaEryHemScore = 1;
+    }
+
+    const khoranaEryHemAnswers = [
+        '0 баллов)',
+        '1 балл)'
+    ];
+    
+    let khoranaLeukocytesScore;
+    if (leukocytes <= 11) {
+        khoranaLeukocytesScore = 0;
+    } else if (leukocytes > 11) {
+        khoranaLeukocytesScore = 1;
+    }
+
+    const khoranaLeukocytesAnswers = [
+        '(менее или 11 * 10^9/л; 0 баллов)',
+        '(более 11 * 10^9/л и более; 1 балл)'
+    ];
+
+    let khoranaBmiScore;
+    if (bmi < 35) {
+        khoranaBmiScore = 0;
+    } else if (bmi >= 35) {
+        khoranaBmiScore = 1;
+    }
+
+    const khoranaBmiAnswers = [
+        '(до 35 кг/м.кв.; 0 баллов)',
+        '(35 кг/м.кв. и более; 1 балл)'
+    ];
+
     // СОСТАВЛЕНИЕ ОТЧЁТА ДЛЯ ПОЛЬЗОВАТЕЛЯ
     const reportLines = [];
 
@@ -733,11 +818,35 @@ function showCalculationTest() {
     reportLines.push('');
 
     reportLines.push('[Шкала Khorana — оценка риска ВТЭО при лекарственной противоопухолевой терапии]');
-    reportLines.push('1. Локализация опухоли (первичный очаг):');
-    reportLines.push('2. Количество тромбоцитов до химиотерапии:');
-    reportLines.push('3. Концентрация гемоглобина <100 г/л или применение эритропоэтина:');
-    reportLines.push('4. Количество лейкоцитов до химиотерапии:');
-    reportLines.push('5. Индекс массы тела:');
+
+    reportLines.push(
+        '1. Локализация опухоли (первичный очаг): ' +
+        khoranaSiteAnswers[khoranaSiteInput] + ';'
+    );
+
+    reportLines.push(
+        '2. Количество тромбоцитов до химиотерапии: ' +
+        platelets + ' * 10^9/л ' +
+        khoranaPlateletsAnswers[khoranaPlateletsScore] + ';'
+    );
+
+    reportLines.push(
+        '3. Концентрация гемоглобина <100 г/л или применение эритропоэтина: ' +
+        hemoglobin + ' г/л ' + khoranaHemoglobinAnswers[khoranaHemoglobinScore] + ', ' +
+        khoranaErythropoetinAnswers[khoranaErythropoetinScore] + '; ' +
+        khoranaEryHemAnswers[khoranaEryHemScore] + ';'
+    );
+
+    reportLines.push(
+        '4. Количество лейкоцитов до химиотерапии: ' +
+        leukocytes + ' * 10^9/л ' +
+        khoranaLeukocytesAnswers[khoranaLeukocytesScore] + ';'
+    );
+
+    reportLines.push(
+        '5. Индекс массы тела: ' +
+        bmi + ' кг/м.кв. ' + khoranaBmiAnswers[khoranaBmiScore] + '.'
+    );
     reportLines.push('');
 
     reportLines.push('Итоговый показатель Khorana: ____ баллов');

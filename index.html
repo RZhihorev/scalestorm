@@ -108,7 +108,7 @@
                         <label class="erythropoietin-label">
                             <input
                                 type="checkbox"
-                                id="erythropoietin"
+                                id="cbx-erythropoietin"
                                 name="erythropoietin"
                             >
                             Получает эритропоэтин
@@ -149,17 +149,33 @@
                         <legend>Тип рака</legend>
                         
                         <label>
-                            <input type="radio" id="khorana-rbt-very-high-risk" name="khorana-site">
+                            <input
+                                type="radio"
+                                id="khorana-rbt-very-high-risk"
+                                name="khorana-site"
+                                value=2
+                            >
                             Очень высокий риск (желудок, поджелудочная железа)
                         </label>
                         
                         <label>
-                            <input type="radio" id="khorana-rbt-high-risk" name="khorana-site">
+                            <input
+                                type="radio"
+                                id="khorana-rbt-high-risk"
+                                name="khorana-site"
+                                value="1"
+                            >
                             Высокий риск (лёгкое, лимфома, гинекология, урология исключая простату)
                         </label>
                         
                         <label>
-                            <input type="radio" id="khorana-rbt-low-risk" name="khorana-site" checked>
+                            <input
+                                type="radio"
+                                id="khorana-rbt-low-risk"
+                                name="khorana-site"
+                                value="0"
+                                checked
+                            >
                             Низкий риск (молочная железа, колоректальный рак, голова и шея, прочие нозологии)
                         </label>
                     </fieldset>
