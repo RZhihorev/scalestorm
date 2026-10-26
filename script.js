@@ -580,6 +580,28 @@ function showCalculationTest() {
         '(35 кг/м.кв. и более; 1 балл)'
     ];
 
+    let khoranaTotalScore = 
+        khoranaSiteInput +
+        khoranaPlateletsScore +
+        khoranaEryHemScore +
+        khoranaLeukocytesScore +
+        khoranaBmiScore;
+
+    let khoranaTotalScoreIndex;
+    if (khoranaTotalScore === 0) {
+        khoranaTotalScoreIndex = 0
+    } else if (khoranaTotalScore > 0 && khoranaTotalScore < 3) {
+        khoranaTotalScoreIndex = 1
+    } else if (khoranaTotalScore > 2) {
+        khoranaTotalScoreIndex = 2
+    }
+
+    const khoranaTotalScoreLabels = [
+        'низкий риск (частота ВТЭО 0,3% - 0,8% в исходном исследовании при медиане наблюдения 2,5 месяца)',
+        'промежуточный риск (частота ВТЭО 1,8% - 2,0% в исходном исследовании при медиане наблюдения 2,5 месяца)',
+        'высокий риск (частота ВТЭО 6,7% - 7,1% в исходном исследовании при медиане наблюдения 2,5 месяца)'
+    ];
+
     // СОСТАВЛЕНИЕ ОТЧЁТА ДЛЯ ПОЛЬЗОВАТЕЛЯ
     const reportLines = [];
 
@@ -849,8 +871,16 @@ function showCalculationTest() {
     );
     reportLines.push('');
 
-    reportLines.push('Итоговый показатель Khorana: ____ баллов');
-    reportLines.push('Категория риска ВТЭО: ____________________');
+    reportLines.push(
+        'Сумма баллов Khorana: ' +
+        khoranaTotalScore
+    );
+
+    reportLines.push(
+        'Категория риска ВТЭО: ' +
+        khoranaTotalScoreLabels[khoranaTotalScoreIndex] + '.'
+    );
+
     reportLines.push('');
 
     reportLines.push('[Шкала Caprini — оценка риска ВТЭО]');
