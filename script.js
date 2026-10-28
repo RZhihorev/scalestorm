@@ -1,7 +1,10 @@
 function showCalculationTest() {
     const output = document.getElementById('results-output');
+
     const palliativeScenarioCheckbox = document.getElementById('palliative-scenario');
+    const isPalliativeScenario = palliativeScenarioCheckbox.checked;
     
+    // Список базовых параметров пациента
     const ageInput = document.getElementById('age');
     const heightInput = document.getElementById('height');
     const weightInput = document.getElementById('weight');
@@ -14,8 +17,6 @@ function showCalculationTest() {
     const male = document.getElementById('male').checked
     const female = document.getElementById('female').checked
 
-    const isPalliativeScenario = palliativeScenarioCheckbox.checked;
-
     const age = ageInput.valueAsNumber;
     const height = heightInput.valueAsNumber;
     const weight = weightInput.valueAsNumber;
@@ -26,6 +27,109 @@ function showCalculationTest() {
     const creatinine = creatinineInput.valueAsNumber;
 
     const bmi = Number((weight / (height / 100) ** 2).toFixed(2));
+
+    // Список переменных для Caprini
+    const capriniFootSwellingCheckbox = document.getElementById('caprini-foot-swelling');
+    const capriniFootSwelling = capriniFootSwellingCheckbox.checked;
+
+    const capriniVaricoseVeinsCheckbox = document.getElementById('caprini-varicose-veins');
+    const capriniVaricoseVeins = capriniVaricoseVeinsCheckbox.checked;
+
+    const capriniSmallSurgeryCheckbox = document.getElementById('caprini-small-surgery');
+    const capriniSmallSurgery = capriniSmallSurgeryCheckbox.checked;
+
+    const capriniSepsisCheckbox = document.getElementById('caprini-sepsis');
+    const capriniSepsis = capriniSepsisCheckbox.checked;
+
+    const capriniLungDiseaseCheckbox = document.getElementById('caprini-lung-disease');
+    const capriniLungDisease = capriniLungDiseaseCheckbox.checked;
+
+    const capriniContraceptionHrtCheckbox = document.getElementById('caprini-contraception-hrt');
+    const capriniContraceptionHrt = capriniContraceptionHrtCheckbox.checked;
+
+    const capriniPregnancyCheckbox = document.getElementById('caprini-pregnancy');
+    const capriniPregnancy = capriniPregnancyCheckbox.checked;
+
+    const capriniObstetricsPathologyCheckbox = document.getElementById('caprini-obstetrics-pathology');
+    const capriniObstetricsPathology = capriniObstetricsPathologyCheckbox.checked;
+
+    const capriniMyocardialInfarctionCheckbox = document.getElementById('captini-myocardial-infarction');
+    const capriniMyocardialInfarction = capriniMyocardialInfarctionCheckbox.checked;
+
+    const capriniHeartFailureCheckbox = document.getElementById('caprini-heart-failure');
+    const capriniHeartFailure = capriniHeartFailureCheckbox.checked;
+
+    const capriniBedRestCheckbox = document.getElementById('caprini-bed-rest');
+    const capriniBedRest = capriniBedRestCheckbox.checked;
+
+    const capriniInflammedBowelCheckbox = document.getElementById('caprini-inflammed-bowel');
+    const capriniInflammedBowel = capriniInflammedBowelCheckbox.checked;
+
+    const capriniBigSurgeryStoryCheckbox = document.getElementById('caprini-big-surgery-story');
+    const capriniBigSurgeryStory = capriniBigSurgeryStoryCheckbox.checked;
+
+    const capriniCopdCheckbox = document.getElementById('caprini-copd');
+    const capriniCopd = capriniCopdCheckbox.checked;
+
+    const capriniArthroSurgeryCheckbox = document.getElementById('caprini-arthro-surgery');
+    const capriniArthroSurgery = capriniArthroSurgeryCheckbox.checked;
+
+    const capriniOncologyCheckbox = document.getElementById('caprini-oncology');
+    const capriniOncology = capriniOncologyCheckbox.checked;
+
+    const capriniLaparoSurgeryCheckbox = document.getElementById('caprini-laparo-surgery');
+    const capriniLaparoSurgery = capriniLaparoSurgeryCheckbox.checked;
+
+    const capriniBedRestLongCheckbox = document.getElementById('caprini-bed-rest-long');
+    const capriniBedRestLong = capriniBedRestLongCheckbox.checked;
+
+    const capriniLimbImmobilizationCheckbox = document.getElementById('caprini-limb-immobilization');
+    const capriniLimbImmobilization = capriniLimbImmobilizationCheckbox.checked;
+
+    const capriniCathCentVeinsCheckbox = document.getElementById('caprini-cath-cent-veins');
+    const capriniCathCentVeins = capriniCathCentVeinsCheckbox.checked;
+
+    const capriniBigSurgeryCheckbox = document.getElementById('caprini-big-surgery');
+    const capriniBigSurgery = capriniBigSurgeryCheckbox.checked;
+
+    const capriniVeOfPatientCheckbox = document.getElementById('caprini-ve-of-patient');
+    const capriniVeOfPatient = capriniVeOfPatientCheckbox.checked;
+
+    const capriniVeInFamilyCheckbox = document.getElementById('caprini-ve-in-family');
+    const capriniVeInFamily = capriniVeInFamilyCheckbox.checked;
+
+    const capriniLeidenMutationCheckbox = document.getElementById('caprini-leiden-mutation');
+    const capriniLeidenMutation = capriniLeidenMutationCheckbox.checked;
+
+    const capriniProthrombinMutationCheckbox = document.getElementById('caprini-prothrombin-mutation');
+    const capriniProthrombinMutation = capriniProthrombinMutationCheckbox.checked;
+
+    const capriniHighHomocysteineCheckbox = document.getElementById('caprini-high-homocysteine');
+    const capriniHighHomocysteine = capriniHighHomocysteineCheckbox.checked;
+
+    const capriniHeparinAndThrombocytopeniaCheckbox = document.getElementById('caprini-heparin-and-thrombocytopenia');
+    const capriniHeparinAndThrombocytopenia = capriniHeparinAndThrombocytopeniaCheckbox.checked;
+
+    const capriniCardiolipinAntibodyCheckbox = document.getElementById('caprini-cardiolipin-antibody');
+    const capriniCardiolipinAntibody = capriniCardiolipinAntibodyCheckbox.checked;
+
+    const capriniLupusAnticoagulantCheckbox = document.getElementById('caprini-lupus-anticoagulant');
+    const capriniLupusAnticoagulant = capriniLupusAnticoagulantCheckbox.checked;
+
+    const capriniStrokeCheckbox = document.getElementById('caprini-stroke');
+    const capriniStroke = capriniStrokeCheckbox.checked;
+
+    const capriniPolytraumaCheckbox = document.getElementById('caprini-polytrauma');
+    const capriniPolytrauma = capriniPolytraumaCheckbox.checked;
+
+    const capriniEndoprothesisCheckbox = document.getElementById('caprini-endoprothesis');
+    const capriniEndoprothesis = capriniEndoprothesisCheckbox.checked;
+
+    const capriniFemurAndTibiaFractureCheckbox = document.getElementById('caprini-femur-and-tibia-fracture');
+    const capriniFemurAndTibiaFracture = capriniFemurAndTibiaFractureCheckbox.checked;
+
+    const capriniParalysisCheckbox = document.getElementById('caprini-paralysis');
+    const capriniParalysis = capriniParalysisCheckbox.checked;
 
     // Список переменных для расчёта G8
     const g8FoodIntakeInput = Number(
