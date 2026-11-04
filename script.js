@@ -723,7 +723,7 @@ function showCalculationTest() {
     const capriniAge4160Answers = [
         'нет (возраст менее 41 года, 0 баллов)',
         'да (1 балл)',
-        'нет (см. отчёт далее, 0 баллов)'
+        'нет (возраст более 60 лет, 0 баллов)'
     ];
 
     let capriniFootSwellingIndex;
@@ -948,6 +948,130 @@ function showCalculationTest() {
 
     const capriniCopdAnswers = [
         'да (1 балл)',
+        'нет (0 баллов)'
+    ];
+
+    let capriniAge6174Index;
+    let capriniAge6174Score;
+    if (age < 61) {
+        capriniAge6174Index = 0;
+        capriniAge6174Score = 0;
+    } else if (age > 60 && age < 75) {
+        capriniAge6174Index = 1;
+        capriniAge6174Score = 2;
+    } else if (age >= 75) {
+        capriniAge6174Index = 2;
+        capriniAge6174Score = 0;
+    }
+
+    const capriniAge6174Answers = [
+        'нет (возраст менее 61 года, 0 баллов)',
+        'да (2 балла)',
+        'нет (возраст более 74 лет, 0 баллов)'
+    ];
+
+    let capriniArthroSurgeryIndex;
+    let capriniArthroSurgeryScore;
+    if (capriniArthroSurgery) {
+        capriniArthroSurgeryIndex = 0;
+        capriniArthroSurgeryScore = 2;
+    } else {
+        capriniArthroSurgeryIndex = 1;
+        capriniArthroSurgeryScore = 0;        
+    }
+
+    const capriniArthroSurgeryAnswers = [
+        'да (2 балла)',
+        'нет (0 баллов)'
+    ];
+
+    let capriniOncologyIndex;
+    let capriniOncologyScore;
+    if (capriniOncology) {
+        capriniOncologyIndex = 0;
+        capriniOncologyScore = 2;
+    } else {
+        capriniOncologyIndex = 1;
+        capriniOncologyScore = 0;        
+    }
+
+    const capriniOncologyAnswers = [
+        'да (2 балла)',
+        'нет (0 баллов)'
+    ];
+
+    let capriniLaparoSurgeryIndex;
+    let capriniLaparoSurgeryScore;
+    if (capriniLaparoSurgery) {
+        capriniLaparoSurgeryIndex = 0;
+        capriniLaparoSurgeryScore = 2;
+    } else {
+        capriniLaparoSurgeryIndex = 1;
+        capriniLaparoSurgeryScore = 0;        
+    }
+
+    const capriniLaparoSurgeryAnswers = [
+        'да (2 балла)',
+        'нет (0 баллов)'
+    ];
+
+    let capriniBedRestLongIndex;
+    let capriniBedRestLongScore;
+    if (capriniBedRestLong) {
+        capriniBedRestLongIndex = 0;
+        capriniBedRestLongScore = 2;
+    } else {
+        capriniBedRestLongIndex = 1;
+        capriniBedRestLongScore = 0;        
+    }
+
+    const capriniBedRestLongAnswers = [
+        'да (2 балла)',
+        'нет (0 баллов)'
+    ];
+
+    let capriniLimbImmobilizationIndex;
+    let capriniLimbImmobilizationScore;
+    if (capriniLimbImmobilization) {
+        capriniLimbImmobilizationIndex = 0;
+        capriniLimbImmobilizationScore = 2;
+    } else {
+        capriniLimbImmobilizationIndex = 1;
+        capriniLimbImmobilizationScore = 0;        
+    }
+
+    const capriniLimbImmobilizationAnswers = [
+        'да (2 балла)',
+        'нет (0 баллов)'
+    ];
+
+    let capriniCathCentVeinsIndex;
+    let capriniCathCentVeinsScore;
+    if (capriniCathCentVeins) {
+        capriniCathCentVeinsIndex = 0;
+        capriniCathCentVeinsScore = 2;
+    } else {
+        capriniCathCentVeinsIndex = 1;
+        capriniCathCentVeinsScore = 0;        
+    }
+
+    const capriniCathCentVeinsAnswers = [
+        'да (2 балла)',
+        'нет (0 баллов)'
+    ];
+
+    let capriniBigSurgeryIndex;
+    let capriniBigSurgeryScore;
+    if (capriniBigSurgery) {
+        capriniBigSurgeryIndex = 0;
+        capriniBigSurgeryScore = 2;
+    } else {
+        capriniBigSurgeryIndex = 1;
+        capriniBigSurgeryScore = 0;        
+    }
+
+    const capriniBigSurgeryAnswers = [
+        'да (2 балла)',
         'нет (0 баллов)'
     ];
 
@@ -1234,6 +1358,8 @@ function showCalculationTest() {
 
     // Отчёт по Caprini
     reportLines.push('[Шкала Caprini — оценка риска ВТЭО]');
+    
+    // 1 балл
     reportLines.push(
         '1. Возраст 41 - 60 лет: ' +
         capriniAge4160Answers[capriniAge4160Index] + ';'
@@ -1314,16 +1440,48 @@ function showCalculationTest() {
         capriniCopdAnswers[capriniCopdIndex] + ';'
     );
 
-    reportLines.push('17. Возраст 61 - 74 года:');
-    reportLines.push('18. Артроскопическая хирургия:');
-    reportLines.push('19. Злокачественное новообразование:');
-    reportLines.push('20. Лапароскопическое вмешательство (длительностью более 45 минут):');
-    reportLines.push('21. Постельный режим более 72 часов:');
-    reportLines.push('22. Иммобилизация конечности (давностью до 1 месяца):');
-    reportLines.push('23. Катетеризация центральных вен:');
-    reportLines.push('24. Большое хирургическое вмешательство (длительностью более 45 минут):');
+    // 2 балла
+    reportLines.push(
+        '17. Возраст 61 - 74 года: ' +
+        capriniAge6174Answers[capriniAge6174Index] + ';'
+    );
 
-    reportLines.push('25. Возраст старше 75 лет:');
+    reportLines.push(
+        '18. Артроскопическая хирургия: ' +
+        capriniArthroSurgeryAnswers[capriniArthroSurgeryIndex] + ';'
+    );
+
+    reportLines.push(
+        '19. Злокачественное новообразование: ' +
+        capriniOncologyAnswers[capriniOncologyIndex] + ';'
+    );
+
+    reportLines.push(
+        '20. Лапароскопическое вмешательство (длительностью более 45 минут): ' +
+        capriniLaparoSurgeryAnswers[capriniLaparoSurgeryIndex] +';'
+    );
+
+    reportLines.push(
+        '21. Постельный режим более 72 часов: ' +
+        capriniBedRestLongAnswers[capriniBedRestLongIndex] + ';'
+    );
+
+    reportLines.push(
+        '22. Иммобилизация конечности (давностью до 1 месяца): ' +
+        capriniLimbImmobilizationAnswers[capriniLimbImmobilizationIndex] +';'
+    );
+
+    reportLines.push(
+        '23. Катетеризация центральных вен: ' +
+        capriniCathCentVeinsAnswers[capriniCathCentVeinsIndex] + ';'
+    );
+
+    reportLines.push(
+        '24. Большое хирургическое вмешательство (длительностью более 45 минут): ' +
+        capriniBigSurgeryAnswers[capriniBigSurgeryIndex] + ';'
+    );
+
+    reportLines.push('25. Возраст 75 лет и старше:');
     reportLines.push('26. Личный анамнез ВТЭО:');
     reportLines.push('27. Семейный анамнез ВТЭО:');
     reportLines.push('28. Мутация типа Лейден:');
