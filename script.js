@@ -1210,6 +1210,81 @@ function showCalculationTest() {
         'нет (0 баллов)'
     ];
 
+    let capriniStrokeIndex;
+    let capriniStrokeScore;
+    if (capriniStroke) {
+        capriniStrokeIndex = 0;
+        capriniStrokeScore = 5;
+    } else {
+        capriniStrokeIndex = 1;
+        capriniStrokeScore = 0;        
+    }
+
+    const capriniStrokeAnswers = [
+        'да (5 баллов)',
+        'нет (0 баллов)'
+    ];
+
+    let capriniPolytraumaIndex;
+    let capriniPolytraumaScore;
+    if (capriniPolytrauma) {
+        capriniPolytraumaIndex = 0;
+        capriniPolytraumaScore = 5;
+    } else {
+        capriniPolytraumaIndex = 1;
+        capriniPolytraumaScore = 0;        
+    }
+
+    const capriniPolytraumaAnswers = [
+        'да (5 баллов)',
+        'нет (0 баллов)'
+    ];
+
+    let capriniEndoprothesisIndex;
+    let capriniEndoprothesisScore;
+    if (capriniEndoprothesis) {
+        capriniEndoprothesisIndex = 0;
+        capriniEndoprothesisScore = 5;
+    } else {
+        capriniEndoprothesisIndex = 1;
+        capriniEndoprothesisScore = 0;        
+    }
+
+    const capriniEndoprothesisAnswers = [
+        'да (5 баллов)',
+        'нет (0 баллов)'
+    ];
+
+    let capriniFemurAndTibiaFractureIndex;
+    let capriniFemurAndTibiaFractureScore;
+    if (capriniFemurAndTibiaFracture) {
+        capriniFemurAndTibiaFractureIndex = 0;
+        capriniFemurAndTibiaFractureScore = 5;
+    } else {
+        capriniFemurAndTibiaFractureIndex = 1;
+        capriniFemurAndTibiaFractureScore = 0;        
+    }
+
+    const capriniFemurAndTibiaFractureAnswers = [
+        'да (5 баллов)',
+        'нет (0 баллов)'
+    ];
+
+    let capriniParalysisIndex;
+    let capriniParalysisScore;
+    if (capriniParalysis) {
+        capriniParalysisIndex = 0;
+        capriniParalysisScore = 5;
+    } else {
+        capriniParalysisIndex = 1;
+        capriniParalysisScore = 0;        
+    }
+
+    const capriniParalysisAnswers = [
+        'да (5 баллов)',
+        'нет (0 баллов)'
+    ];
+
     // СОСТАВЛЕНИЕ ОТЧЁТА ДЛЯ ПОЛЬЗОВАТЕЛЯ
     const reportLines = [];
 
@@ -1662,11 +1737,31 @@ function showCalculationTest() {
         capriniLupusAnticoagulantAnswers[capriniLupusAnticoagulantIndex] + ';'
     );
 
-    reportLines.push('34. Инсульт (давностью до 1 месяца):');
-    reportLines.push('35. Множественная травма (давностью до 1 месяца):');
-    reportLines.push('36. Эндопротезирование крупных суставов:');
-    reportLines.push('37. Перелом костей бедра и голени (давностью до 1 месяца):');
-    reportLines.push('38. Травма спинного мозга/паралич (давностью до 1 месяца):');
+    reportLines.push(
+        '34. Инсульт (давностью до 1 месяца): ' +
+        capriniStrokeAnswers[capriniStrokeIndex] + ';'
+    );
+
+    reportLines.push(
+        '35. Множественная травма (давностью до 1 месяца): ' +
+        capriniPolytraumaAnswers[capriniPolytraumaIndex] + ';'
+    );
+
+    reportLines.push(
+        '36. Эндопротезирование крупных суставов: ' +
+        capriniEndoprothesisAnswers[capriniEndoprothesisIndex] + ';'
+    );
+
+    reportLines.push(
+        '37. Перелом костей бедра и голени (давностью до 1 месяца): ' +
+        capriniFemurAndTibiaFractureAnswers[capriniFemurAndTibiaFractureIndex] + ';'
+    );
+
+    reportLines.push(
+        '38. Травма спинного мозга/паралич (давностью до 1 месяца): ' +
+        capriniParalysisAnswers[capriniParalysisIndex] + '.'
+    );
+
     reportLines.push('');
 
     reportLines.push('Сумма баллов Caprini: ');
