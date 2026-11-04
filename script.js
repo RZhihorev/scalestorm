@@ -1075,6 +1075,141 @@ function showCalculationTest() {
         'нет (0 баллов)'
     ];
 
+    let capriniAge75Index;
+    let capriniAge75Score;
+    if (age < 75) {
+        capriniAge75Index = 0;
+        capriniAge75Score = 0;
+    } else if (age >= 75) {
+        capriniAge75Index = 1;
+        capriniAge75Score = 3;
+    }
+
+    const capriniAge75Answers = [
+        'нет (возраст менее 75 лет, 0 баллов)',
+        'да (3 балла)'
+    ];
+
+    let capriniVeOfPatientIndex;
+    let capriniVeOfPatientScore;
+    if (capriniVeOfPatient) {
+        capriniVeOfPatientIndex = 0;
+        capriniVeOfPatientScore = 3;
+    } else {
+        capriniVeOfPatientIndex = 1;
+        capriniVeOfPatientScore = 0;        
+    }
+
+    const capriniVeOfPatientAnswers = [
+        'да (3 балла)',
+        'нет (0 баллов)'
+    ];
+
+    let capriniVeInFamilyIndex;
+    let capriniVeInFamilyScore;
+    if (capriniVeInFamily) {
+        capriniVeInFamilyIndex = 0;
+        capriniVeInFamilyScore = 3;
+    } else {
+        capriniVeInFamilyIndex = 1;
+        capriniVeInFamilyScore = 0;        
+    }
+
+    const capriniVeInFamilyAnswers = [
+        'да (3 балла)',
+        'нет (0 баллов)'
+    ];
+
+    let capriniLeidenMutationIndex;
+    let capriniLeidenMutationScore;
+    if (capriniLeidenMutation) {
+        capriniLeidenMutationIndex = 0;
+        capriniLeidenMutationScore = 3;
+    } else {
+        capriniLeidenMutationIndex = 1;
+        capriniLeidenMutationScore = 0;        
+    }
+
+    const capriniLeidenMutationAnswers = [
+        'да (3 балла)',
+        'нет (0 баллов)'
+    ];
+
+    let capriniProthrombinMutationIndex;
+    let capriniProthrombinMutationScore;
+    if (capriniProthrombinMutation) {
+        capriniProthrombinMutationIndex = 0;
+        capriniProthrombinMutationScore = 3;
+    } else {
+        capriniProthrombinMutationIndex = 1;
+        capriniProthrombinMutationScore = 0;        
+    }
+
+    const capriniProthrombinMutationAnswers = [
+        'да (3 балла)',
+        'нет (0 баллов)'
+    ];
+
+    let capriniHighHomocysteineIndex;
+    let capriniHighHomocysteineScore;
+    if (capriniHighHomocysteine) {
+        capriniHighHomocysteineIndex = 0;
+        capriniHighHomocysteineScore = 3;
+    } else {
+        capriniHighHomocysteineIndex = 1;
+        capriniHighHomocysteineScore = 0;        
+    }
+
+    const capriniHighHomocysteineAnswers = [
+        'да (3 балла)',
+        'нет (0 баллов)'
+    ];
+
+    let capriniHeparinAndThrombocytopeniaIndex;
+    let capriniHeparinAndThrombocytopeniaScore;
+    if (capriniHeparinAndThrombocytopenia) {
+        capriniHeparinAndThrombocytopeniaIndex = 0;
+        capriniHeparinAndThrombocytopeniaScore = 3;
+    } else {
+        capriniHeparinAndThrombocytopeniaIndex = 1;
+        capriniHeparinAndThrombocytopeniaScore = 0;        
+    }
+
+    const capriniHeparinAndThrombocytopeniaAnswers = [
+        'да (3 балла)',
+        'нет (0 баллов)'
+    ];
+
+    let capriniCardiolipinAntibodyIndex;
+    let capriniCardiolipinAntibodyScore;
+    if (capriniCardiolipinAntibody) {
+        capriniCardiolipinAntibodyIndex = 0;
+        capriniCardiolipinAntibodyScore = 3;
+    } else {
+        capriniCardiolipinAntibodyIndex = 1;
+        capriniCardiolipinAntibodyScore = 0;        
+    }
+
+    const capriniCardiolipinAntibodyAnswers = [
+        'да (3 балла)',
+        'нет (0 баллов)'
+    ];
+
+    let capriniLupusAnticoagulantIndex;
+    let capriniLupusAnticoagulantScore;
+    if (capriniLupusAnticoagulant) {
+        capriniLupusAnticoagulantIndex = 0;
+        capriniLupusAnticoagulantScore = 3;
+    } else {
+        capriniLupusAnticoagulantIndex = 1;
+        capriniLupusAnticoagulantScore = 0;        
+    }
+
+    const capriniLupusAnticoagulantAnswers = [
+        'да (3 балла)',
+        'нет (0 баллов)'
+    ];
+
     // СОСТАВЛЕНИЕ ОТЧЁТА ДЛЯ ПОЛЬЗОВАТЕЛЯ
     const reportLines = [];
 
@@ -1481,15 +1616,51 @@ function showCalculationTest() {
         capriniBigSurgeryAnswers[capriniBigSurgeryIndex] + ';'
     );
 
-    reportLines.push('25. Возраст 75 лет и старше:');
-    reportLines.push('26. Личный анамнез ВТЭО:');
-    reportLines.push('27. Семейный анамнез ВТЭО:');
-    reportLines.push('28. Мутация типа Лейден:');
-    reportLines.push('29. Мутация протромбина 20210А:');
-    reportLines.push('30. Гипергомоцистеинемия:');
-    reportLines.push('31. Гепарининдуцированная тромбоцитопения:');
-    reportLines.push('32. Повышенный уровень антител к кардиолипину:');
-    reportLines.push('33. Волчаночный антикоагулянт:');
+    // 3 балла
+    reportLines.push(
+        '25. Возраст 75 лет и более: ' +
+        capriniAge75Answers[capriniAge75Index] + ';'
+    );
+
+    reportLines.push(
+        '26. Личный анамнез ВТЭО: ' +
+        capriniVeOfPatientAnswers[capriniVeOfPatientIndex] + ';'
+    );
+
+    reportLines.push(
+        '27. Семейный анамнез ВТЭО: ' +
+        capriniVeInFamilyAnswers[capriniVeInFamilyIndex] + ';'
+    );
+
+    reportLines.push(
+        '28. Мутация типа Лейден: ' +
+        capriniLeidenMutationAnswers[capriniLeidenMutationIndex] + ';'
+    );
+
+    reportLines.push(
+        '29. Мутация протромбина 20210А: ' +
+        capriniProthrombinMutationAnswers[capriniProthrombinMutationIndex] + ';'
+    );
+
+    reportLines.push(
+        '30. Гипергомоцистеинемия: ' +
+        capriniHighHomocysteineAnswers[capriniHighHomocysteineIndex] + ';'
+    );
+
+    reportLines.push(
+        '31. Гепарининдуцированная тромбоцитопения: ' +
+        capriniHeparinAndThrombocytopeniaAnswers[capriniHeparinAndThrombocytopeniaIndex] + ';'
+    );
+
+    reportLines.push(
+        '32. Повышенный уровень антител к кардиолипину: ' +
+        capriniCardiolipinAntibodyAnswers[capriniCardiolipinAntibodyIndex] + ';'
+    );
+
+    reportLines.push(
+        '33. Волчаночный антикоагулянт: ' +
+        capriniLupusAnticoagulantAnswers[capriniLupusAnticoagulantIndex] + ';'
+    );
 
     reportLines.push('34. Инсульт (давностью до 1 месяца):');
     reportLines.push('35. Множественная травма (давностью до 1 месяца):');
