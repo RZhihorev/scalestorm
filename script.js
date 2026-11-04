@@ -28,7 +28,7 @@ function showCalculationTest() {
 
     const bmi = Number((weight / (height / 100) ** 2).toFixed(2));
 
-    // Список переменных для Caprini
+    // Список чекбоксов для Caprini
     const capriniFootSwellingCheckbox = document.getElementById('caprini-foot-swelling');
     const capriniFootSwelling = capriniFootSwellingCheckbox.checked;
 
@@ -706,6 +706,251 @@ function showCalculationTest() {
         'высокий риск (частота ВТЭО 6,7% - 7,1% в исходном исследовании при медиане наблюдения 2,5 месяца)'
     ];
 
+    // Переменные для Caprini
+    let capriniAge4160Index;
+    let capriniAge4160Score;
+    if (age < 41) {
+        capriniAge4160Index = 0;
+        capriniAge4160Score = 0;
+    } else if (age > 40 && age < 61) {
+        capriniAge4160Index = 1;
+        capriniAge4160Score = 1;
+    } else if (age > 60) {
+        capriniAge4160Index = 2;
+        capriniAge4160Score = 0;
+    }
+
+    const capriniAge4160Answers = [
+        'нет (возраст менее 41 года, 0 баллов)',
+        'да (1 балл)',
+        'нет (см. отчёт далее, 0 баллов)'
+    ];
+
+    let capriniFootSwellingIndex;
+    let capriniFootSwellingScore;
+    if (capriniFootSwelling) {
+        capriniFootSwellingIndex = 0;
+        capriniFootSwellingScore = 1;
+    } else {
+        capriniFootSwellingIndex = 1;
+        capriniFootSwellingScore = 0;        
+    }
+
+    const capriniFootSwellingAnswers = [
+        'да (1 балл)',
+        'нет (0 баллов)'
+    ];
+
+    let capriniVaricoseVeinsIndex;
+    let capriniVaricoseVeinsScore;
+    if (capriniVaricoseVeins) {
+        capriniVaricoseVeinsIndex = 0;
+        capriniVaricoseVeinsScore = 1;
+    } else {
+        capriniVaricoseVeinsIndex = 1;
+        capriniVaricoseVeinsScore = 0;        
+    }
+
+    const capriniVaricoseVeinsAnswers = [
+        'да (1 балл)',
+        'нет (0 баллов)'
+    ];
+
+    let capriniBmiIndex;
+    let capriniBmiScore;
+    if (bmi <= 25) {
+        capriniBmiIndex = 0;
+        capriniBmiScore = 0;
+    } else if (bmi > 25) {
+        capriniBmiIndex = 1;
+        capriniBmiScore = 1;
+    }
+
+    const capriniBmiAnswers = [
+        'нет (ИМТ ' + bmi + 'кг/м.кв., 0 баллов)',
+        'да (ИМТ ' + bmi + 'кг/м.кв., 1 балл)'
+    ];
+
+    let capriniSmallSurgeryIndex;
+    let capriniSmallSurgeryScore;
+    if (capriniSmallSurgery) {
+        capriniSmallSurgeryIndex = 0;
+        capriniSmallSurgeryScore = 1;
+    } else {
+        capriniSmallSurgeryIndex = 1;
+        capriniSmallSurgeryScore = 0;        
+    }
+
+    const capriniSmallSurgeryAnswers = [
+        'да (1 балл)',
+        'нет (0 баллов)'
+    ];
+
+    let capriniSepsisIndex;
+    let capriniSepsisScore;
+    if (capriniSepsis) {
+        capriniSepsisIndex = 0;
+        capriniSepsisScore = 1;
+    } else {
+        capriniSepsisIndex = 1;
+        capriniSepsisScore = 0;        
+    }
+
+    const capriniSepsisAnswers = [
+        'да (1 балл)',
+        'нет (0 баллов)'
+    ];
+
+    let capriniLungDiseaseIndex;
+    let capriniLungDiseaseScore;
+    if (capriniLungDisease) {
+        capriniLungDiseaseIndex = 0;
+        capriniLungDiseaseScore = 1;
+    } else {
+        capriniLungDiseaseIndex = 1;
+        capriniLungDiseaseScore = 0;        
+    }
+
+    const capriniLungDiseaseAnswers = [
+        'да (1 балл)',
+        'нет (0 баллов)'
+    ];
+
+    let capriniContraceptionHrtIndex;
+    let capriniContraceptionHrtScore;
+    if (capriniContraceptionHrt) {
+        capriniContraceptionHrtIndex = 0;
+        capriniContraceptionHrtScore = 1;
+    } else {
+        capriniContraceptionHrtIndex = 1;
+        capriniContraceptionHrtScore = 0;        
+    }
+
+    const capriniContraceptionHrtAnswers = [
+        'да (1 балл)',
+        'нет (0 баллов)'
+    ];
+
+    let capriniPregnancyIndex;
+    let capriniPregnancyScore;
+    if (capriniPregnancy) {
+        capriniPregnancyIndex = 0;
+        capriniPregnancyScore = 1;
+    } else {
+        capriniPregnancyIndex = 1;
+        capriniPregnancyScore = 0;        
+    }
+
+    const capriniPregnancyAnswers = [
+        'да (1 балл)',
+        'нет (0 баллов)'
+    ];
+
+    let capriniObstetricsPathologyIndex;
+    let capriniObstetricsPathologyScore;
+    if (capriniObstetricsPathology) {
+        capriniObstetricsPathologyIndex = 0;
+        capriniObstetricsPathologyScore = 1;
+    } else {
+        capriniObstetricsPathologyIndex = 1;
+        capriniObstetricsPathologyScore = 0;        
+    }
+
+    const capriniObstetricsPathologyAnswers = [
+        'да (1 балл)',
+        'нет (0 баллов)'
+    ];
+
+    let capriniMyocardialInfarctionIndex;
+    let capriniMyocardialInfarctionScore;
+    if (capriniMyocardialInfarction) {
+        capriniMyocardialInfarctionIndex = 0;
+        capriniMyocardialInfarctionScore = 1;
+    } else {
+        capriniMyocardialInfarctionIndex = 1;
+        capriniMyocardialInfarctionScore = 0;        
+    }
+
+    const capriniMyocardialInfarctionAnswers = [
+        'да (1 балл)',
+        'нет (0 баллов)'
+    ];
+
+    let capriniHeartFailureIndex;
+    let capriniHeartFailureScore;
+    if (capriniHeartFailure) {
+        capriniHeartFailureIndex = 0;
+        capriniHeartFailureScore = 1;
+    } else {
+        capriniHeartFailureIndex = 1;
+        capriniHeartFailureScore = 0;        
+    }
+
+    const capriniHeartFailureAnswers = [
+        'да (1 балл)',
+        'нет (0 баллов)'
+    ];
+
+    let capriniBedRestIndex;
+    let capriniBedRestScore;
+    if (capriniBedRest) {
+        capriniBedRestIndex = 0;
+        capriniBedRestScore = 1;
+    } else {
+        capriniBedRestIndex = 1;
+        capriniBedRestScore = 0;        
+    }
+
+    const capriniBedRestAnswers = [
+        'да (1 балл)',
+        'нет (0 баллов)'
+    ];
+
+    let capriniInflammedBowelIndex;
+    let capriniInflammedBowelScore;
+    if (capriniInflammedBowel) {
+        capriniInflammedBowelIndex = 0;
+        capriniInflammedBowelScore = 1;
+    } else {
+        capriniInflammedBowelIndex = 1;
+        capriniInflammedBowelScore = 0;        
+    }
+
+    const capriniInflammedBowelAnswers = [
+        'да (1 балл)',
+        'нет (0 баллов)'
+    ];
+
+    let capriniBigSurgeryStoryIndex;
+    let capriniBigSurgeryStoryScore;
+    if (capriniBigSurgeryStory) {
+        capriniBigSurgeryStoryIndex = 0;
+        capriniBigSurgeryStoryScore = 1;
+    } else {
+        capriniBigSurgeryStoryIndex = 1;
+        capriniBigSurgeryStoryScore = 0;        
+    }
+
+    const capriniBigSurgeryStoryAnswers = [
+        'да (1 балл)',
+        'нет (0 баллов)'
+    ];
+
+    let capriniCopdIndex;
+    let capriniCopdScore;
+    if (capriniCopd) {
+        capriniCopdIndex = 0;
+        capriniCopdScore = 1;
+    } else {
+        capriniCopdIndex = 1;
+        capriniCopdScore = 0;        
+    }
+
+    const capriniCopdAnswers = [
+        'да (1 балл)',
+        'нет (0 баллов)'
+    ];
+
     // СОСТАВЛЕНИЕ ОТЧЁТА ДЛЯ ПОЛЬЗОВАТЕЛЯ
     const reportLines = [];
 
@@ -987,23 +1232,87 @@ function showCalculationTest() {
 
     reportLines.push('');
 
+    // Отчёт по Caprini
     reportLines.push('[Шкала Caprini — оценка риска ВТЭО]');
-    reportLines.push('1. Возраст 41 - 60 лет:');
-    reportLines.push('2. Отёк нижних конечностей:');
-    reportLines.push('3. Варикозные вены:');
-    reportLines.push('4. Индекс массы летла более 25 кг/м.кв.:');
-    reportLines.push('5. Малое хирургическое вмешательство:');
-    reportLines.push('6. Сепсис (давностью до 1 месяца):');
-    reportLines.push('7. Серьёзное заболевание лёгких (в том числе пневмония давностью до 1 месяца):');
-    reportLines.push('8. Приём оральных контрацептивов, заместительная гормонотерапия:');
-    reportLines.push('9. Беременность и послеродовой период (до 1 месяца):');
-    reportLines.push('10. В анамнезе: необъяснимые мертворождения, выкидыши (3 и более), преждевременные роды с токсикозом или задержка внутриутробного развития:');
-    reportLines.push('11. Острый инфаркт миокарда:');
-    reportLines.push('12. Хроническая сердечная недостаточность (давностью до 1 месяца):');
-    reportLines.push('13. Постельный режим у нехирургического пациента:');
-    reportLines.push('14. Воспалительные заблевания толстой кишки в анамнезе:');
-    reportLines.push('15. Большое хирургическое вмешательство давностью до 1 месяца в анамнезе:');
-    reportLines.push('16. Хроническая обструктивная болезнь лёгких:');
+    reportLines.push(
+        '1. Возраст 41 - 60 лет: ' +
+        capriniAge4160Answers[capriniAge4160Index] + ';'
+    );
+
+    reportLines.push(
+        '2. Отёк нижних конечностей: ' +
+        capriniFootSwellingAnswers[capriniFootSwellingIndex] + ';'
+    );
+
+    reportLines.push(
+        '3. Варикозные вены: ' +
+        capriniVaricoseVeinsAnswers[capriniVaricoseVeinsIndex] + ';'
+    );
+
+    reportLines.push(
+        '4. Индекс массы тела более 25 кг/м.кв.: ' +
+        capriniBmiAnswers[capriniBmiIndex] + ';'
+    );
+
+    reportLines.push(
+        '5. Малое хирургическое вмешательство: ' +
+        capriniSmallSurgeryAnswers[capriniSmallSurgeryIndex] + ';'
+    );
+
+    reportLines.push(
+        '6. Сепсис (давностью до 1 месяца): ' +
+        capriniSepsisAnswers[capriniSepsisIndex] + ';'
+    );
+
+    reportLines.push(
+        '7. Серьёзное заболевание лёгких (в том числе пневмония давностью до 1 месяца): ' +
+        capriniLungDiseaseAnswers[capriniLungDiseaseIndex] + ';'
+    );
+
+    reportLines.push(
+        '8. Приём оральных контрацептивов, заместительная гормонотерапия: ' +
+        capriniContraceptionHrtAnswers[capriniContraceptionHrtIndex] + ';'
+    );
+
+    reportLines.push(
+        '9. Беременность и послеродовой период (до 1 месяца): ' +
+        capriniPregnancyAnswers[capriniPregnancyIndex] + ';'
+    );
+
+    reportLines.push(
+        '10. В анамнезе: необъяснимые мертворождения, выкидыши (3 и более), преждевременные роды с токсикозом или задержка внутриутробного развития: ' +
+        capriniObstetricsPathologyAnswers[capriniObstetricsPathologyIndex] + ';'
+    );
+
+    reportLines.push(
+        '11. Острый инфаркт миокарда: ' +
+        capriniMyocardialInfarctionAnswers[capriniMyocardialInfarctionIndex] + ';'
+    );
+
+    reportLines.push(
+        '12. Хроническая сердечная недостаточность (давностью до 1 месяца): ' +
+        capriniHeartFailureAnswers[capriniHeartFailureIndex] + ';'
+    );
+
+    reportLines.push(
+        '13. Постельный режим у нехирургического пациента: ' +
+        capriniBedRestAnswers[capriniBedRestIndex] + ';'
+    );
+
+    reportLines.push(
+        '14. Воспалительные заблевания толстой кишки в анамнезе: ' +
+        capriniInflammedBowelAnswers[capriniInflammedBowelIndex] + ';'
+    );
+    
+    reportLines.push(
+        '15. Большое хирургическое вмешательство давностью до 1 месяца в анамнезе: ' +
+        capriniBigSurgeryStoryAnswers[capriniBigSurgeryStoryIndex] + ';'
+    );
+
+    reportLines.push(
+        '16. Хроническая обструктивная болезнь лёгких: ' +
+        capriniCopdAnswers[capriniCopdIndex] + ';'
+    );
 
     reportLines.push('17. Возраст 61 - 74 года:');
     reportLines.push('18. Артроскопическая хирургия:');
@@ -1031,8 +1340,8 @@ function showCalculationTest() {
     reportLines.push('38. Травма спинного мозга/паралич (давностью до 1 месяца):');
     reportLines.push('');
 
-    reportLines.push('Итоговый показатель Caprini: ____ баллов');
-    reportLines.push('Категория риска ВТЭО: ____________________');
+    reportLines.push('Сумма баллов Caprini: ');
+    reportLines.push('Категория риска ВТЭО: ');
     reportLines.push('');
 
     output.textContent = reportLines.join('\n');
