@@ -1285,6 +1285,64 @@ function showCalculationTest() {
         'нет (0 баллов)'
     ];
 
+    let capriniTotalScore = 
+       capriniAge4160Score +
+       capriniFootSwellingScore +
+       capriniVaricoseVeinsScore +
+       capriniBmiScore +
+       capriniSmallSurgeryScore +
+       capriniSepsisScore +
+       capriniLungDiseaseScore +
+       capriniContraceptionHrtScore +
+       capriniPregnancyScore +
+       capriniObstetricsPathologyScore +
+       capriniMyocardialInfarctionScore +
+       capriniHeartFailureScore +
+       capriniBedRestScore +
+       capriniInflammedBowelScore +
+       capriniBigSurgeryStoryScore +
+       capriniCopdScore +
+       capriniAge6174Score +
+       capriniArthroSurgeryScore +
+       capriniOncologyScore +
+       capriniLaparoSurgeryScore +
+       capriniBedRestLongScore +
+       capriniLimbImmobilizationScore +
+       capriniCathCentVeinsScore +
+       capriniBigSurgeryScore +
+       capriniAge75Score +
+       capriniVeOfPatientScore +
+       capriniVeInFamilyScore +
+       capriniLeidenMutationScore +
+       capriniProthrombinMutationScore +
+       capriniHighHomocysteineScore +
+       capriniHeparinAndThrombocytopeniaScore +
+       capriniCardiolipinAntibodyScore +
+       capriniLupusAnticoagulantScore +
+       capriniStrokeScore +
+       capriniPolytraumaScore +
+       capriniEndoprothesisScore +
+       capriniFemurAndTibiaFractureScore +
+       capriniParalysisScore;
+
+    let capriniTotalScoreIndex;
+    if (capriniTotalScore < 2) {
+        capriniTotalScoreIndex = 0
+    } else if (capriniTotalScore > 1 && capriniTotalScore < 3) {
+        capriniTotalScoreIndex = 1
+    } else if (capriniTotalScore > 2 && capriniTotalScore < 5) {
+        capriniTotalScoreIndex = 2
+    } else if (capriniTotalScore > 4) {
+        capriniTotalScoreIndex = 3
+    }
+
+    const capriniTotalScoreLabels = [
+        'низкий риск',
+        'умеренный риск',
+        'высокий риск',
+        'очень высокий риск'
+    ];
+
     // СОСТАВЛЕНИЕ ОТЧЁТА ДЛЯ ПОЛЬЗОВАТЕЛЯ
     const reportLines = [];
 
@@ -1764,8 +1822,15 @@ function showCalculationTest() {
 
     reportLines.push('');
 
-    reportLines.push('Сумма баллов Caprini: ');
-    reportLines.push('Категория риска ВТЭО: ');
+    reportLines.push(
+        'Сумма баллов Caprini: ' +
+        capriniTotalScore
+    );
+    
+    reportLines.push(
+        'Категория риска ВТЭО: ' +
+        capriniTotalScoreLabels[capriniTotalScoreIndex]
+    );
     reportLines.push('');
 
     output.textContent = reportLines.join('\n');
