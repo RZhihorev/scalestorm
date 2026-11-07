@@ -25,6 +25,22 @@ function showCalculationTest() {
     const female = document.getElementById('female').checked
 
     const age = ageInput.valueAsNumber;
+    
+    const lastTwoDigits = age % 100;
+    const lastDigit = age % 10;
+
+    let ageWord;
+
+    if (lastTwoDigits >= 11 && lastTwoDigits <= 14) {
+        ageWord = "лет";
+    } else if (lastDigit === 1) {
+        ageWord = "год";
+    } else if (lastDigit >= 2 && lastDigit <= 4) {
+        ageWord = "года";
+    } else {
+        ageWord = "лет";
+    }
+
     const height = heightInput.valueAsNumber;
     const weight = weightInput.valueAsNumber;
     const hemoglobin = hemoglobinInput.valueAsNumber;
@@ -1460,6 +1476,27 @@ function showCalculationTest() {
     // СОСТАВЛЕНИЕ ОТЧЁТА ДЛЯ ПОЛЬЗОВАТЕЛЯ
     const reportLines = [];
 
+    reportLines.push('ИСХОДНЫЕ ДАННЫЕ ПАЦИЕНТА');
+    reportLines.push('');
+
+    reportLines.push('Рост: ' + height + ' см');
+    reportLines.push('Вес: ' + weight + ' кг');
+    reportLines.push('Возраст: ' + age + ' ' + ageWord);
+
+    if (male) {
+        reportLines.push('Пол: мужской');
+    } else if (female) {
+        reportLines.push('Пол: женский');
+    }
+
+    reportLines.push('');
+    reportLines.push('Гемоглобин: ' + hemoglobin + ' г/л');
+    reportLines.push('Лейкоциты: ' + leukocytes + ' x 10^9/л');
+    reportLines.push('Тромбоциты: ' + platelets + ' x 10^9/л');
+    reportLines.push('Креатинин: ' + creatinine + ' мкмоль/л');
+
+    reportLines.push('');
+
     reportLines.push('ГЕРИАТРИЧЕСКИЕ ШКАЛЫ');
     reportLines.push('');
     
@@ -2007,7 +2044,7 @@ const originalCopyText = copyButton?.textContent;
 let resetTimer;
 
 async function copyOutput() {
-    let title = 'ПРОТОКОЛ РАСЧЁТА ШКАЛ';
+    let title = 'ПРОТОКОЛ РАСЧЁТА КЛИНИЧЕСКИХ ШКАЛ';
     let report = output.textContent.trim();
 
     await navigator.clipboard.writeText(`${title}\n\n${report}`);
