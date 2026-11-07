@@ -1430,6 +1430,29 @@ function showCalculationTest() {
         'да (1 балл)'
     ]
 
+    let imdcTotalScore = 
+        imdcKarnovskyScore +
+        imdcOneYearScore +
+        imdcHemoglobinScore +
+        imdcCalciumScore +
+        imdcNeutrophilsScore +
+        imdcPlateletsScore;
+
+    let imdcTotalScoreIndex;
+    if (imdcTotalScore === 0) {
+        imdcTotalScoreIndex = 0
+    } else if (imdcTotalScore > 0 && imdcTotalScore < 3) {
+        imdcTotalScoreIndex = 1
+    } else if (imdcTotalScore > 2) {
+        imdcTotalScoreIndex = 2
+    }
+
+    const imdcTotalScoreLabels = [
+        'благоприятный прогноз (0 баллов)',
+        'промежуточный прогноз (1-2 балла)',
+        'неблагоприятный прогноз (3 и более баллов)'
+    ];
+
     // СОСТАВЛЕНИЕ ОТЧЁТА ДЛЯ ПОЛЬЗОВАТЕЛЯ
     const reportLines = [];
 
@@ -1955,6 +1978,18 @@ function showCalculationTest() {
             '6. Число тромбоцитов выше верхней границы нормы: ' +
             imdcAnswers[imdcPlateletsIndex] + '.'
         );
+
+        reportLines.push('')
+
+        reportLines.push(
+            'Сумма баллов IMDC: ' +
+            imdcTotalScore
+        )
+
+        reportLines.push(
+            'Группа прогноза (D. Heng, 2010 г.): ' +
+            imdcTotalScoreLabels[imdcTotalScoreIndex] + '.'
+        )
     } else {
         reportLines.push('Не применимо (не почечно-клеточный рак).')
     }
