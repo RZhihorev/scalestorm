@@ -1204,27 +1204,60 @@
                 </div>
 
                 <div class="calculator-block">
-                    <h2>Расчёт IMDC (только почечноклеточный рак)</h2>
+                    <h2>Расчёт IMDC (только почечно-клеточный рак)</h2>
                     <fieldset>
                         <label>
-                            <input type="checkbox">
+                            <input
+                                type="checkbox"
+                                id="imdc-karnovsky"
+                            >
                             Общее состояние по шкале Карновского 70% и ниже
                         </label>
 
                         <label>
-                            <input type="checkbox">
+                            <input
+                                type="checkbox"
+                                id="imdc-one-year"
+                            >
                             Время от постановки диагноза до начала лекарственного лечения менее 1 года
                         </label>
 
                         <label>
-                            <input type="checkbox">
-                            Нейтрофилёз
+                            <input
+                                type="checkbox"
+                                id="imdc-hemoglobin"
+                            >
+                            Гемоглобин ниже нижней границы нормы
                         </label>
 
                         <label>
-                            <input type="checkbox">
-                            Гиперкальциемия
+                            <input
+                                type="checkbox"
+                                id="imdc-calcium"
+                            >
+                            Скорректированный кальций выше верхней границы нормы
                         </label>
+
+                        <label>
+                            <input
+                                type="checkbox"
+                                id="imdc-neutrophils"
+                            >
+                            Абсолютное число нейтрофилов выше верхней границы нормы
+                        </label>
+
+                        <label>
+                            <input
+                                type="checkbox"
+                                id="imdc-platelets"
+                            >
+                            Число тромбоцитов выше верхней границы нормы
+                        </label>
+
+                        <p>
+                            <b>N.B. </b>
+                            Для лабораторных показателей используются границы нормы соответствующей лаборатории, а не единые фиксированные пороги.
+                        </p>
                     </fieldset>
                 </div>
 

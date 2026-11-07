@@ -3,6 +3,9 @@ function showCalculationTest() {
 
     const palliativeScenarioCheckbox = document.getElementById('palliative-scenario');
     const isPalliativeScenario = palliativeScenarioCheckbox.checked;
+
+    const imdcCheckbox = document.getElementById('imdc-activator');
+    const isImdc = imdcCheckbox.checked;
     
     // Список базовых параметров пациента
     const ageInput = document.getElementById('age');
@@ -1343,10 +1346,94 @@ function showCalculationTest() {
         'очень высокий риск'
     ];
 
+    // Переменные для IMDC
+    const imdcKarnovskyCheckbox = document.getElementById('imdc-karnovsky');
+    const imdcKarnovsky = imdcKarnovskyCheckbox.checked;
+
+    let imdcKarnovskyScore;
+    let imdcKarnovskyIndex;
+    if (imdcKarnovsky) {
+        imdcKarnovskyScore = 1;
+        imdcKarnovskyIndex = 1;
+    } else {
+        imdcKarnovskyScore = 0;
+        imdcKarnovskyIndex = 0;
+    }
+
+    const imdcOneYearCheckbox = document.getElementById('imdc-one-year');
+    const imdcOneYear = imdcOneYearCheckbox.checked;
+
+    let imdcOneYearScore;
+    let imdcOneYearIndex;
+    if (imdcOneYear) {
+        imdcOneYearScore = 1;
+        imdcOneYearIndex = 1;
+    } else {
+        imdcOneYearScore = 0;
+        imdcOneYearIndex = 0;
+    }
+
+    const imdcHemoglobinCheckbox = document.getElementById('imdc-hemoglobin');
+    const imdcHemoglobin = imdcHemoglobinCheckbox.checked;
+
+    let imdcHemoglobinScore;
+    let imdcHemoglobinIndex;
+    if (imdcHemoglobin) {
+        imdcHemoglobinScore = 1;
+        imdcHemoglobinIndex = 1;
+    } else {
+        imdcHemoglobinScore = 0;
+        imdcHemoglobinIndex = 0;
+    }
+
+    const imdcCalciumCheckbox = document.getElementById('imdc-calcium');
+    const imdcCalcium = imdcCalciumCheckbox.checked;
+
+    let imdcCalciumScore;
+    let imdcCalciumIndex;
+    if (imdcCalcium) {
+        imdcCalciumScore = 1;
+        imdcCalciumIndex = 1;
+    } else {
+        imdcCalciumScore = 0;
+        imdcCalciumIndex = 0;
+    }
+
+    const imdcNeutrophilsCheckbox = document.getElementById('imdc-neutrophils');
+    const imdcNeutrophils = imdcNeutrophilsCheckbox.checked;
+
+    let imdcNeutrophilsScore;
+    let imdcNeutrophilsIndex;
+    if (imdcNeutrophils) {
+        imdcNeutrophilsScore = 1;
+        imdcNeutrophilsIndex = 1;
+    } else {
+        imdcNeutrophilsScore = 0;
+        imdcNeutrophilsIndex = 0;
+    }
+
+    const imdcPlateletsCheckbox = document.getElementById('imdc-platelets');
+    const imdcPlatelets = imdcPlateletsCheckbox.checked;
+
+    let imdcPlateletsScore;
+    let imdcPlateletsIndex;
+    if (imdcPlatelets) {
+        imdcPlateletsScore = 1;
+        imdcPlateletsIndex = 1;
+    } else {
+        imdcPlateletsScore = 0;
+        imdcPlateletsIndex = 0;
+    }
+
+    const imdcAnswers = [
+        'нет (0 баллов)',
+        'да (1 балл)'
+    ]
+
     // СОСТАВЛЕНИЕ ОТЧЁТА ДЛЯ ПОЛЬЗОВАТЕЛЯ
     const reportLines = [];
 
-    reportLines.push('ГЕРИАТРИЧЕСКИЕ ШКАЛЫ ');
+    reportLines.push('ГЕРИАТРИЧЕСКИЕ ШКАЛЫ');
     reportLines.push('');
     
     reportLines.push('[G8 — скрининг гериатрической уязвимости]');
@@ -1494,7 +1581,7 @@ function showCalculationTest() {
     }
     reportLines.push('');
 
-    reportLines.push('ПАЛЛИАТИВНЫЕ ШКАЛЫ ');
+    reportLines.push('ПАЛЛИАТИВНЫЕ ШКАЛЫ');
     reportLines.push('');
 
     reportLines.push('[PPS — шкала функционального статуса в паллиативной помощи]');
@@ -1577,7 +1664,7 @@ function showCalculationTest() {
     }
     reportLines.push('');
 
-    reportLines.push('ШКАЛЫ ОЦЕНКИ РИСКОВ ВТЭО ');
+    reportLines.push('ШКАЛЫ ОЦЕНКИ РИСКОВ ВТЭО');
     reportLines.push('');
 
     reportLines.push('[Шкала Khorana — оценка риска ВТЭО при лекарственной противоопухолевой терапии]');
@@ -1832,6 +1919,45 @@ function showCalculationTest() {
         capriniTotalScoreLabels[capriniTotalScoreIndex]
     );
     reportLines.push('');
+
+    reportLines.push('СПЕЦИАЛЬНЫЕ ШКАЛЫ');
+    reportLines.push('');
+
+    reportLines.push('[Шкала IMDC — оценка прогноза при метастатическом почечно-клеточном раке]');
+    
+    if (isImdc) {
+        reportLines.push(
+            '1. Общее состояние по шкале Карновского 70% и ниже: ' +
+            imdcAnswers[imdcKarnovskyIndex] + ';'
+        );
+
+        reportLines.push(
+            '2. Время от постановки диагноза до начала лекарственного лечения менее 1 года: ' +
+            imdcAnswers[imdcOneYearIndex] + ';'
+        );
+
+        reportLines.push(
+            '3. Гемоглобин ниже нижней границы нормы: ' +
+            imdcAnswers[imdcHemoglobinIndex] + ';'
+        );
+
+        reportLines.push(
+            '4. Скорректированный кальций выше верхней границы нормы: ' +
+            imdcAnswers[imdcCalciumIndex] + ';'
+        );
+
+        reportLines.push(
+            '5. Абсолютное число нейтрофилов выше верхней границы нормы: ' +
+            imdcAnswers[imdcNeutrophilsIndex] + ';'
+        );
+
+        reportLines.push(
+            '6. Число тромбоцитов выше верхней границы нормы: ' +
+            imdcAnswers[imdcPlateletsIndex] + '.'
+        );
+    } else {
+        reportLines.push('Не применимо (не почечно-клеточный рак).')
+    }
 
     output.textContent = reportLines.join('\n');
 }
