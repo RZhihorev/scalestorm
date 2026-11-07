@@ -1479,6 +1479,7 @@ function showCalculationTest() {
     reportLines.push('ИСХОДНЫЕ ДАННЫЕ ПАЦИЕНТА');
     reportLines.push('');
 
+    reportLines.push('Общие сведения');
     reportLines.push('Рост: ' + height + ' см');
     reportLines.push('Вес: ' + weight + ' кг');
     reportLines.push('Возраст: ' + age + ' ' + ageWord);
@@ -1490,10 +1491,17 @@ function showCalculationTest() {
     }
 
     reportLines.push('');
+    reportLines.push('Лабораторные показатели');
     reportLines.push('Гемоглобин: ' + hemoglobin + ' г/л');
     reportLines.push('Лейкоциты: ' + leukocytes + ' x 10^9/л');
     reportLines.push('Тромбоциты: ' + platelets + ' x 10^9/л');
     reportLines.push('Креатинин: ' + creatinine + ' мкмоль/л');
+
+    reportLines.push('');
+    reportLines.push('Расчётные показатели');
+    reportLines.push('Индекс массы тела: ' + bmi + ' кг/м.кв.');
+    reportLines.push('Идеальная масса тела по формуле Devine: ' + idealWeight.toFixed(2) + ' кг');
+    reportLines.push('Клиренс креатинина по формуле Jelliffe: ' + clearanceCrJelliffeAbs + ' мл/мин');
 
     reportLines.push('');
 
@@ -1508,42 +1516,42 @@ function showCalculationTest() {
             '1. Снизилось ли потребление пищи за последние 3 месяца ' +
             'из-за потери аппетита, проблем с пищеварением ' +
             'или трудностей с жеванием или глотанием: ' +
-            g8FoodIntakeAnswers[g8FoodIntakeInput] + ';'
+            g8FoodIntakeAnswers[g8FoodIntakeInput]
         );
         
         reportLines.push(
             '2. Потеря массы за последние 3 месяца: ' +
-            g8WeightLossAnswers[g8WeightLossInput] + ';'
+            g8WeightLossAnswers[g8WeightLossInput]
         );
         
         reportLines.push(
             '3. Мобильность: ' +
-            g8MobilityAnswers[g8MobilityInput] + ';'
+            g8MobilityAnswers[g8MobilityInput]
         );
 
         reportLines.push(
             '4. Нейропсихологические проблемы: ' +
-            g8DementiaAnswers[g8DementiaInput] + ';'
+            g8DementiaAnswers[g8DementiaInput]
         );
 
         reportLines.push(
             '5. Индекс массы тела: ' +
-            bmi + ' кг/м.кв. ' + g8BmiLabels[g8BmiScore] + ';'
+            bmi + ' кг/м.кв. ' + g8BmiLabels[g8BmiScore]
         );
 
         reportLines.push(
             '6. Приём более трёх лекарственных препаратов в сутки: ' +
-            g8MoreThreeDrugsAnswers[g8MoreThreeDrugsInput] + ';'
+            g8MoreThreeDrugsAnswers[g8MoreThreeDrugsInput]
         );
 
         reportLines.push(
             '7. Самооценка здоровья по сравнению со сверстниками: ' +
-            g8SelfEsteemAnswers[g8SelfEsteemInput] + ';'
+            g8SelfEsteemAnswers[g8SelfEsteemInput]
         );
 
         reportLines.push(
-            '8. Возраст, лет: ' +
-            age + ' ' + g8AgeLabels[g8AgeScore] + '.'
+            '8. Возраст: ' +
+            age + ' ' + ageWord + ' ' + g8AgeLabels[g8AgeScore]
         );
         
         reportLines.push('');
@@ -1560,12 +1568,12 @@ function showCalculationTest() {
         reportLines.push(
             ' - риск развития гематологической токсичности 3-4 степени ' +
             'в соответствующей группе исследования - ' +
-            g8Toxicity.hematologic + ';'
+            g8Toxicity.hematologic
         );
         reportLines.push(
             ' - риск развития негематологической токсичности 3-4 степени ' +
             'в соответствующей группе исследования - ' +
-            g8Toxicity.nonHematologic + '.'
+            g8Toxicity.nonHematologic
         );
     }
     reportLines.push('');
@@ -1575,62 +1583,62 @@ function showCalculationTest() {
         reportLines.push('Не применима (возраст пациента менее 65 лет)');
     } else {
         reportLines.push(
-            '1. Возраст, лет: ' + 
-            age + ' ' + cargAgeLabels[cargAgeIndex] + ';'
+            '1. Возраст: ' + 
+            age + ' ' + ageWord + ' ' + cargAgeLabels[cargAgeIndex]
         );
 
         reportLines.push(
             '2. Гастроинтестинальная или генитоуретральная локализация опухоли: ' +
-            cargGiGuCancerLabels[cargGiGuCancerIndex] + ';'
+            cargGiGuCancerLabels[cargGiGuCancerIndex]
         );
 
         reportLines.push(
             '3. Стандартное дозирование химиотерапии (без редукции): ' +
-            cargStandartDosageLabels[cargStandartDosageIndex] + ';'
+            cargStandartDosageLabels[cargStandartDosageIndex]
         );
 
         reportLines.push(
             '4. Более одного противоопухолевого препарата: ' +
-            cargPolytherapyLabels[cargPolytherapyIndex] + ';'
+            cargPolytherapyLabels[cargPolytherapyIndex]
         );
 
         reportLines.push(
-            '5. Гемоглобин, г/л: ' + 
-            hemoglobin + ' (' + cargHemoglobinLabels[cargHemoglobinIndex] + ');'
+            '5. Гемоглобин: ' + 
+            hemoglobin + ' г/л (' + cargHemoglobinLabels[cargHemoglobinIndex] + ')'
         );
 
         reportLines.push(
             '6. Клиренс креатинина, формула Jelliffe, с использованием идеальной массы тела (' + 
             idealWeight.toFixed(2) + ' кг, формула Devine): ' +
             clearanceCrJelliffeAbs + ' мл/мин ' +
-            cargLowClearanceLabels[cargLowClearanceIndex] + ';'
+            cargLowClearanceLabels[cargLowClearanceIndex]
         );
 
         reportLines.push(
             '7. Сниженный слух или глухота: ' +
-            cargHearingLossLabels[cargHearingLossIndex] + ';'
+            cargHearingLossLabels[cargHearingLossIndex]
         );
 
         reportLines.push(
             '8. Падения за последние 6 месяцев: ' +
-            cargFallsLabels[cargFallsIndex] + ';'
+            cargFallsLabels[cargFallsIndex]
         );
 
         reportLines.push(
             '9. Прием лекарств с посторонней помощью: ' +
-            cargDrugsIntakeWithHelpLabels[cargDrugsIntakeWithHelpIndex] + ';'
+            cargDrugsIntakeWithHelpLabels[cargDrugsIntakeWithHelpIndex]
         );
 
         reportLines.push(
             '10. Состояние здоровья ограничивает ходьбу на 1 квартал: ' +
-            cargNoOneBlockWalkingLabels[cargNoOneBlockWalkingIndex] + ';'
+            cargNoOneBlockWalkingLabels[cargNoOneBlockWalkingIndex]
         );
 
         reportLines.push(
             '11. Снижение социальной активности из-за ' +
             'состояния физического или эмоционального здоровья ' +
             '(ограничения возникают по меньшей мере иногда): ' +
-            cargSocialActivityLossLabels[cargSocialActivityLossIndex] + '.'
+            cargSocialActivityLossLabels[cargSocialActivityLossIndex]
         );
 
         reportLines.push('');
@@ -1640,7 +1648,7 @@ function showCalculationTest() {
         );
         reportLines.push(
             'Оценка риска токсичности химиотерапии по модели Cancer and Aging Research Group (Hurria et al., 2011): ' +
-            cargTotalScoreLabels[cargTotalScoreIndex] + '.'
+            cargTotalScoreLabels[cargTotalScoreIndex]
         );
     }
     reportLines.push('');
@@ -1652,36 +1660,36 @@ function showCalculationTest() {
     if (isPalliativeScenario) {
         reportLines.push(
             '1. Способность передвигаться: ' +
-            ppsMobilityAnswers[ppsMobilityInput] + ';'
+            ppsMobilityAnswers[ppsMobilityInput]
         );
 
         reportLines.push(
             '2. Степень активности и выраженность заболевания: ' +
-            ppsIllnessAnswers[ppsIllnessInput] + ';'
+            ppsIllnessAnswers[ppsIllnessInput]
         );
 
         reportLines.push(
             '3. Самообслуживание: ' +
-            ppsSelfCareAnswers[ppsSelfCareInput] + ';'
+            ppsSelfCareAnswers[ppsSelfCareInput]
         );
 
         reportLines.push(
             '4. Приём пищи и жидкости: ' +
-            ppsFoodIntakeAnswers[ppsFoodIntakeInput] + ';'
+            ppsFoodIntakeAnswers[ppsFoodIntakeInput]
         );
 
         reportLines.push(
             '5. Уровень сознания: ' +
-            ppsConsciousnessAnswers[ppsConsciousnessInput] + '.'
+            ppsConsciousnessAnswers[ppsConsciousnessInput]
         );
 
         reportLines.push('');
         reportLines.push(
             'Итоговый показатель PPS (ручная верификация): ' +
-            ppsTotalInput + '%.'
+            ppsTotalInput + '%'
         );
     } else {
-        reportLines.push('Не применимо (пациент подлежит радикальному лечению).');
+        reportLines.push('Не применимо (пациент подлежит радикальному лечению)');
     }
     reportLines.push('');
 
@@ -1690,27 +1698,27 @@ function showCalculationTest() {
         reportLines.push(
             '1. Значение PPS: ' +
             ppsTotalInput + '% ' +
-            ppiPpsAnswers[ppiPpsIndex] + ';'
+            ppiPpsAnswers[ppiPpsIndex]
         );
 
         reportLines.push(
             '2. Приём пищи: ' +
-            ppiFoodIntakeAnswers[ppiFoodIntakeInput] + ';'
+            ppiFoodIntakeAnswers[ppiFoodIntakeInput]
         );
 
         reportLines.push(
             '3. Отёки: ' +
-            ppiSwellingAnswers[ppiSwellingInput] + ';'
+            ppiSwellingAnswers[ppiSwellingInput]
         );
 
         reportLines.push(
             '4. Одышка в покое: ' +
-            ppiDyspnoeaAnswers[ppiDyspnoeaInput] + ';'
+            ppiDyspnoeaAnswers[ppiDyspnoeaInput]
         );
 
         reportLines.push(
             '5. Делирий по критериям DSM-IV: ' +
-            ppiDeliriumAnswers[ppiDeliriumInput] + '.'
+            ppiDeliriumAnswers[ppiDeliriumInput]
         );
 
         reportLines.push('');
@@ -1721,10 +1729,10 @@ function showCalculationTest() {
 
         reportLines.push(
             'Прогностическая интерпретация: ' +
-            ppiTotalScoreLabels[ppiTotalScoreIndex] + '.'
+            ppiTotalScoreLabels[ppiTotalScoreIndex]
         );
     } else {
-        reportLines.push('Не применимо (пациент подлежит радикальному лечению).');
+        reportLines.push('Не применимо (пациент подлежит радикальному лечению)');
     }
     reportLines.push('');
 
@@ -1735,31 +1743,31 @@ function showCalculationTest() {
 
     reportLines.push(
         '1. Локализация опухоли (первичный очаг): ' +
-        khoranaSiteAnswers[khoranaSiteInput] + ';'
+        khoranaSiteAnswers[khoranaSiteInput]
     );
 
     reportLines.push(
         '2. Количество тромбоцитов до химиотерапии: ' +
         platelets + ' * 10^9/л ' +
-        khoranaPlateletsAnswers[khoranaPlateletsScore] + ';'
+        khoranaPlateletsAnswers[khoranaPlateletsScore]
     );
 
     reportLines.push(
         '3. Концентрация гемоглобина <100 г/л или применение эритропоэтина: ' +
         hemoglobin + ' г/л ' + khoranaHemoglobinAnswers[khoranaHemoglobinScore] + ', ' +
         khoranaErythropoetinAnswers[khoranaErythropoetinScore] + '; ' +
-        khoranaEryHemAnswers[khoranaEryHemScore] + ';'
+        khoranaEryHemAnswers[khoranaEryHemScore]
     );
 
     reportLines.push(
         '4. Количество лейкоцитов до химиотерапии: ' +
         leukocytes + ' * 10^9/л ' +
-        khoranaLeukocytesAnswers[khoranaLeukocytesScore] + ';'
+        khoranaLeukocytesAnswers[khoranaLeukocytesScore]
     );
 
     reportLines.push(
         '5. Индекс массы тела: ' +
-        bmi + ' кг/м.кв. ' + khoranaBmiAnswers[khoranaBmiScore] + '.'
+        bmi + ' кг/м.кв. ' + khoranaBmiAnswers[khoranaBmiScore]
     );
     reportLines.push('');
 
@@ -1770,7 +1778,7 @@ function showCalculationTest() {
 
     reportLines.push(
         'Категория риска ВТЭО: ' +
-        khoranaTotalScoreLabels[khoranaTotalScoreIndex] + '.'
+        khoranaTotalScoreLabels[khoranaTotalScoreIndex]
     );
 
     reportLines.push('');
@@ -1781,194 +1789,194 @@ function showCalculationTest() {
     // 1 балл
     reportLines.push(
         '1. Возраст 41 - 60 лет: ' +
-        capriniAge4160Answers[capriniAge4160Index] + ';'
+        capriniAge4160Answers[capriniAge4160Index]
     );
 
     reportLines.push(
         '2. Отёк нижних конечностей: ' +
-        capriniFootSwellingAnswers[capriniFootSwellingIndex] + ';'
+        capriniFootSwellingAnswers[capriniFootSwellingIndex]
     );
 
     reportLines.push(
         '3. Варикозные вены: ' +
-        capriniVaricoseVeinsAnswers[capriniVaricoseVeinsIndex] + ';'
+        capriniVaricoseVeinsAnswers[capriniVaricoseVeinsIndex]
     );
 
     reportLines.push(
         '4. Индекс массы тела более 25 кг/м.кв.: ' +
-        capriniBmiAnswers[capriniBmiIndex] + ';'
+        capriniBmiAnswers[capriniBmiIndex]
     );
 
     reportLines.push(
         '5. Малое хирургическое вмешательство: ' +
-        capriniSmallSurgeryAnswers[capriniSmallSurgeryIndex] + ';'
+        capriniSmallSurgeryAnswers[capriniSmallSurgeryIndex]
     );
 
     reportLines.push(
         '6. Сепсис (давностью до 1 месяца): ' +
-        capriniSepsisAnswers[capriniSepsisIndex] + ';'
+        capriniSepsisAnswers[capriniSepsisIndex]
     );
 
     reportLines.push(
         '7. Серьёзное заболевание лёгких (в том числе пневмония давностью до 1 месяца): ' +
-        capriniLungDiseaseAnswers[capriniLungDiseaseIndex] + ';'
+        capriniLungDiseaseAnswers[capriniLungDiseaseIndex]
     );
 
     reportLines.push(
         '8. Приём оральных контрацептивов, заместительная гормонотерапия: ' +
-        capriniContraceptionHrtAnswers[capriniContraceptionHrtIndex] + ';'
+        capriniContraceptionHrtAnswers[capriniContraceptionHrtIndex]
     );
 
     reportLines.push(
         '9. Беременность и послеродовой период (до 1 месяца): ' +
-        capriniPregnancyAnswers[capriniPregnancyIndex] + ';'
+        capriniPregnancyAnswers[capriniPregnancyIndex]
     );
 
     reportLines.push(
         '10. В анамнезе: необъяснимые мертворождения, выкидыши (3 и более), преждевременные роды с токсикозом или задержка внутриутробного развития: ' +
-        capriniObstetricsPathologyAnswers[capriniObstetricsPathologyIndex] + ';'
+        capriniObstetricsPathologyAnswers[capriniObstetricsPathologyIndex]
     );
 
     reportLines.push(
         '11. Острый инфаркт миокарда: ' +
-        capriniMyocardialInfarctionAnswers[capriniMyocardialInfarctionIndex] + ';'
+        capriniMyocardialInfarctionAnswers[capriniMyocardialInfarctionIndex]
     );
 
     reportLines.push(
         '12. Хроническая сердечная недостаточность (давностью до 1 месяца): ' +
-        capriniHeartFailureAnswers[capriniHeartFailureIndex] + ';'
+        capriniHeartFailureAnswers[capriniHeartFailureIndex]
     );
 
     reportLines.push(
         '13. Постельный режим у нехирургического пациента: ' +
-        capriniBedRestAnswers[capriniBedRestIndex] + ';'
+        capriniBedRestAnswers[capriniBedRestIndex]
     );
 
     reportLines.push(
         '14. Воспалительные заблевания толстой кишки в анамнезе: ' +
-        capriniInflammedBowelAnswers[capriniInflammedBowelIndex] + ';'
+        capriniInflammedBowelAnswers[capriniInflammedBowelIndex]
     );
     
     reportLines.push(
         '15. Большое хирургическое вмешательство давностью до 1 месяца в анамнезе: ' +
-        capriniBigSurgeryStoryAnswers[capriniBigSurgeryStoryIndex] + ';'
+        capriniBigSurgeryStoryAnswers[capriniBigSurgeryStoryIndex]
     );
 
     reportLines.push(
         '16. Хроническая обструктивная болезнь лёгких: ' +
-        capriniCopdAnswers[capriniCopdIndex] + ';'
+        capriniCopdAnswers[capriniCopdIndex]
     );
 
     // 2 балла
     reportLines.push(
         '17. Возраст 61 - 74 года: ' +
-        capriniAge6174Answers[capriniAge6174Index] + ';'
+        capriniAge6174Answers[capriniAge6174Index]
     );
 
     reportLines.push(
         '18. Артроскопическая хирургия: ' +
-        capriniArthroSurgeryAnswers[capriniArthroSurgeryIndex] + ';'
+        capriniArthroSurgeryAnswers[capriniArthroSurgeryIndex]
     );
 
     reportLines.push(
         '19. Злокачественное новообразование: ' +
-        capriniOncologyAnswers[capriniOncologyIndex] + ';'
+        capriniOncologyAnswers[capriniOncologyIndex]
     );
 
     reportLines.push(
         '20. Лапароскопическое вмешательство (длительностью более 45 минут): ' +
-        capriniLaparoSurgeryAnswers[capriniLaparoSurgeryIndex] +';'
+        capriniLaparoSurgeryAnswers[capriniLaparoSurgeryIndex]
     );
 
     reportLines.push(
         '21. Постельный режим более 72 часов: ' +
-        capriniBedRestLongAnswers[capriniBedRestLongIndex] + ';'
+        capriniBedRestLongAnswers[capriniBedRestLongIndex]
     );
 
     reportLines.push(
         '22. Иммобилизация конечности (давностью до 1 месяца): ' +
-        capriniLimbImmobilizationAnswers[capriniLimbImmobilizationIndex] +';'
+        capriniLimbImmobilizationAnswers[capriniLimbImmobilizationIndex]
     );
 
     reportLines.push(
         '23. Катетеризация центральных вен: ' +
-        capriniCathCentVeinsAnswers[capriniCathCentVeinsIndex] + ';'
+        capriniCathCentVeinsAnswers[capriniCathCentVeinsIndex]
     );
 
     reportLines.push(
         '24. Большое хирургическое вмешательство (длительностью более 45 минут): ' +
-        capriniBigSurgeryAnswers[capriniBigSurgeryIndex] + ';'
+        capriniBigSurgeryAnswers[capriniBigSurgeryIndex]
     );
 
     // 3 балла
     reportLines.push(
         '25. Возраст 75 лет и более: ' +
-        capriniAge75Answers[capriniAge75Index] + ';'
+        capriniAge75Answers[capriniAge75Index]
     );
 
     reportLines.push(
         '26. Личный анамнез ВТЭО: ' +
-        capriniVeOfPatientAnswers[capriniVeOfPatientIndex] + ';'
+        capriniVeOfPatientAnswers[capriniVeOfPatientIndex]
     );
 
     reportLines.push(
         '27. Семейный анамнез ВТЭО: ' +
-        capriniVeInFamilyAnswers[capriniVeInFamilyIndex] + ';'
+        capriniVeInFamilyAnswers[capriniVeInFamilyIndex]
     );
 
     reportLines.push(
         '28. Мутация типа Лейден: ' +
-        capriniLeidenMutationAnswers[capriniLeidenMutationIndex] + ';'
+        capriniLeidenMutationAnswers[capriniLeidenMutationIndex]
     );
 
     reportLines.push(
         '29. Мутация протромбина 20210А: ' +
-        capriniProthrombinMutationAnswers[capriniProthrombinMutationIndex] + ';'
+        capriniProthrombinMutationAnswers[capriniProthrombinMutationIndex]
     );
 
     reportLines.push(
         '30. Гипергомоцистеинемия: ' +
-        capriniHighHomocysteineAnswers[capriniHighHomocysteineIndex] + ';'
+        capriniHighHomocysteineAnswers[capriniHighHomocysteineIndex]
     );
 
     reportLines.push(
         '31. Гепарининдуцированная тромбоцитопения: ' +
-        capriniHeparinAndThrombocytopeniaAnswers[capriniHeparinAndThrombocytopeniaIndex] + ';'
+        capriniHeparinAndThrombocytopeniaAnswers[capriniHeparinAndThrombocytopeniaIndex]
     );
 
     reportLines.push(
         '32. Повышенный уровень антител к кардиолипину: ' +
-        capriniCardiolipinAntibodyAnswers[capriniCardiolipinAntibodyIndex] + ';'
+        capriniCardiolipinAntibodyAnswers[capriniCardiolipinAntibodyIndex]
     );
 
     reportLines.push(
         '33. Волчаночный антикоагулянт: ' +
-        capriniLupusAnticoagulantAnswers[capriniLupusAnticoagulantIndex] + ';'
+        capriniLupusAnticoagulantAnswers[capriniLupusAnticoagulantIndex]
     );
 
     reportLines.push(
         '34. Инсульт (давностью до 1 месяца): ' +
-        capriniStrokeAnswers[capriniStrokeIndex] + ';'
+        capriniStrokeAnswers[capriniStrokeIndex]
     );
 
     reportLines.push(
         '35. Множественная травма (давностью до 1 месяца): ' +
-        capriniPolytraumaAnswers[capriniPolytraumaIndex] + ';'
+        capriniPolytraumaAnswers[capriniPolytraumaIndex]
     );
 
     reportLines.push(
         '36. Эндопротезирование крупных суставов: ' +
-        capriniEndoprothesisAnswers[capriniEndoprothesisIndex] + ';'
+        capriniEndoprothesisAnswers[capriniEndoprothesisIndex]
     );
 
     reportLines.push(
         '37. Перелом костей бедра и голени (давностью до 1 месяца): ' +
-        capriniFemurAndTibiaFractureAnswers[capriniFemurAndTibiaFractureIndex] + ';'
+        capriniFemurAndTibiaFractureAnswers[capriniFemurAndTibiaFractureIndex]
     );
 
     reportLines.push(
         '38. Травма спинного мозга/паралич (давностью до 1 месяца): ' +
-        capriniParalysisAnswers[capriniParalysisIndex] + '.'
+        capriniParalysisAnswers[capriniParalysisIndex]
     );
 
     reportLines.push('');
@@ -1992,32 +2000,32 @@ function showCalculationTest() {
     if (isImdc) {
         reportLines.push(
             '1. Общее состояние по шкале Карновского 70% и ниже: ' +
-            imdcAnswers[imdcKarnovskyIndex] + ';'
+            imdcAnswers[imdcKarnovskyIndex]
         );
 
         reportLines.push(
             '2. Время от постановки диагноза до начала лекарственного лечения менее 1 года: ' +
-            imdcAnswers[imdcOneYearIndex] + ';'
+            imdcAnswers[imdcOneYearIndex]
         );
 
         reportLines.push(
             '3. Гемоглобин ниже нижней границы нормы: ' +
-            imdcAnswers[imdcHemoglobinIndex] + ';'
+            imdcAnswers[imdcHemoglobinIndex]
         );
 
         reportLines.push(
             '4. Скорректированный кальций выше верхней границы нормы: ' +
-            imdcAnswers[imdcCalciumIndex] + ';'
+            imdcAnswers[imdcCalciumIndex]
         );
 
         reportLines.push(
             '5. Абсолютное число нейтрофилов выше верхней границы нормы: ' +
-            imdcAnswers[imdcNeutrophilsIndex] + ';'
+            imdcAnswers[imdcNeutrophilsIndex]
         );
 
         reportLines.push(
             '6. Число тромбоцитов выше верхней границы нормы: ' +
-            imdcAnswers[imdcPlateletsIndex] + '.'
+            imdcAnswers[imdcPlateletsIndex]
         );
 
         reportLines.push('')
@@ -2029,10 +2037,10 @@ function showCalculationTest() {
 
         reportLines.push(
             'Группа прогноза (D. Heng, 2010 г.): ' +
-            imdcTotalScoreLabels[imdcTotalScoreIndex] + '.'
+            imdcTotalScoreLabels[imdcTotalScoreIndex]
         )
     } else {
-        reportLines.push('Не применимо (не почечно-клеточный рак).')
+        reportLines.push('Не применимо (не почечно-клеточный рак)')
     }
 
     output.textContent = reportLines.join('\n');
