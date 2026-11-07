@@ -1,12 +1,16 @@
-function showCalculationTest() {
-    const output = document.getElementById('results-output');
+const startButton = document.getElementById('main-button');
+const copyButton = document.getElementById('copy-button');
 
+const output = document.getElementById('results-output');
+
+
+function showCalculationTest() {
     const palliativeScenarioCheckbox = document.getElementById('palliative-scenario');
     const isPalliativeScenario = palliativeScenarioCheckbox.checked;
 
     const imdcCheckbox = document.getElementById('imdc-activator');
     const isImdc = imdcCheckbox.checked;
-    
+
     // Список базовых параметров пациента
     const ageInput = document.getElementById('age');
     const heightInput = document.getElementById('height');
@@ -1995,10 +1999,33 @@ function showCalculationTest() {
     }
 
     output.textContent = reportLines.join('\n');
+    copyButton.disabled = false;
 }
 
-const startButton = document.getElementById('main-button');
+// Функция копирования отчёта
+const originalCopyText = copyButton?.textContent;
+let resetTimer;
 
+async function copyOutput() {
+    let title = 'ПРОТОКОЛ РАСЧЁТА ШКАЛ';
+    let report = output.textContent.trim();
+
+    await navigator.clipboard.writeText(`${title}\n\n${report}`);
+
+    copyButton.textContent = 'Скопировано!';
+
+    clearTimeout(resetTimer);
+
+    resetTimer = setTimeout(() => {
+        copyButton.textContent = originalCopyText;
+    }, 2000);
+}
+
+// Подключение обработчиков.
 if (startButton) {
     startButton.addEventListener('click', showCalculationTest);
+}
+
+if (copyButton) {
+    copyButton.addEventListener('click', copyOutput);
 }
