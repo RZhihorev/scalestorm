@@ -15,16 +15,8 @@ const copyButton = document.getElementById('copy-button');
 const output = document.getElementById('results-output');
 
 
-// Список базовых параметров пациента
+// Список параметров пациента для управления элементами страницы
 const ageInput = document.getElementById('age');
-const heightInput = document.getElementById('height');
-const weightInput = document.getElementById('weight');
-const hemoglobinInput = document.getElementById('hemoglobin');
-const erythropoetinCheckbox = document.getElementById('cbx-erythropoietin');
-const leukocytesInput = document.getElementById('leukocytes');
-const plateletsInput = document.getElementById('platelets');
-const creatinineInput = document.getElementById('creatinine');
-
 const male = document.getElementById('male').checked
 const female = document.getElementById('female').checked
 
@@ -43,6 +35,7 @@ ageInput.addEventListener('input', toggleGeriatricBlocks);
 function togglePalliativeBlocks() {
     ppsBlock.hidden = !palliativeScenarioCheckbox.checked;
     ppiBlock.hidden = !palliativeScenarioCheckbox.checked;
+    document.querySelector('input[name="pps-total"][value="100"]').checked = ppsBlock.hidden;
 }
 
 palliativeScenarioCheckbox.addEventListener('change', togglePalliativeBlocks);
@@ -57,9 +50,32 @@ imdcCheckbox.addEventListener('change', toggleImdcBlock);
 
 // Функция формирования отчёта (ОСНОВНАЯ ФУНКЦИЯ)
 function showCalculationTest() {
+    const palliativeScenarioCheckbox = document.getElementById('palliative-scenario');
     const isPalliativeScenario = palliativeScenarioCheckbox.checked;
+
+    const imdcCheckbox = document.getElementById('imdc-activator');
     const isImdc = imdcCheckbox.checked;
     
+    const ageInput = document.getElementById('age');
+    const heightInput = document.getElementById('height');
+    const weightInput = document.getElementById('weight');
+    const hemoglobinInput = document.getElementById('hemoglobin');
+    const erythropoetinCheckbox = document.getElementById('cbx-erythropoietin');
+    const leukocytesInput = document.getElementById('leukocytes');
+    const plateletsInput = document.getElementById('platelets');
+    const creatinineInput = document.getElementById('creatinine');
+
+    const height = heightInput.valueAsNumber;
+    const weight = weightInput.valueAsNumber;
+    const hemoglobin = hemoglobinInput.valueAsNumber;
+    const erythropoietin = erythropoetinCheckbox.checked;
+    const leukocytes = leukocytesInput.valueAsNumber;
+    const platelets = plateletsInput.valueAsNumber;
+    const creatinine = creatinineInput.valueAsNumber;
+
+    const male = document.getElementById('male').checked
+    const female = document.getElementById('female').checked
+
     const age = ageInput.valueAsNumber;
 
     const lastTwoDigits = age % 100;
@@ -76,14 +92,6 @@ function showCalculationTest() {
     } else {
         ageWord = "лет";
     }
-
-    const height = heightInput.valueAsNumber;
-    const weight = weightInput.valueAsNumber;
-    const hemoglobin = hemoglobinInput.valueAsNumber;
-    const erythropoietin = erythropoetinCheckbox.checked;
-    const leukocytes = leukocytesInput.valueAsNumber;
-    const platelets = plateletsInput.valueAsNumber;
-    const creatinine = creatinineInput.valueAsNumber;
 
     const bmi = Number((weight / (height / 100) ** 2).toFixed(2));
     
