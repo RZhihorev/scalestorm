@@ -1,16 +1,27 @@
+const palliativeScenarioCheckbox = document.getElementById('palliative-scenario');
+
+const imdcCheckbox = document.getElementById('imdc-activator');
+const imdcBlock = document.getElementById('imdc-block');
+
 const startButton = document.getElementById('main-button');
 const copyButton = document.getElementById('copy-button');
 
 const output = document.getElementById('results-output');
 
 
+// Скрытие / показ IMDC блока в зависмости от потребности
+function toggleImdcBlock() {
+        imdcBlock.hidden = !imdcCheckbox.checked;
+    }
+
+imdcCheckbox.addEventListener('change', toggleImdcBlock);
+toggleImdcBlock();
+
+// Функция формирования отчёта (ОСНОВНАЯ ФУНКЦИЯ)
 function showCalculationTest() {
-    const palliativeScenarioCheckbox = document.getElementById('palliative-scenario');
     const isPalliativeScenario = palliativeScenarioCheckbox.checked;
-
-    const imdcCheckbox = document.getElementById('imdc-activator');
     const isImdc = imdcCheckbox.checked;
-
+    
     // Список базовых параметров пациента
     const ageInput = document.getElementById('age');
     const heightInput = document.getElementById('height');
