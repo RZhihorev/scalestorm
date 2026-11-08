@@ -1,4 +1,6 @@
 // Базовые элементы страницы
+const gokModeCheckbox = document.getElementById('gok-mode');
+
 const g8Block = document.getElementById('g8-block');
 const cargBlock = document.getElementById('carg-block');
 
@@ -65,24 +67,27 @@ document.addEventListener("keydown", (event) => {
     }
 });
 
-// Скрытие / показ гериатрических блоков в зависмости от потребности
-function toggleGeriatricBlocks() {
+function updateBlocksVisibility() {
     const age = ageInput.valueAsNumber;
 
-    g8Block.hidden = !(age >= 70);
-    cargBlock.hidden = !(age >= 65);
+    const gokEnabled = gokModeCheckbox.checked;
+    const palliativeEnabled = palliativeScenarioCheckbox.checked;
+
+    g8Block.hidden = !(gokEnabled || age >= 70);
+    cargBlock.hidden = !(gokEnabled || age >= 65);
+
+    const showPalliative = gokEnabled || palliativeEnabled;
+
+    ppsBlock.hidden = !showPalliative;
+    ppiBlock.hidden = !showPalliative;
 }
 
-ageInput.addEventListener('input', toggleGeriatricBlocks);
-
-// Скрытие / показ паллиативных блоков в зависмости от потребности
-function togglePalliativeBlocks() {
-    ppsBlock.hidden = !palliativeScenarioCheckbox.checked;
-    ppiBlock.hidden = !palliativeScenarioCheckbox.checked;
-    document.querySelector('input[name="pps-total"][value="100"]').checked = ppsBlock.hidden;
-}
-
-palliativeScenarioCheckbox.addEventListener('change', togglePalliativeBlocks);
+gokModeCheckbox.addEventListener('change', updateBlocksVisibility);
+ageInput.addEventListener('input', updateBlocksVisibility);
+palliativeScenarioCheckbox.addEventListener(
+    'change',
+    updateBlocksVisibility
+);
 
 // Скрытие / показ IMDC блока в зависмости от потребности
 function toggleImdcBlock() {
@@ -94,6 +99,8 @@ imdcCheckbox.addEventListener('change', toggleImdcBlock);
 
 // Функция формирования отчёта (ОСНОВНАЯ ФУНКЦИЯ)
 function showCalculationTest() {
+    const gokMode = gokModeCheckbox.checked
+
     const palliativeScenarioCheckbox = document.getElementById('palliative-scenario');
     const isPalliativeScenario = palliativeScenarioCheckbox.checked;
 
@@ -1618,9 +1625,9 @@ function showCalculationTest() {
     reportLines.push('');
     
     reportLines.push('[G8 — скрининг гериатрической уязвимости]');
-    if (age < 70) {
+    if (age < 70 && !gokMode) {
         reportLines.push('Не применима (возраст пациента менее 70 лет)');
-    } else {
+    } else if (age >= 70 || gokMode) {
         reportLines.push(
             '1. Снизилось ли потребление пищи за последние 3 месяца ' +
             'из-за потери аппетита, проблем с пищеварением ' +
@@ -1688,9 +1695,9 @@ function showCalculationTest() {
     reportLines.push('');
 
     reportLines.push('[CARG — оценка риска токсичности лекарственной противоопухолевой терапии]');
-    if (age < 65) {
+    if (age < 65 && gokMode) {
         reportLines.push('Не применима (возраст пациента менее 65 лет)');
-    } else {
+    } else if (age >= 65 || !gokMode) {
         reportLines.push(
             '1. Возраст: ' + 
             age + ' ' + ageWord + ' ' + cargAgeLabels[cargAgeIndex]
@@ -1766,7 +1773,7 @@ function showCalculationTest() {
     reportLines.push('');
 
     reportLines.push('[PPS — шкала функционального статуса в паллиативной помощи]');
-    if (isPalliativeScenario) {
+    if (isPalliativeScenario || gokMode) {
         reportLines.push(
             '1. Способность передвигаться: ' +
             ppsMobilityAnswers[ppsMobilityInput]
@@ -1803,7 +1810,7 @@ function showCalculationTest() {
     reportLines.push('');
 
     reportLines.push('[PPI — паллиативный прогностический индекс]');
-    if (isPalliativeScenario) {
+    if (isPalliativeScenario || gokMode) {
         reportLines.push(
             '1. Значение PPS: ' +
             ppsTotalInput + '% ' +
