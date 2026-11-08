@@ -15,6 +15,7 @@ const startButton = document.getElementById('main-button');
 const copyButton = document.getElementById('copy-button');
 
 const output = document.getElementById('results-output');
+const gokBriefReport = document.getElementById('gok-brief-report');
 
 
 // Список параметров пациента для управления элементами страницы
@@ -1589,6 +1590,25 @@ function showCalculationTest() {
     ];
 
     // СОСТАВЛЕНИЕ ОТЧЁТА ДЛЯ ПОЛЬЗОВАТЕЛЯ
+    if (gokMode) {
+        gokBriefReport.hidden = false;
+        gokBriefReport.style.whiteSpace = 'pre-line';
+
+        gokBriefReport.textContent =
+            'КРАТКАЯ СВОДКА для ГОК\n' +
+            'Баллы G8: ' + g8TotalScore + '\n' +
+            'Баллы CARG: ' + cargTotalScore + '\n' +
+            'Проценты PPS: ' + ppsTotalInput + '\n' +
+            'Баллы PPI: ' + ppiTotalScore + '\n' +
+            'Баллы Khorana: ' + khoranaTotalScore + '\n' +
+            'Баллы Caprini: ' + capriniTotalScore + '\n' +
+            'Баллы IMDC: ' + (
+                isImdc ? imdcTotalScore : 'не применимо'
+            );
+    } else {
+        gokBriefReport.hidden = true;
+    }
+
     const reportLines = [];
 
     reportLines.push('ИСХОДНЫЕ ДАННЫЕ ПАЦИЕНТА');
