@@ -50,6 +50,26 @@ function showCalculationTest() {
     const creatinine = creatinineInput.valueAsNumber;
 
     const bmi = Number((weight / (height / 100) ** 2).toFixed(2));
+    
+    let bmiLabel;
+
+    if (bmi < 16) {
+        bmiLabel = 'выраженный дефицит массы тела'
+    } else if (bmi >= 16 && bmi < 17) {
+        bmiLabel = 'умеренный дефицит массы тела'
+    } else if (bmi >= 17 && bmi < 18.5) {
+        bmiLabel = 'лёгкий дефицит массы тела'
+    } else if (bmi >= 18.5 && bmi < 25) {
+        bmiLabel = 'нормальная масса тела'
+    } else if (bmi >= 25 && bmi < 30) {
+        bmiLabel = 'предожирение'
+    } else if (bmi >= 30 && bmi < 35) {
+        bmiLabel = 'ожирение I степени'
+    } else if (bmi >= 35 && bmi < 40) {
+        bmiLabel = 'ожирение II степени'
+    } else if (bmi >= 40) {
+        bmiLabel = 'ожирение III степени'
+    }
 
     // Список чекбоксов для Caprini
     const capriniFootSwellingCheckbox = document.getElementById('caprini-foot-swelling');
@@ -1499,9 +1519,10 @@ function showCalculationTest() {
 
     reportLines.push('');
     reportLines.push('Расчётные показатели');
-    reportLines.push('Индекс массы тела: ' + bmi + ' кг/м.кв.');
-    reportLines.push('Идеальная масса тела по формуле Devine: ' + idealWeight.toFixed(2) + ' кг');
-    reportLines.push('Клиренс креатинина по формуле Jelliffe: ' + clearanceCrJelliffeAbs + ' мл/мин');
+    reportLines.push(
+        'Индекс массы тела: ' + bmi + ' кг/м.кв. (' +
+        bmiLabel + ')'
+    );
 
     reportLines.push('');
 
