@@ -17,9 +17,53 @@ const output = document.getElementById('results-output');
 
 // Список параметров пациента для управления элементами страницы
 const ageInput = document.getElementById('age');
-const male = document.getElementById('male').checked
-const female = document.getElementById('female').checked
+const male = document.getElementById('male')
+const female = document.getElementById('female')
 
+const heightInput = document.getElementById('height');
+const weightInput = document.getElementById('weight');
+const hemoglobinInput = document.getElementById('hemoglobin');
+const erythropoetinCheckbox = document.getElementById('cbx-erythropoietin');
+const leukocytesInput = document.getElementById('leukocytes');
+const plateletsInput = document.getElementById('platelets');
+const creatinineInput = document.getElementById('creatinine');
+
+// Быстрое заполнение необходимых полей
+function fillTestData() {
+    ageInput.value = '80';
+
+    male.checked = true;
+    female.checked = false;
+
+    heightInput.value = '175';
+    weightInput.value = '80';
+
+    hemoglobinInput.value = '99';
+    erythropoetinCheckbox.checked = false;
+
+    leukocytesInput.value = '6.5';
+    plateletsInput.value = '250';
+    creatinineInput.value = '90';
+
+    document.querySelector('input[name="pps-total"][value="90"]').checked = true;
+}
+
+// Запуск быстрого заполнения необходимых полей при нажатии клавиш Alt+Q
+document.addEventListener("keydown", (event) => {
+    if (
+        event.altKey &&
+        !event.ctrlKey &&
+        !event.shiftKey &&
+        !event.metaKey &&
+        event.code === "KeyQ"
+    ) {
+        event.preventDefault();
+
+        if (!event.repeat) {
+            fillTestData();
+        }
+    }
+});
 
 // Скрытие / показ гериатрических блоков в зависмости от потребности
 function toggleGeriatricBlocks() {
