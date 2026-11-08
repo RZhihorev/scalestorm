@@ -1,4 +1,10 @@
+// Базовые элементы страницы
+const g8Block = document.getElementById('g8-block');
+const cargBlock = document.getElementById('carg-block');
+
 const palliativeScenarioCheckbox = document.getElementById('palliative-scenario');
+const ppsBlock = document.getElementById('pps-block');
+const ppiBlock = document.getElementById('ppi-block');
 
 const imdcCheckbox = document.getElementById('imdc-activator');
 const imdcBlock = document.getElementById('imdc-block');
@@ -9,34 +15,53 @@ const copyButton = document.getElementById('copy-button');
 const output = document.getElementById('results-output');
 
 
+// Список базовых параметров пациента
+const ageInput = document.getElementById('age');
+const heightInput = document.getElementById('height');
+const weightInput = document.getElementById('weight');
+const hemoglobinInput = document.getElementById('hemoglobin');
+const erythropoetinCheckbox = document.getElementById('cbx-erythropoietin');
+const leukocytesInput = document.getElementById('leukocytes');
+const plateletsInput = document.getElementById('platelets');
+const creatinineInput = document.getElementById('creatinine');
+
+const male = document.getElementById('male').checked
+const female = document.getElementById('female').checked
+
+
+// Скрытие / показ гериатрических блоков в зависмости от потребности
+function toggleGeriatricBlocks() {
+    const age = ageInput.valueAsNumber;
+
+    g8Block.hidden = !(age >= 70);
+    cargBlock.hidden = !(age >= 65);
+}
+
+ageInput.addEventListener('input', toggleGeriatricBlocks);
+
+// Скрытие / показ паллиативных блоков в зависмости от потребности
+function togglePalliativeBlocks() {
+    ppsBlock.hidden = !palliativeScenarioCheckbox.checked;
+    ppiBlock.hidden = !palliativeScenarioCheckbox.checked;
+}
+
+palliativeScenarioCheckbox.addEventListener('change', togglePalliativeBlocks);
+
 // Скрытие / показ IMDC блока в зависмости от потребности
 function toggleImdcBlock() {
-        imdcBlock.hidden = !imdcCheckbox.checked;
-    }
+    imdcBlock.hidden = !imdcCheckbox.checked;
+}
 
 imdcCheckbox.addEventListener('change', toggleImdcBlock);
-toggleImdcBlock();
+
 
 // Функция формирования отчёта (ОСНОВНАЯ ФУНКЦИЯ)
 function showCalculationTest() {
     const isPalliativeScenario = palliativeScenarioCheckbox.checked;
     const isImdc = imdcCheckbox.checked;
     
-    // Список базовых параметров пациента
-    const ageInput = document.getElementById('age');
-    const heightInput = document.getElementById('height');
-    const weightInput = document.getElementById('weight');
-    const hemoglobinInput = document.getElementById('hemoglobin');
-    const erythropoetinCheckbox = document.getElementById('cbx-erythropoietin');
-    const leukocytesInput = document.getElementById('leukocytes');
-    const plateletsInput = document.getElementById('platelets');
-    const creatinineInput = document.getElementById('creatinine');
-
-    const male = document.getElementById('male').checked
-    const female = document.getElementById('female').checked
-
     const age = ageInput.valueAsNumber;
-    
+
     const lastTwoDigits = age % 100;
     const lastDigit = age % 10;
 
