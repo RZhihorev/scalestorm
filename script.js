@@ -1612,7 +1612,6 @@ function showCalculationTest() {
     const reportLines = [];
 
     reportLines.push('ИСХОДНЫЕ ДАННЫЕ ПАЦИЕНТА');
-    reportLines.push('');
 
     reportLines.push('Общие сведения');
     reportLines.push('Рост: ' + height + ' см');
@@ -1640,11 +1639,8 @@ function showCalculationTest() {
     );
 
     reportLines.push('');
-
-    reportLines.push('ГЕРИАТРИЧЕСКИЕ ШКАЛЫ');
-    reportLines.push('');
     
-    reportLines.push('[G8 — скрининг гериатрической уязвимости]');
+    reportLines.push('G8 — СКРИНИНГ ГЕРИАТРИЧЕСКОЙ УЯЗВИМОСТИ');
     if (age < 70 && !gokMode) {
         reportLines.push('Не применима (возраст пациента менее 70 лет)');
     } else if (age >= 70 || gokMode) {
@@ -1714,7 +1710,7 @@ function showCalculationTest() {
     }
     reportLines.push('');
 
-    reportLines.push('[CARG — оценка риска токсичности лекарственной противоопухолевой терапии]');
+    reportLines.push('CARG — ОЦЕНКА РИСКА ТОКСИЧНОСТИ ЛЕКАРСТВЕННОЙ ПРОТИВООПУХОЛЕВОЙ ТЕРАПИИ');
     if (age < 65 && gokMode) {
         reportLines.push('Не применима (возраст пациента менее 65 лет)');
     } else if (age >= 65 || !gokMode) {
@@ -1789,10 +1785,7 @@ function showCalculationTest() {
     }
     reportLines.push('');
 
-    reportLines.push('ПАЛЛИАТИВНЫЕ ШКАЛЫ');
-    reportLines.push('');
-
-    reportLines.push('[PPS — шкала функционального статуса в паллиативной помощи]');
+    reportLines.push('PPS — ШКАЛА ФУНКЦИОНАЛЬНОГО СТАТУСА В ПАЛЛИАТИВНОЙ ПОМОЩИ');
     if (isPalliativeScenario || gokMode) {
         reportLines.push(
             '1. Способность передвигаться: ' +
@@ -1829,7 +1822,7 @@ function showCalculationTest() {
     }
     reportLines.push('');
 
-    reportLines.push('[PPI — паллиативный прогностический индекс]');
+    reportLines.push('PPI — ПАЛЛИАТИВНЫЙ ПРОГНОСТИЧЕСКИЙ ИНДЕКС');
     if (isPalliativeScenario || gokMode) {
         reportLines.push(
             '1. Значение PPS: ' +
@@ -1872,10 +1865,7 @@ function showCalculationTest() {
     }
     reportLines.push('');
 
-    reportLines.push('ШКАЛЫ ОЦЕНКИ РИСКОВ ВТЭО');
-    reportLines.push('');
-
-    reportLines.push('[Шкала Khorana — оценка риска ВТЭО при лекарственной противоопухолевой терапии]');
+    reportLines.push('ШКАЛА KHORANA — ОЦЕНКА РИСКА ВТЭО ПРИ ЛЕКАРСТВЕННОЙ ПРОТИВООПУХОЛЕВОЙ ТЕРАПИИ');
 
     reportLines.push(
         '1. Локализация опухоли (первичный очаг): ' +
@@ -1920,7 +1910,7 @@ function showCalculationTest() {
     reportLines.push('');
 
     // Отчёт по Caprini
-    reportLines.push('[Шкала Caprini — оценка риска ВТЭО]');
+    reportLines.push('ШКАЛА CAPRINI — ОЦЕНКА РИСКА ВТЭО');
     
     // 1 балл
     reportLines.push(
@@ -2128,10 +2118,7 @@ function showCalculationTest() {
     );
     reportLines.push('');
 
-    reportLines.push('СПЕЦИАЛЬНЫЕ ШКАЛЫ');
-    reportLines.push('');
-
-    reportLines.push('[Шкала IMDC — оценка прогноза при метастатическом почечно-клеточном раке]');
+    reportLines.push('ШКАЛА IMDC — ОЦЕНКА ПРОГНОЗА ПРИ МЕТАСТАТИЧЕСКОМ ПОЧЕЧНО-КЛЕТОЧНОМ РАКЕ');
     
     if (isImdc) {
         reportLines.push(
