@@ -97,6 +97,30 @@ function toggleImdcBlock() {
 
 imdcCheckbox.addEventListener('change', toggleImdcBlock);
 
+// Активация/деактивация чекбоксов Caprini, актуальных только для женщин
+function capriniFemalePointsManager() {
+    const capriniContraceptionHrtCheckbox = document.getElementById('caprini-contraception-hrt');
+    const capriniPregnancyCheckbox = document.getElementById('caprini-pregnancy');
+    const capriniObstetricsPathologyCheckbox = document.getElementById('caprini-obstetrics-pathology');
+
+    if (male.checked) {
+        capriniContraceptionHrtCheckbox.checked = false;
+        capriniPregnancyCheckbox.checked = false;
+        capriniObstetricsPathologyCheckbox.checked = false;
+
+        capriniContraceptionHrtCheckbox.disabled = true;
+        capriniPregnancyCheckbox.disabled = true;
+        capriniObstetricsPathologyCheckbox.disabled = true;
+    } else if (female.checked) {
+        capriniContraceptionHrtCheckbox.disabled = false;
+        capriniPregnancyCheckbox.disabled = false;
+        capriniObstetricsPathologyCheckbox.disabled = false;
+    }
+}
+
+male.addEventListener('change', capriniFemalePointsManager);
+female.addEventListener('change', capriniFemalePointsManager);
+
 
 // Функция формирования отчёта (ОСНОВНАЯ ФУНКЦИЯ)
 function showCalculationTest() {
