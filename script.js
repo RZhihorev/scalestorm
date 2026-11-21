@@ -1799,9 +1799,9 @@ function showCalculationTest() {
     reportLines.push('');
 
     reportLines.push('CARG - ОЦЕНКА РИСКА ТОКСИЧНОСТИ ЛЕКАРСТВЕННОЙ ПРОТИВООПУХОЛЕВОЙ ТЕРАПИИ');
-    if (age < 65 && gokMode) {
+    if (age < 65 && !gokMode) {
         reportLines.push('Не применима (возраст пациента менее 65 лет)');
-    } else if (age >= 65 || !gokMode) {
+    } else if (age >= 65 || gokMode) {
         reportLines.push(
             '1. Возраст: ' + 
             age + ' ' + ageWord + ' ' + cargAgeLabels[cargAgeIndex]
