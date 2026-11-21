@@ -212,6 +212,8 @@ function showCalculationTest() {
     }
 
     const bmi = Number((weight / (height / 100) ** 2).toFixed(2));
+    const bsaActualMosteller = Math.sqrt(height * weight / 3600);
+    const clearanceCrCockcroftGault = ((140 - age) * weight) / (0.814 * creatinine) * (female ? 0.85 : 1);
     
     let bmiLabel;
 
@@ -1714,6 +1716,14 @@ function showCalculationTest() {
     reportLines.push(
         'Индекс массы тела: ' + bmi + ' кг/м.кв. (' +
         bmiLabel + ')'
+    );
+    reportLines.push(
+        `Площадь поверхности тела (Mosteller): ${bsaActualMosteller.toFixed(2)} м.кв.`
+    );
+    reportLines.push(
+        `Клиренс креатинина (Cockcroft–Gault, фактическая масса тела): ${
+            clearanceCrCockcroftGault.toFixed(2)
+        } мл/мин`
     );
 
     reportLines.push('');
