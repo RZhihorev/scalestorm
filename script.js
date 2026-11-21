@@ -90,13 +90,6 @@ palliativeScenarioCheckbox.addEventListener(
     updateBlocksVisibility
 );
 
-// Скрытие / показ IMDC блока в зависмости от потребности
-function toggleImdcBlock() {
-    imdcBlock.hidden = !imdcCheckbox.checked;
-}
-
-imdcCheckbox.addEventListener('change', toggleImdcBlock);
-
 // Активация/деактивация чекбоксов Caprini, актуальных только для женщин
 function capriniFemalePointsManager() {
     const capriniContraceptionHrtCheckbox = document.getElementById('caprini-contraception-hrt');
@@ -121,6 +114,52 @@ function capriniFemalePointsManager() {
 male.addEventListener('change', capriniFemalePointsManager);
 female.addEventListener('change', capriniFemalePointsManager);
 
+// Скрытие/показ IMDC блока в зависмости от потребности
+function toggleImdcBlock() {
+    imdcBlock.hidden = !imdcCheckbox.checked;
+}
+
+imdcCheckbox.addEventListener('change', toggleImdcBlock);
+
+function imdcPreset() {
+    const ppsTotalInput = Number(
+        document.querySelector('input[name="pps-total"]:checked').value
+    );
+    
+    const imdcKarnovskyCheckbox = document.getElementById('imdc-karnovsky');
+    const imdcHemoglobinCheckbox = document.getElementById('imdc-hemoglobin');
+    const imdcPlateletsCheckbox = document.getElementById('imdc-platelets');
+
+    if (hemoglobinInput.value <= 100) {
+        imdcHemoglobinCheckbox.checked = true;
+        imdcHemoglobinCheckbox.disabled = true;
+    } else {
+        imdcHemoglobinCheckbox.checked = false;
+        imdcHemoglobinCheckbox.disabled = false;
+    }
+
+    if (plateletsInput.value > 400) {
+        imdcPlateletsCheckbox.checked = true;
+        imdcPlateletsCheckbox.disabled = true;
+    } else {
+        imdcPlateletsCheckbox.checked = false;
+        imdcPlateletsCheckbox.disabled = false;
+    }
+
+    if (ppsTotalInput < 80) {
+        imdcKarnovskyCheckbox.checked = true;
+        imdcKarnovskyCheckbox.disabled = true;
+    } else {
+        imdcKarnovskyCheckbox.checked = false;
+        imdcKarnovskyCheckbox.disabled = false;
+    }
+}
+
+hemoglobinInput.addEventListener('change', imdcPreset);
+plateletsInput.addEventListener('change', imdcPreset);
+document.querySelectorAll('input[name="pps-total"]').forEach((radio) => {
+    radio.addEventListener("change", imdcPreset);
+});
 
 // Функция формирования отчёта (ОСНОВНАЯ ФУНКЦИЯ)
 function showCalculationTest() {
