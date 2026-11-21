@@ -452,7 +452,10 @@ function showCalculationTest() {
         cargAgeScore = 2;
         cargAgeIndex = 1;
     }
-    const cargAgeLabels = ['(0 баллов)', '(2 балла)'];
+    const cargAgeLabels = [
+        '(менее 72 лет; 0 баллов)',
+        '(72 года и более; 2 балла)'
+    ];
 
     const cargGiCUCancerCheckbox = document.getElementById('carg-gi-gu-cancer')
     const isCargGiGuCancer = cargGiCUCancerCheckbox.checked
