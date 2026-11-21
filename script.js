@@ -869,9 +869,9 @@ function showCalculationTest() {
     }
 
     const capriniAge4160Answers = [
-        'нет (возраст менее 41 года, 0 баллов)',
+        'нет (возраст менее 41 года; 0 баллов)',
         'да (1 балл)',
-        'нет (возраст более 60 лет, 0 баллов)'
+        'нет (возраст более 60 лет; 0 баллов)'
     ];
 
     let capriniFootSwellingIndex;
@@ -915,8 +915,8 @@ function showCalculationTest() {
     }
 
     const capriniBmiAnswers = [
-        'нет (ИМТ ' + bmi + 'кг/м.кв., 0 баллов)',
-        'да (ИМТ ' + bmi + 'кг/м.кв., 1 балл)'
+        'нет (ИМТ ' + bmi + ' кг/м.кв.; 0 баллов)',
+        'да (ИМТ ' + bmi + ' кг/м.кв.; 1 балл)'
     ];
 
     let capriniSmallSurgeryIndex;
@@ -1113,9 +1113,9 @@ function showCalculationTest() {
     }
 
     const capriniAge6174Answers = [
-        'нет (возраст менее 61 года, 0 баллов)',
+        'нет (возраст менее 61 года; 0 баллов)',
         'да (2 балла)',
-        'нет (возраст более 74 лет, 0 баллов)'
+        'нет (возраст более 74 лет; 0 баллов)'
     ];
 
     let capriniArthroSurgeryIndex;
@@ -1234,7 +1234,7 @@ function showCalculationTest() {
     }
 
     const capriniAge75Answers = [
-        'нет (возраст менее 75 лет, 0 баллов)',
+        'нет (возраст менее 75 лет; 0 баллов)',
         'да (3 балла)'
     ];
 
