@@ -318,7 +318,12 @@ function showCalculationTest() {
     } else if (bmi >= 23) {
         g8BmiScore = 3
     }
-    const g8BmiLabels = ['(0 баллов)', '(1 балл)', '(2 балла)', '(3 балла)'];
+    const g8BmiLabels = [
+        '(менее 19 кг/м.кв.; 0 баллов)',
+        '(от 19 до 20,99 кг/м.кв.; 1 балл)',
+        '(от 21 до 22,99 кг/м.кв.; 2 балла)',
+        '(23 кг/м.кв. и более; 3 балла)'
+    ];
 
     const g8MoreThreeDrugsInput = Number(
         document.querySelector('input[name="g8-more-three-drugs"]:checked').value
@@ -346,7 +351,11 @@ function showCalculationTest() {
     } else if (age < 80) {
         g8AgeScore = 2
     }
-    const g8AgeLabels = ['(0 баллов)', '(1 балл)', '(2 балла)'];
+    const g8AgeLabels = [
+        '(более 85 лет; 0 баллов)',
+        '(от 80 до 85 лет; 1 балл)',
+        '(менее 80 лет; 2 балла)'
+    ];
 
     let g8TotalScore = 
         g8FoodIntakeInput + 
