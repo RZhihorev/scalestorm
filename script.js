@@ -114,13 +114,7 @@ function capriniFemalePointsManager() {
 male.addEventListener('change', capriniFemalePointsManager);
 female.addEventListener('change', capriniFemalePointsManager);
 
-// Скрытие/показ IMDC блока в зависмости от потребности
-function toggleImdcBlock() {
-    imdcBlock.hidden = !imdcCheckbox.checked;
-}
-
-imdcCheckbox.addEventListener('change', toggleImdcBlock);
-
+// Отметка чекбоксов IMDC при очевидных показателях пациента
 function imdcPreset() {
     const ppsTotalInput = Number(
         document.querySelector('input[name="pps-total"]:checked').value
@@ -160,6 +154,15 @@ plateletsInput.addEventListener('change', imdcPreset);
 document.querySelectorAll('input[name="pps-total"]').forEach((radio) => {
     radio.addEventListener("change", imdcPreset);
 });
+
+// Скрытие/показ IMDC блока в зависмости от потребности
+function toggleImdcBlock() {
+    imdcBlock.hidden = !imdcCheckbox.checked;
+    imdcPreset;
+}
+
+imdcCheckbox.addEventListener('change', toggleImdcBlock);
+
 
 // Функция формирования отчёта (ОСНОВНАЯ ФУНКЦИЯ)
 function showCalculationTest() {
