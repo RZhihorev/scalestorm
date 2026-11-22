@@ -379,6 +379,24 @@ function showCalculationTest() {
     const capriniParalysisCheckbox = document.getElementById('caprini-paralysis');
     const capriniParalysis = capriniParalysisCheckbox.checked;
 
+    const capriniSmokingCheckbox = document.getElementById('caprini-smoking');
+    const capriniSmoking = capriniSmokingCheckbox.checked;
+
+    const capriniDiabetesCheckbox = document.getElementById('caprini-diabetes');
+    const capriniDiabetes = capriniDiabetesCheckbox.checked;
+
+    const capriniChemotherapyCheckbox = document.getElementById('caprini-chemotherapy');
+    const capriniChemotherapy = capriniChemotherapyCheckbox.checked;
+
+    const capriniBloodTransfusionCheckbox = document.getElementById('caprini-blood-transfusion');
+    const capriniBloodTransfusion = capriniBloodTransfusionCheckbox.checked;
+
+    const capriniAnotherThrombophiliaCheckbox = document.getElementById('caprini-another-thrombophilia');
+    const capriniAnotherThrombophilia = capriniAnotherThrombophiliaCheckbox.checked;
+
+    const capriniGreatSurgeryCheckbox = document.getElementById('caprini-great-surgery');
+    const capriniGreatSurgery = capriniGreatSurgeryCheckbox.checked;
+
     // Список переменных для расчёта G8
     const g8FoodIntakeInput = Number(
         document.querySelector('input[name="g8-food-intake"]:checked').value
@@ -1545,6 +1563,112 @@ function showCalculationTest() {
         'нет (0 баллов)'
     ];
 
+    // Переменные для дополнительных чекбоксов
+    let capriniMorbidObesityIndex;
+    let capriniMorbidObesityScore;
+    if (bmi <= 40) {
+        capriniMorbidObesityIndex = 0;
+        capriniMorbidObesityScore = 0;
+    } else if (bmi > 40) {
+        capriniMorbidObesityIndex = 1;
+        capriniMorbidObesityScore = 1;
+    }
+
+    const capriniMorbidObesityAnswers = [
+        'нет (ИМТ ' + bmi + ' кг/м.кв.; 0 баллов)',
+        'да (ИМТ ' + bmi + ' кг/м.кв.; 1 балл)'
+    ];
+
+    let capriniSmokingIndex;
+    let capriniSmokingScore;
+    if (capriniSmoking) {
+        capriniSmokingIndex = 0;
+        capriniSmokingScore = 1;
+    } else {
+        capriniSmokingIndex = 1;
+        capriniSmokingScore = 0;        
+    }
+
+    const capriniSmokingAnswers = [
+        'да (1 балл)',
+        'нет (0 баллов)'
+    ];
+
+    let capriniDiabetesIndex;
+    let capriniDiabetesScore;
+    if (capriniDiabetes) {
+        capriniDiabetesIndex = 0;
+        capriniDiabetesScore = 1;
+    } else {
+        capriniDiabetesIndex = 1;
+        capriniDiabetesScore = 0;        
+    }
+
+    const capriniDiabetesAnswers = [
+        'да (1 балл)',
+        'нет (0 баллов)'
+    ];
+
+    let capriniChemotherapyIndex;
+    let capriniChemotherapyScore;
+    if (capriniChemotherapy) {
+        capriniChemotherapyIndex = 0;
+        capriniChemotherapyScore = 1;
+    } else {
+        capriniChemotherapyIndex = 1;
+        capriniChemotherapyScore = 0;        
+    }
+
+    const capriniChemotherapyAnswers = [
+        'да (1 балл)',
+        'нет (0 баллов)'
+    ];
+
+    let capriniBloodTransfusionIndex;
+    let capriniBloodTransfusionScore;
+    if (capriniBloodTransfusion) {
+        capriniBloodTransfusionIndex = 0;
+        capriniBloodTransfusionScore = 1;
+    } else {
+        capriniBloodTransfusionIndex = 1;
+        capriniBloodTransfusionScore = 0;        
+    }
+
+    const capriniBloodTransfusionAnswers = [
+        'да (1 балл)',
+        'нет (0 баллов)'
+    ];
+
+    let capriniAnotherThrombophiliaIndex;
+    let capriniAnotherThrombophiliaScore;
+    if (capriniAnotherThrombophilia) {
+        capriniAnotherThrombophiliaIndex = 0;
+        capriniAnotherThrombophiliaScore = 3;
+    } else {
+        capriniAnotherThrombophiliaIndex = 1;
+        capriniAnotherThrombophiliaScore = 0;        
+    }
+
+    const capriniAnotherThrombophiliaAnswers = [
+        'да (3 балла)',
+        'нет (0 баллов)'
+    ];
+
+    let capriniGreatSurgeryIndex;
+    let capriniGreatSurgeryScore;
+    if (capriniGreatSurgery) {
+        capriniGreatSurgeryIndex = 0;
+        capriniGreatSurgeryScore = 1;
+    } else {
+        capriniGreatSurgeryIndex = 1;
+        capriniGreatSurgeryScore = 0;        
+    }
+
+    const capriniGreatSurgeryAnswers = [
+        'да (1 балл)',
+        'нет (0 баллов)'
+    ];
+
     let capriniTotalScore = 
        capriniAge4160Score +
        capriniFootSwellingScore +
@@ -1583,7 +1707,14 @@ function showCalculationTest() {
        capriniPolytraumaScore +
        capriniEndoprothesisScore +
        capriniFemurAndTibiaFractureScore +
-       capriniParalysisScore;
+       capriniParalysisScore +
+       capriniMorbidObesityScore +
+       capriniSmokingScore +
+       capriniDiabetesScore +
+       capriniChemotherapyScore +
+       capriniBloodTransfusionScore +
+       capriniAnotherThrombophiliaScore +
+       capriniGreatSurgeryScore;
 
     let capriniTotalScoreIndex;
     if (capriniTotalScore < 2) {
@@ -2237,13 +2368,41 @@ function showCalculationTest() {
     reportLines.push('');
 
     reportLines.push('Дополнительные факторы риска');
-    reportLines.push('39. Морбидное ожирение (ИМТ > 40 кг/м.кв.): ');
-    reportLines.push('40. Курение (за последний месяц): ');
-    reportLines.push('41. Диабет с потребностью в инсулине: ');
-    reportLines.push('42. Химиотерапия (за последний месяц): ');
-    reportLines.push('43. Переливание крови (за последний месяц): ');
-    reportLines.push('44. Прочие тромбофилии: ');
-    reportLines.push('45. Продолжительность операции более 2-х часов (за исключением эндопротезирования крупных суставов): ');
+
+    reportLines.push(
+        '39. Морбидное ожирение (ИМТ > 40 кг/м.кв.): ' +
+        capriniMorbidObesityAnswers[capriniMorbidObesityIndex]
+    );
+
+    reportLines.push(
+        '40. Курение (за последний месяц): ' +
+        capriniSmokingAnswers[capriniSmokingIndex]
+    );
+
+    reportLines.push(
+        '41. Диабет с потребностью в инсулине: ' +
+        capriniDiabetesAnswers[capriniDiabetesIndex]
+    );
+
+    reportLines.push(
+        '42. Химиотерапия (за последний месяц): ' +
+        capriniChemotherapyAnswers[capriniChemotherapyIndex]
+    );
+
+    reportLines.push(
+        '43. Переливание крови (за последний месяц): ' +
+        capriniBloodTransfusionAnswers[capriniBloodTransfusionIndex]
+    );
+
+    reportLines.push(
+        '44. Прочие тромбофилии: ' +
+        capriniAnotherThrombophiliaAnswers[capriniAnotherThrombophiliaIndex]
+    );
+
+    reportLines.push(
+        '45. Продолжительность операции более 2-х часов (за исключением эндопротезирования крупных суставов): ' +
+        capriniGreatSurgeryAnswers[capriniGreatSurgeryIndex]
+    );
 
     reportLines.push('');
 
