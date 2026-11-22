@@ -483,6 +483,92 @@ button:disabled,
     }
 }
 
+/* PPS: сетка только для разделов 1–5 */
+.pps-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: stretch;
+    gap: 12px;
+    min-width: 0;
+    margin-bottom: 20px;
+}
+
+/* Левая колонка: 1–2; правая колонка: 3–5 */
+.pps-primary,
+.pps-secondary {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-width: 0;
+}
+
+/* Отступами между разделами управляют контейнеры */
+.pps-layout fieldset {
+    min-width: 0;
+    margin: 0;
+    padding: 8px 10px 10px;
+}
+
+/* Компактные заголовки разделов */
+.pps-layout fieldset > legend {
+    padding: 3px 8px;
+}
+
+/* Радиокнопка слева, текст справа */
+.input-panel .pps-layout fieldset > label {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin: 6px 0;
+    line-height: 1.35;
+}
+
+/* Переключатель не сжимается и стоит у первой строки */
+.pps-layout fieldset > label > input[type="radio"] {
+    flex-shrink: 0;
+    margin: 2px 0 0;
+}
+
+/* На узкой панели: разделы 1–5 в одну колонку */
+@container patient-panel (max-width: 46rem) {
+    .pps-layout {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+/* Существующие разделы сохраняют естественную высоту */
+.pps-primary > fieldset,
+.pps-secondary > fieldset {
+    flex-shrink: 0;
+}
+
+/* Резервный блок заполняет остаток правой колонки */
+.pps-reserve {
+    flex: 1 0 0;
+    min-width: 0;
+    min-height: 0;
+
+    background-color: var(--background-fieldset);
+    border: 1px solid var(--border-default);
+    border-radius: 8px;
+}
+
+@container patient-panel (max-width: 46rem) {
+    .pps-layout {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+/* Отступы и выравнивание содержимого */
+.pps-reserve {
+    padding: 12px 14px;
+    text-align: left;
+}
+
+.pps-reserve > p {
+    margin: 0;
+}
+
 /* Caprini: основная сетка */
 .caprini-layout {
     display: grid;
