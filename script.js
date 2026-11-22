@@ -68,6 +68,7 @@ document.addEventListener("keydown", (event) => {
     }
 });
 
+// Видимость гериатрических и паллиативных блоков в зависимости от реальной потребности
 function updateBlocksVisibility() {
     const age = ageInput.valueAsNumber;
 
@@ -81,6 +82,18 @@ function updateBlocksVisibility() {
 
     ppsBlock.hidden = !showPalliative;
     ppiBlock.hidden = !showPalliative;
+
+    const ppsMonk = document.querySelector(
+        'input[name="pps-total"][value="100"]'
+    );
+
+    if (ppsBlock.hidden === true) {
+        ppsMonk.checked = true
+    } else {
+        document.querySelectorAll('#pps-total input[type="radio"]').forEach(radio => {
+            radio.checked = false;
+        });
+    }
 }
 
 gokModeCheckbox.addEventListener('change', updateBlocksVisibility);
