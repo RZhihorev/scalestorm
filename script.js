@@ -609,7 +609,7 @@ function showCalculationTest() {
         cargLowClearanceScore = 3;
         cargLowClearanceIndex = 1;
     }
-    const cargLowClearanceLabels = ['(34 мл/мин и выше; 0 баллов)', '(менее 34 мл/мин; 2 балла)'];
+    const cargLowClearanceLabels = ['(34 мл/мин и выше; 0 баллов)', '(менее 34 мл/мин; 3 балла)'];
 
     const cargHearingLossCheckbox = document.getElementById('carg-hearing-loss')
     const isHearingLoss = cargHearingLossCheckbox.checked
