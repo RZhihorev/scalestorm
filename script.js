@@ -31,6 +31,7 @@ const leukocytesInput = document.getElementById('leukocytes');
 const plateletsInput = document.getElementById('platelets');
 const creatinineInput = document.getElementById('creatinine');
 
+
 // Быстрое заполнение необходимых полей
 function fillTestData() {
     ageInput.value = '80';
@@ -48,7 +49,13 @@ function fillTestData() {
     plateletsInput.value = '250';
     creatinineInput.value = '90';
 
-    document.querySelector('input[name="pps-total"][value="90"]').checked = true;
+    updateBlocksVisibility();
+
+    document.querySelector(
+        'input[name="pps-total"][value="90"]'
+    ).checked = true;
+
+    imdcPreset();
 }
 
 // Запуск быстрого заполнения необходимых полей при нажатии клавиш Alt+Q
@@ -68,8 +75,9 @@ document.addEventListener("keydown", (event) => {
     }
 });
 
-// Видимость гериатрических и паллиативных блоков в зависимости от реальной потребности
+// Видимость гериатрических и паллиативных блоков.
 function updateBlocksVisibility() {
+    const wasPpsHidden = ppsBlock.hidden;
     const age = ageInput.valueAsNumber;
 
     const gokEnabled = gokModeCheckbox.checked;
@@ -87,13 +95,20 @@ function updateBlocksVisibility() {
         'input[name="pps-total"][value="100"]'
     );
 
-    if (ppsBlock.hidden === true) {
-        ppsMonk.checked = true
-    } else {
-        document.querySelectorAll('#pps-total input[type="radio"]').forEach(radio => {
+    if (ppsBlock.hidden) {
+        ppsMonk.checked = true;
+    } else if (wasPpsHidden) {
+        // Сбрасываем PPS только при открытии ранее скрытого блока,
+        // а не при каждом изменении возраста.
+        document.querySelectorAll(
+            '#pps-total input[type="radio"]'
+        ).forEach((radio) => {
             radio.checked = false;
         });
     }
+
+    // Программное изменение PPS также синхронизируем с IMDC.
+    imdcPreset();
 }
 
 gokModeCheckbox.addEventListener('change', updateBlocksVisibility);
@@ -127,43 +142,51 @@ function capriniFemalePointsManager() {
 male.addEventListener('change', capriniFemalePointsManager);
 female.addEventListener('change', capriniFemalePointsManager);
 
-// Отметка чекбоксов IMDC при очевидных показателях пациента
+// Автоматическая отметка и блокировка чекбоксов IMDC.
 function imdcPreset() {
-    const ppsTotalInput = Number(
-        document.querySelector('input[name="pps-total"]:checked').value
+    const ppsSelected = document.querySelector(
+        'input[name="pps-total"]:checked'
     );
-    
-    const imdcKarnovskyCheckbox = document.getElementById('imdc-karnovsky');
-    const imdcHemoglobinCheckbox = document.getElementById('imdc-hemoglobin');
-    const imdcPlateletsCheckbox = document.getElementById('imdc-platelets');
 
-    if (hemoglobinInput.value <= 100) {
-        imdcHemoglobinCheckbox.checked = true;
-        imdcHemoglobinCheckbox.disabled = true;
-    } else {
-        imdcHemoglobinCheckbox.checked = false;
-        imdcHemoglobinCheckbox.disabled = false;
-    }
+    // Если PPS не выбран, используем NaN, не прерывая функцию.
+    const ppsTotal = ppsSelected
+        ? Number(ppsSelected.value)
+        : NaN;
 
-    if (plateletsInput.value > 400) {
-        imdcPlateletsCheckbox.checked = true;
-        imdcPlateletsCheckbox.disabled = true;
-    } else {
-        imdcPlateletsCheckbox.checked = false;
-        imdcPlateletsCheckbox.disabled = false;
-    }
+    // Для пустых числовых полей valueAsNumber возвращает NaN.
+    const hemoglobin = hemoglobinInput.valueAsNumber;
+    const platelets = plateletsInput.valueAsNumber;
 
-    if (ppsTotalInput < 80) {
-        imdcKarnovskyCheckbox.checked = true;
-        imdcKarnovskyCheckbox.disabled = true;
-    } else {
-        imdcKarnovskyCheckbox.checked = false;
-        imdcKarnovskyCheckbox.disabled = false;
-    }
+    const setAutomaticFlag = (id, condition) => {
+        const checkbox = document.getElementById(id);
+
+        checkbox.checked = condition;
+        checkbox.disabled = condition;
+    };
+
+    setAutomaticFlag(
+        'imdc-hemoglobin',
+        Number.isFinite(hemoglobin) && hemoglobin <= 100
+    );
+
+    setAutomaticFlag(
+        'imdc-platelets',
+        Number.isFinite(platelets) && platelets > 400
+    );
+
+    setAutomaticFlag(
+        'imdc-karnovsky',
+        Number.isFinite(ppsTotal) && ppsTotal < 80
+    );
 }
 
-hemoglobinInput.addEventListener('change', imdcPreset);
-plateletsInput.addEventListener('change', imdcPreset);
+// Обновление непосредственно при вводе и при подтверждении изменения
+[hemoglobinInput, plateletsInput].forEach((input) => {
+    input.addEventListener('input', imdcPreset);
+    input.addEventListener('change', imdcPreset);
+});
+
+// Обновление при выборе итогового PPS
 document.querySelectorAll('input[name="pps-total"]').forEach((radio) => {
     radio.addEventListener('change', imdcPreset);
 });
@@ -171,7 +194,7 @@ document.querySelectorAll('input[name="pps-total"]').forEach((radio) => {
 // Скрытие/показ IMDC блока в зависмости от потребности
 function toggleImdcBlock() {
     imdcBlock.hidden = !imdcCheckbox.checked;
-    imdcPreset;
+    imdcPreset();
 
     document.getElementById("khorana-rbt-high-risk").checked = true;
     document.getElementById("carg-gi-gu-cancer").checked = true;
@@ -182,6 +205,8 @@ imdcCheckbox.addEventListener('change', toggleImdcBlock);
 
 // Функция формирования отчёта (ОСНОВНАЯ ФУНКЦИЯ)
 function showCalculationTest() {
+    imdcPreset();
+
     const gokMode = gokModeCheckbox.checked
 
     const palliativeScenarioCheckbox = document.getElementById('palliative-scenario');
