@@ -165,13 +165,16 @@ function imdcPreset() {
 hemoglobinInput.addEventListener('change', imdcPreset);
 plateletsInput.addEventListener('change', imdcPreset);
 document.querySelectorAll('input[name="pps-total"]').forEach((radio) => {
-    radio.addEventListener("change", imdcPreset);
+    radio.addEventListener('change', imdcPreset);
 });
 
 // Скрытие/показ IMDC блока в зависмости от потребности
 function toggleImdcBlock() {
     imdcBlock.hidden = !imdcCheckbox.checked;
     imdcPreset;
+
+    document.getElementById("khorana-rbt-high-risk").checked = true;
+    document.getElementById("carg-gi-gu-cancer").checked = true;
 }
 
 imdcCheckbox.addEventListener('change', toggleImdcBlock);
