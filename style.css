@@ -722,33 +722,67 @@ button:disabled,
     }
 }
 
-/* Caprini: основная сетка */
+/* ========================================
+   Caprini
+   ======================================== */
+
+/* Общая сетка: две колонки и две строки */
 .caprini-layout {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        minmax(0, 1fr);
+
+    grid-template-areas:
+        "one        upper-right"
+        "additional five";
+
     align-items: stretch;
     gap: 12px;
     min-width: 0;
 }
 
-/* Правая колонка: разделы на 2, 3 и 5 баллов */
-.caprini-secondary {
+/* Верхняя строка: раздел на 1 балл */
+.caprini-block .caprini-one {
+    grid-area: one;
+}
+
+/* Верхняя строка: разделы на 2 и 3 балла */
+.caprini-block .caprini-upper-right {
+    grid-area: upper-right;
+
     display: flex;
     flex-direction: column;
     gap: 12px;
     min-width: 0;
 }
 
+/* Нижняя строка: дополнительные факторы */
+.caprini-block .caprini-additional {
+    grid-area: additional;
+}
+
+/* Нижняя строка: раздел на 5 баллов */
+.caprini-block .caprini-five {
+    grid-area: five;
+}
+
 /* Отступами между разделами управляют контейнеры */
 .caprini-block fieldset {
+    box-sizing: border-box;
     min-width: 0;
     margin: 0;
     padding: 8px 10px 10px;
 }
 
-/* Компактные заголовки разделов */
+/* Компактные заголовки с переносом длинного текста */
 .caprini-block fieldset > legend {
+    box-sizing: border-box;
+    max-width: 100%;
     padding: 3px 8px;
+    white-space: normal;
+    overflow-wrap: anywhere;
 }
 
 /* Чекбокс слева, текст справа */
@@ -756,6 +790,8 @@ button:disabled,
     display: flex;
     align-items: flex-start;
     gap: 8px;
+
+    min-width: 0;
     margin: 6px 0;
     line-height: 1.35;
 }
@@ -766,10 +802,16 @@ button:disabled,
     margin: 2px 0 0;
 }
 
-/* На узкой панели разделы идут в одну колонку */
+/* Узкая панель: все разделы располагаются в одну колонку */
 @container patient-panel (max-width: 46rem) {
     .caprini-layout {
         grid-template-columns: minmax(0, 1fr);
+
+        grid-template-areas:
+            "one"
+            "additional"
+            "upper-right"
+            "five";
     }
 }
 

@@ -985,7 +985,8 @@
                     <h2>Расчёт риска развития ВТЭО по Caprini</h2>
 
                     <div class="caprini-layout">
-                        <fieldset>
+                        <!-- Верхняя строка: первая колонка -->
+                        <fieldset class="caprini-one">
                             <legend>1 балл</legend>
 
                             <label>
@@ -1003,7 +1004,7 @@
                                 >
                                 Варикозные вены
                             </label>
-                            
+
                             <label>
                                 <input
                                     type="checkbox"
@@ -1025,7 +1026,8 @@
                                     type="checkbox"
                                     id="caprini-lung-disease"
                                 >
-                                Серьёзное заболевание лёгких (в том числе пневмония давностью до 1 месяца)
+                                Серьёзное заболевание лёгких
+                                (в том числе пневмония давностью до 1 месяца)
                             </label>
 
                             <label>
@@ -1034,7 +1036,8 @@
                                     id="caprini-contraception-hrt"
                                     disabled
                                 >
-                                Приём оральных контрацептивов, гормонозаместительная терапия
+                                Приём оральных контрацептивов,
+                                гормонозаместительная терапия
                             </label>
 
                             <label>
@@ -1052,7 +1055,9 @@
                                     id="caprini-obstetrics-pathology"
                                     disabled
                                 >
-                                В анамнезе: необъяснимые мертворождения, выкидыши (от 3 и более), преждевременные роды с токсикозом или задержка внутриутробного развития
+                                В анамнезе: необъяснимые мертворождения,
+                                выкидыши (от 3 и более), преждевременные роды
+                                с токсикозом или задержка внутриутробного развития
                             </label>
 
                             <label>
@@ -1068,7 +1073,8 @@
                                     type="checkbox"
                                     id="caprini-heart-failure"
                                 >
-                                Хроническая сердечная недостаточность (давностью до 1 месяца)
+                                Хроническая сердечная недостаточность
+                                (давностью до 1 месяца)
                             </label>
 
                             <label>
@@ -1092,7 +1098,8 @@
                                     type="checkbox"
                                     id="caprini-big-surgery-story"
                                 >
-                                Большое хирургическое вмешательство давностью до 1 месяца в анамнезе
+                                Большое хирургическое вмешательство
+                                давностью до 1 месяца в анамнезе
                             </label>
 
                             <label>
@@ -1103,8 +1110,9 @@
                                 Хроническая обструктивная болезнь лёгких
                             </label>
                         </fieldset>
-                    
-                        <div class="caprini-secondary">
+
+                        <!-- Верхняя строка: вторая колонка -->
+                        <div class="caprini-upper-right">
                             <fieldset>
                                 <legend>2 балла</legend>
 
@@ -1130,7 +1138,8 @@
                                         type="checkbox"
                                         id="caprini-laparo-surgery"
                                     >
-                                    Лапароскопическое вмешательство (длительностью более 45 минут)
+                                    Лапароскопическое вмешательство
+                                    (длительностью более 45 минут)
                                 </label>
 
                                 <label>
@@ -1154,7 +1163,8 @@
                                         type="checkbox"
                                         id="caprini-cath-cent-veins"
                                     >
-                                    Центральный венозный доступ, включая PICC-катетер и имплантируемый венозный порт
+                                    Центральный венозный доступ, включая PICC-катетер
+                                    и имплантируемый венозный порт
                                 </label>
 
                                 <label>
@@ -1162,7 +1172,8 @@
                                         type="checkbox"
                                         id="caprini-big-surgery"
                                     >
-                                    Большое хирургическое вмешательство (длительностью более 45 минут)
+                                    Большое хирургическое вмешательство
+                                    (длительностью более 45 минут)
                                 </label>
                             </fieldset>
 
@@ -1233,51 +1244,109 @@
                                     Волчаночный антикоагулянт
                                 </label>
                             </fieldset>
-
-                            <fieldset>
-                                <legend>5 баллов</legend>
-                                
-                                <label>
-                                    <input
-                                        type="checkbox"
-                                        id="caprini-stroke"
-                                    >
-                                    Инсульт (давностью до 1 месяца)
-                                </label>
-
-                                <label>
-                                    <input
-                                        type="checkbox"
-                                        id="caprini-polytrauma"
-                                    >
-                                    Множественная травма (давностью до 1 месяца)
-                                </label>
-
-                                <label>
-                                    <input
-                                        type="checkbox"
-                                        id="caprini-endoprothesis"
-                                    >
-                                    Эндопротезирование крупных суставов
-                                </label>
-
-                                <label>
-                                    <input
-                                        type="checkbox"
-                                        id="caprini-femur-and-tibia-fracture"
-                                    >
-                                    Перелом костей бедра и голени (давностью до 1 месяца)
-                                </label>
-
-                                <label>
-                                    <input
-                                        type="checkbox"
-                                        id="caprini-paralysis"
-                                    >
-                                    Травма спинного мозга/паралич (давностью до 1 месяца)
-                                </label>
-                            </fieldset>
                         </div>
+
+                        <!-- Нижняя строка: первая колонка -->
+                        <fieldset class="caprini-additional">
+                            <legend>
+                                Дополнительные факторы риска (+1 балл за каждый)
+                            </legend>
+
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    id="caprini-smoking"
+                                >
+                                Курение
+                            </label>
+
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    id="caprini-diabetes"
+                                >
+                                Диабет с потребностью в инсулине
+                            </label>
+
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    id="caprini-chemotherapy"
+                                    checked
+                                >
+                                Химиотерапия
+                            </label>
+
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    id="caprini-blood-transfusion"
+                                >
+                                Переливание крови
+                            </label>
+
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    id="caprini-hiv"
+                                >
+                                HIV
+                            </label>
+
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    id="caprini-great-surgery"
+                                >
+                                Продолжительность операции более 2-х часов
+                                (за исключением эндопротезирования крупных суставов)
+                            </label>
+                        </fieldset>
+
+                        <!-- Нижняя строка: вторая колонка -->
+                        <fieldset class="caprini-five">
+                            <legend>5 баллов</legend>
+
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    id="caprini-stroke"
+                                >
+                                Инсульт (давностью до 1 месяца)
+                            </label>
+
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    id="caprini-polytrauma"
+                                >
+                                Множественная травма (давностью до 1 месяца)
+                            </label>
+
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    id="caprini-endoprothesis"
+                                >
+                                Эндопротезирование крупных суставов
+                            </label>
+
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    id="caprini-femur-and-tibia-fracture"
+                                >
+                                Перелом костей бедра и голени (давностью до 1 месяца)
+                            </label>
+
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    id="caprini-paralysis"
+                                >
+                                Травма спинного мозга/паралич (давностью до 1 месяца)
+                            </label>
+                        </fieldset>
                     </div>
                 </div>
 
