@@ -59,9 +59,9 @@ button {
 }
 
 .app-container {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  min-height: 100vh;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    min-height: 100vh;
 }
 
 .input-panel,
@@ -73,6 +73,9 @@ button {
 .input-panel {
   background-color: var(--background-input);
   border-right: 1px solid var(--border-default);
+
+  container-type: inline-size;
+  container-name: patient-panel;
 }
 
 .output-panel {
@@ -322,21 +325,22 @@ button:disabled,
   margin: 0;
 }
 
+/* На узком экране отчёт располагается под формой */
 @media (max-width: 60rem) {
-  .app-container {
-    grid-template-columns: minmax(0, 1fr);
-  }
+    .app-container {
+        grid-template-columns: minmax(0, 1fr);
+    }
 
-  .input-panel {
-    border-right: none;
-    border-bottom: 1px solid var(--border-default);
-  }
+    .input-panel {
+        border-right: none;
+        border-bottom: 1px solid var(--border-default);
+    }
 
-  .output-panel {
-    position: static;
-    height: auto;
-    overflow-y: visible;
-  }
+    .output-panel {
+        position: static;
+        height: auto;
+        overflow-y: visible;
+    }
 }
 
 @media (max-width: 36rem) {
@@ -364,4 +368,117 @@ button:disabled,
   .button {
     transition: none;
   }
+}
+
+/* Общая структура первого блока */
+.patient-data-block {
+    display: grid;
+    grid-template-columns:
+        minmax(0, 1fr)
+        minmax(0, 1.2fr)
+        minmax(0, 1.25fr);
+    align-items: stretch;
+    gap: 12px;
+}
+
+/* Верхняя часть: левая колонка и лабораторные показатели */
+.patient-data-top {
+    display: contents;
+}
+
+/* Антропометрия и пол идут друг за другом */
+.patient-data-left {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    gap: 10px;
+    min-width: 0;
+}
+
+/* Отступами между разделами управляют контейнеры */
+.patient-data-block fieldset {
+    margin: 0;
+    padding: 8px 10px 10px;
+}
+
+/* Чуть компактнее заголовки разделов */
+.patient-data-block fieldset > legend {
+    padding: 3px 8px;
+}
+
+/* Подпись слева, числовое поле справа */
+.patient-data-block .compact-field {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 5.5rem;
+    align-items: center;
+    gap: 8px;
+    margin-top: 6px;
+}
+
+.patient-data-block .compact-field > label {
+    margin: 0;
+    line-height: 1.3;
+}
+
+.patient-data-block .compact-field > input[type="number"] {
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+    min-height: 34px;
+    margin: 0;
+    padding: 4px 6px;
+}
+
+/* Варианты пола в одну строку, если хватает места */
+.patient-data-block .sex-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 14px;
+}
+
+.patient-data-block .sex-options > label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0;
+}
+
+.patient-data-block .sex-options input[type="radio"] {
+    flex-shrink: 0;
+    margin: 0;
+}
+
+/* Чекбокс под гемоглобином */
+.patient-data-block .erythropoietin-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    margin: 8px 0;
+    line-height: 1.3;
+}
+
+.patient-data-block .erythropoietin-label > input {
+    flex-shrink: 0;
+    margin: 2px 0 0;
+}
+
+/* Тип рака занимает всю ширину нижней части */
+.patient-data-block .patient-data-cancer > label {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin: 6px 0;
+    line-height: 1.35;
+}
+
+.patient-data-block .patient-data-cancer > label > input {
+    flex-shrink: 0;
+    margin: 2px 0 0;
+}
+
+/* На узкой панели — одна колонка без промежуточных двух */
+@container patient-panel (max-width: 46rem) {
+    .patient-data-block {
+        grid-template-columns: minmax(0, 1fr);
+    }
 }
