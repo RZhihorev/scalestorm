@@ -843,118 +843,142 @@
                     </p>
                 </div>
 
-                <div
-                    class="calculator-block"
-                    id="ppi-block"
-                >
+                <div class="calculator-block ppi-block" id="ppi-block">
                     <h2>Расчёт PPI</h2>
 
-                    <fieldset>
-                        <legend>Приём пищи</legend>
+                    <div class="ppi-layout">
+                        <!-- Левая колонка -->
+                        <div class="ppi-secondary">
+                            <fieldset>
+                                <legend>Отёки</legend>
 
-                        <label>
-                            <input
-                                type="radio"
-                                name="ppi-food-intake"
-                                value="0"
-                            >
-                            Несколько глотков или ложек пищи/жидкости за прием
-                        </label>
+                                <div class="ppi-options">
+                                    <label>
+                                        <input
+                                            type="radio"
+                                            name="ppi-swelling"
+                                            value="0"
+                                        >
+                                        Да
+                                    </label>
 
-                        <label>
-                            <input
-                                type="radio"
-                                name="ppi-food-intake"
-                                value="1"
-                            >
-                            Приём пищи снижен, но больше нескольких глотков/ложек за приём
-                        </label>
+                                    <label>
+                                        <input
+                                            type="radio"
+                                            name="ppi-swelling"
+                                            value="1"
+                                            checked
+                                        >
+                                        Нет
+                                    </label>
+                                </div>
+                            </fieldset>
 
-                        <label>
-                            <input
-                                type="radio"
-                                name="ppi-food-intake"
-                                value="2"
-                                checked
-                            >
-                            Нормальный приём пищи
-                        </label>
-                    </fieldset>
+                            <fieldset>
+                                <legend>Одышка в покое</legend>
 
-                    <fieldset>
-                        <legend>Отёки</legend>
+                                <div class="ppi-options">
+                                    <label>
+                                        <input
+                                            type="radio"
+                                            name="ppi-dyspnoea"
+                                            value="0"
+                                        >
+                                        Да
+                                    </label>
 
-                        <label>
-                            <input
-                                type="radio"
-                                name="ppi-swelling"
-                                value="0"
-                            >
-                            Да
-                        </label>
+                                    <label>
+                                        <input
+                                            type="radio"
+                                            name="ppi-dyspnoea"
+                                            value="1"
+                                            checked
+                                        >
+                                        Нет
+                                    </label>
+                                </div>
+                            </fieldset>
 
-                        <label>
-                            <input
-                                type="radio"
-                                name="ppi-swelling"
-                                value="1"
-                                checked
-                            >
-                            Нет
-                        </label>
-                    </fieldset>
+                            <fieldset aria-describedby="ppi-delirium-note">
+                                <legend>Делирий</legend>
 
-                    <fieldset>
-                        <legend>Одышка в покое</legend>
+                                <div class="ppi-options">
+                                    <label>
+                                        <input
+                                            type="radio"
+                                            name="ppi-delirium"
+                                            value="0"
+                                        >
+                                        Да
+                                    </label>
 
-                        <label>
-                            <input
-                                type="radio"
-                                name="ppi-dyspnoea"
-                                value="0"
-                            >
-                            Да
-                        </label>
+                                    <label>
+                                        <input
+                                            type="radio"
+                                            name="ppi-delirium"
+                                            value="1"
+                                            checked
+                                        >
+                                        Нет
+                                    </label>
+                                </div>
+                            </fieldset>
+                        </div>
 
-                        <label>
-                            <input
-                                type="radio"
-                                name="ppi-dyspnoea"
-                                value="1"
-                                checked
-                            >
-                            Нет
-                        </label>
-                    </fieldset>
+                        <!-- Правая колонка -->
+                        <div class="ppi-primary">
+                            <fieldset class="ppi-food">
+                                <legend>Приём пищи</legend>
 
-                    <fieldset>
-                        <legend>Делирий</legend>
+                                <label>
+                                    <input
+                                        type="radio"
+                                        name="ppi-food-intake"
+                                        value="0"
+                                    >
+                                    Несколько глотков или ложек пищи/жидкости за приём
+                                </label>
 
-                        <label>
-                            <input
-                                type="radio"
-                                name="ppi-delirium"
-                                value="0"
-                            >
-                            Да
-                        </label>
+                                <label>
+                                    <input
+                                        type="radio"
+                                        name="ppi-food-intake"
+                                        value="1"
+                                    >
+                                    Приём пищи снижен, но больше нескольких
+                                    глотков/ложек за приём
+                                </label>
 
-                        <label>
-                            <input
-                                type="radio"
-                                name="ppi-delirium"
-                                value="1"
-                                checked
-                            >
-                            Нет
-                        </label>
+                                <label>
+                                    <input
+                                        type="radio"
+                                        name="ppi-food-intake"
+                                        value="2"
+                                        checked
+                                    >
+                                    Нормальный приём пищи
+                                </label>
+                            </fieldset>
 
-                        <p>
-                            <strong>Делирий</strong> - острое и флуктуирующее нарушение внимания, осознания окружающего и когнитивных функций, с изменением уровня бодрствования и/или дезорганизацией мышления/нарушениями восприятия (диагностированное по критериям DSM-IV).
-                            <br>
-                            <u>В исследовании Stone et al. лекарственно-индуцированное состояние, обусловленное одним препаратом, учитывали как отсутствие делирия!</u>
-                        </p>
-                    </fieldset>
+                            <div class="ppi-note" id="ppi-delirium-note">
+                                <p>
+                                    <strong>Делирий</strong> — острое и флуктуирующее
+                                    нарушение внимания, осознания окружающего
+                                    и когнитивных функций, с изменением уровня
+                                    бодрствования и/или дезорганизацией мышления/
+                                    нарушениями восприятия (диагностированное
+                                    по критериям DSM-IV).
+                                </p>
+
+                                <p>
+                                    В исследовании Stone et al.
+                                    лекарственно-индуцированное состояние,
+                                    обусловленное одним препаратом, учитывали
+                                    как отсутствие делирия!
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="calculator-block caprini-block">

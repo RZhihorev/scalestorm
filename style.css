@@ -607,6 +607,121 @@ button:disabled,
     margin: 0;
 }
 
+/* =========================
+   PPI
+   ========================= */
+
+/* Слева — узкая колонка, справа — широкая */
+.ppi-layout {
+    display: grid;
+    grid-template-columns: minmax(10rem, 1fr) minmax(0, 4fr);
+    align-items: stretch;
+    gap: 12px;
+    min-width: 0;
+}
+
+/* Колонки одинаковой высоты */
+.ppi-secondary,
+.ppi-primary {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-width: 0;
+}
+
+/* Общие стили разделов */
+.ppi-block .ppi-layout fieldset {
+    min-width: 0;
+    margin: 0;
+    padding: 8px 10px 10px;
+}
+
+.ppi-block .ppi-layout fieldset legend {
+    padding: 3px 8px;
+}
+
+/* Разделы слева заполняют высоту колонки */
+.ppi-block .ppi-secondary > fieldset {
+    flex: 1 0 auto;
+}
+
+/* Приём пищи занимает свободное место над примечанием */
+.ppi-block .ppi-primary > .ppi-food {
+    flex: 1 0 auto;
+}
+
+/* Подписи и радиокнопки */
+.input-panel .ppi-block fieldset label {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin: 6px 0;
+    line-height: 1.35;
+}
+
+.ppi-block fieldset input[type="radio"] {
+    flex-shrink: 0;
+    margin: 2px 0 0;
+}
+
+/* Горизонтальное расположение ответов Да / Нет */
+.ppi-options {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 14px;
+    min-width: 0;
+}
+
+.input-panel .ppi-block .ppi-options label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+}
+
+.ppi-block .ppi-options input[type="radio"] {
+    margin: 0;
+}
+
+/* Определение делирия в правой колонке */
+.ppi-note {
+    flex: 0 0 auto;
+    min-width: 0;
+    margin: 0;
+    padding: 8px 10px;
+
+    color: var(--text-secondary);
+    background-color: var(--background-fieldset);
+
+    border: 1px solid var(--border-default);
+    border-radius: 8px;
+
+    overflow-wrap: anywhere;
+}
+
+.ppi-note p {
+    margin: 0;
+    font-size: 0.8125rem;
+    line-height: 1.4;
+}
+
+.ppi-note p + p {
+    margin-top: 6px;
+}
+
+/* На узкой панели — одна колонка */
+@container patient-panel (max-width: 46rem) {
+    .ppi-layout {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .ppi-block .ppi-secondary > fieldset,
+    .ppi-block .ppi-primary > .ppi-food {
+        flex: 0 0 auto;
+    }
+}
+
 /* Caprini: основная сетка */
 .caprini-layout {
     display: grid;
