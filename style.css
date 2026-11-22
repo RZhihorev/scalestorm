@@ -482,3 +482,54 @@ button:disabled,
         grid-template-columns: minmax(0, 1fr);
     }
 }
+
+/* Caprini: основная сетка */
+.caprini-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: stretch;
+    gap: 12px;
+    min-width: 0;
+}
+
+/* Правая колонка: разделы на 2, 3 и 5 баллов */
+.caprini-secondary {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-width: 0;
+}
+
+/* Отступами между разделами управляют контейнеры */
+.caprini-block fieldset {
+    min-width: 0;
+    margin: 0;
+    padding: 8px 10px 10px;
+}
+
+/* Компактные заголовки разделов */
+.caprini-block fieldset > legend {
+    padding: 3px 8px;
+}
+
+/* Чекбокс слева, текст справа */
+.input-panel .caprini-block fieldset > label {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin: 6px 0;
+    line-height: 1.35;
+}
+
+/* Чекбокс не сжимается и выравнивается по первой строке */
+.caprini-block fieldset > label > input[type="checkbox"] {
+    flex-shrink: 0;
+    margin: 2px 0 0;
+}
+
+/* На узкой панели разделы идут в одну колонку */
+@container patient-panel (max-width: 46rem) {
+    .caprini-layout {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
