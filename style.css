@@ -483,6 +483,44 @@ button:disabled,
     }
 }
 
+/* G8 */
+.g8-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: stretch;
+    gap: 12px;
+    min-width: 0;
+}
+
+.g8-layout > fieldset {
+    min-width: 0;
+    margin: 0;
+    padding: 8px 10px 10px;
+}
+
+.g8-layout > fieldset > legend {
+    padding: 3px 8px;
+}
+
+.input-panel .g8-layout > fieldset > label {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin: 6px 0;
+    line-height: 1.35;
+}
+
+.g8-layout input[type="radio"] {
+    flex-shrink: 0;
+    margin: 2px 0 0;
+}
+
+@container patient-panel (max-width: 46rem) {
+    .g8-layout {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
 /* PPS: сетка только для разделов 1–5 */
 .pps-layout {
     display: grid;
