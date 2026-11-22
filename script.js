@@ -2108,7 +2108,7 @@ function showCalculationTest() {
     );
 
     reportLines.push(
-        '14. Воспалительные заблевания толстой кишки в анамнезе: ' +
+        '14. Воспалительные заболевания толстой кишки в анамнезе: ' +
         capriniInflammedBowelAnswers[capriniInflammedBowelIndex]
     );
     
@@ -2236,13 +2236,24 @@ function showCalculationTest() {
 
     reportLines.push('');
 
+    reportLines.push('Дополнительные факторы риска');
+    reportLines.push('39. Морбидное ожирение (ИМТ > 40 кг/м.кв.): ');
+    reportLines.push('40. Курение (за последний месяц): ');
+    reportLines.push('41. Диабет с потребностью в инсулине: ');
+    reportLines.push('42. Химиотерапия (за последний месяц): ');
+    reportLines.push('43. Переливание крови (за последний месяц): ');
+    reportLines.push('44. Прочие тромбофилии: ');
+    reportLines.push('45. Продолжительность операции более 2-х часов (за исключением эндопротезирования крупных суставов): ');
+
+    reportLines.push('');
+
     reportLines.push(
         'Сумма баллов Caprini: ' +
         capriniTotalScore
     );
     
     reportLines.push(
-        'Категория риска ВТЭО: ' +
+        'Категория риска ВТЭО (Caprini Risk Assessment Model, версия 2013 г.): ' +
         capriniTotalScoreLabels[capriniTotalScoreIndex]
     );
     reportLines.push('');
