@@ -772,3 +772,110 @@ button:disabled,
         grid-template-columns: minmax(0, 1fr);
     }
 }
+
+/* ========================================
+   IMDC
+   ======================================== */
+
+/*
+ * Исходное соотношение колонок — 2:1.
+ * Затем 76px передаются от левой колонки правой.
+ */
+.imdc-layout {
+    --imdc-gap: 12px;
+    --imdc-shift: 76px;
+
+    display: grid;
+    grid-template-columns:
+        minmax(
+            0,
+            calc(
+                (100% - var(--imdc-gap)) * 2 / 3
+                - var(--imdc-shift)
+            )
+        )
+        minmax(0, 1fr);
+
+    align-items: stretch;
+    gap: var(--imdc-gap);
+    min-width: 0;
+}
+
+/* Одинаковое оформление обеих колонок */
+.imdc-block .imdc-questions,
+.imdc-block .imdc-note {
+    min-width: 0;
+    margin: 0;
+    padding: 12px;
+
+    background-color: var(--background-fieldset);
+    border: 1px solid var(--border-default);
+    border-radius: 8px;
+}
+
+/* Левая колонка: постоянные промежутки между вопросами */
+.imdc-block .imdc-questions {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+/* Чекбокс слева, текст справа */
+.input-panel .imdc-block .imdc-questions > label {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+
+    margin: 0;
+    line-height: 1.35;
+}
+
+/* Чекбоксы не сжимаются при переносе текста */
+.imdc-questions input[type="checkbox"] {
+    flex-shrink: 0;
+    margin: 2px 0 0;
+}
+
+/* Правая колонка: абзацы распределены по высоте */
+.imdc-block .imdc-note {
+    container-type: inline-size;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 10px;
+
+    color: var(--text-secondary);
+    overflow-wrap: anywhere;
+}
+
+/* Адаптивный размер текста дисклеймера */
+.imdc-block .imdc-note > p {
+    margin: 0;
+
+    /* Запасной размер */
+    font-size: 0.8125rem;
+
+    /* Размер зависит от ширины правой колонки */
+    font-size: clamp(
+        0.75rem,
+        calc(0.625rem + 1cqi),
+        0.875rem
+    );
+
+    line-height: 1.4;
+}
+
+/* Узкая панель: вопросы и дисклеймер друг под другом */
+@container patient-panel (max-width: 36rem) {
+    .imdc-layout {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .imdc-block .imdc-questions,
+    .imdc-block .imdc-note {
+        justify-content: flex-start;
+    }
+}
