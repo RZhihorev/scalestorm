@@ -607,6 +607,21 @@ button:disabled,
     margin: 0;
 }
 
+.pps-disclaimer {
+    margin-top: 12px;
+    color: var(--text-secondary);
+}
+
+.pps-disclaimer > p {
+    margin: 0 0 8px;
+    font-size: 0.875rem;
+    line-height: 1.5;
+}
+
+.pps-disclaimer > p:last-child {
+    margin-bottom: 0;
+}
+
 /* =========================
    PPI
    ========================= */
