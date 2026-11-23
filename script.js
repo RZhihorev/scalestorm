@@ -16,6 +16,7 @@ const copyButton = document.getElementById('copy-button');
 
 const output = document.getElementById('results-output');
 const gokBriefReport = document.getElementById('gok-brief-report');
+const appQuote = document.getElementById('app-quote');
 
 
 // Список параметров пациента для управления элементами страницы
@@ -2467,6 +2468,10 @@ function showCalculationTest() {
 
     output.textContent = reportLines.join('\n');
     copyButton.disabled = false;
+
+    if (appQuote) {
+        appQuote.hidden = false;
+    }
 }
 
 // Функция копирования отчёта

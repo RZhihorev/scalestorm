@@ -921,3 +921,29 @@ button:disabled,
         justify-content: flex-start;
     }
 }
+
+/* Цитата */
+.app-quote {
+    margin: 32px 0 0;
+    padding: 14px 0 0;
+    border-top: 1px solid var(--border-default);
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    line-height: 1.5;
+}
+
+.app-quote blockquote {
+    margin: 0;
+}
+
+.app-quote blockquote p {
+    margin: 0;
+    font-size: inherit;
+    line-height: inherit;
+}
+
+.app-quote figcaption {
+    margin-top: 6px;
+    text-align: left;
+    font-size: 0.8125rem;
+}
