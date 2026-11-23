@@ -119,6 +119,106 @@ palliativeScenarioCheckbox.addEventListener(
     updateBlocksVisibility
 );
 
+// PPS: лучшее горизонтальное соответствие с приоритетом левых колонок
+(function () {
+    // Порядок = порядок колонок PPS слева направо; вес убывает слева направо
+    const QUESTIONS = [
+        { name: 'pps-mobility',      label: '1',             weight: 16 },
+        { name: 'pps-illness',       label: '2', weight: 8 },
+        { name: 'pps-self-care',     label: '3',   weight: 4 },
+        { name: 'pps-food-intake',   label: '4',            weight: 2 },
+        { name: 'pps-consciousness', label: '5',           weight: 1 }
+    ];
+    const LEVELS = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+
+    const output = document.querySelector('.pps-reserve p');
+    if (!output) return;
+
+    function getSelections() {
+        const result = [];
+        for (const q of QUESTIONS) {
+            const checked = document.querySelector(`input[name="${q.name}"]:checked`);
+            if (!checked) return null;
+            const min = Number(checked.dataset.minValue);
+            const max = Number(checked.dataset.maxValue);
+            if (!Number.isFinite(min) || !Number.isFinite(max)) return null;
+            result.push({ ...q, min, max });
+        }
+        return result;
+    }
+
+    function formatLevels(levels) {
+        if (levels.length === 1) return `${levels[0]}%`;
+        const isContinuous = levels.every((v, i) => i === 0 || v - levels[i - 1] === 10);
+        return isContinuous
+            ? `${levels[0]}–${levels[levels.length - 1]}%`
+            : levels.map(v => `${v}%`).join(', ');
+    }
+
+    function evaluateLevel(level, selections) {
+        const matched = selections.filter(s => level >= s.min && level <= s.max);
+        const unmatched = selections.filter(s => level < s.min || level > s.max);
+        return {
+            level,
+            count: matched.length,
+            weight: matched.reduce((sum, s) => sum + s.weight, 0),
+            unmatched
+        };
+    }
+
+    function findBestFit(selections) {
+        const evaluated = LEVELS.map(l => evaluateLevel(l, selections));
+        const best = evaluated.reduce((a, b) =>
+            b.count > a.count || (b.count === a.count && b.weight > a.weight) ? b : a
+        );
+        return evaluated.filter(e => e.count === best.count && e.weight === best.weight);
+    }
+
+    function update() {
+        const container = output.parentElement;   // .pps-reserve
+        const selections = getSelections();
+
+        container.classList.remove('pps-best-fit', 'pps-best-fit--partial');
+
+        if (!selections) {
+            output.innerHTML = '<b>Лучшее соответствие PPS:</b>';
+            return;
+        }
+
+        const bestGroup = findBestFit(selections);
+        const levels = bestGroup.map(b => b.level);
+        const { count, unmatched } = bestGroup[0];
+        const isPartial = unmatched.length > 0;
+
+        container.classList.add('pps-best-fit');
+        if (isPartial) container.classList.add('pps-best-fit--partial');
+
+        let html = `<b>Лучшее соответствие PPS:</b>` +
+                   `<span class="pps-best-fit__level">${formatLevels(levels)}</span>`;
+
+        html += `<span class="pps-best-fit__details">Совпало ${count} из ${selections.length} вопросов`;
+        if (isPartial) {
+            html += `; не совпали: ${unmatched.map(u => u.label).join(', ')}`;
+        }
+        html += '</span>';
+
+        if (isPartial) {
+            html += '<span class="pps-best-fit__note">Строгое соответствие по всем вопросам необязательно: ' +
+                    'при неполном совпадении приоритет за клиническим суждением.</span>';
+        }
+
+        output.innerHTML = html;
+    }
+
+    QUESTIONS.forEach(q => {
+        document.querySelectorAll(`input[name="${q.name}"]`).forEach(radio => {
+            radio.addEventListener('change', update);
+        });
+    });
+
+    update();
+})();
+
 // Активация/деактивация чекбоксов Caprini, актуальных только для женщин
 function capriniFemalePointsManager() {
     const capriniContraceptionHrtCheckbox = document.getElementById('caprini-contraception-hrt');
@@ -192,7 +292,7 @@ document.querySelectorAll('input[name="pps-total"]').forEach((radio) => {
     radio.addEventListener('change', imdcPreset);
 });
 
-// Скрытие/показ IMDC блока в зависмости от потребности
+// Скрытие/показ IMDC блока в зависимости от потребности
 function toggleImdcBlock() {
     imdcBlock.hidden = !imdcCheckbox.checked;
     imdcPreset();
@@ -2075,7 +2175,7 @@ function showCalculationTest() {
 
         reportLines.push('');
         reportLines.push(
-            'Итоговый показатель PPS (ручная верификация): ' +
+            'Итоговый показатель PPS (окончательная оценка врача): ' +
             ppsTotalInput + '%'
         );
     } else {

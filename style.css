@@ -622,6 +622,97 @@ button:disabled,
     margin-bottom: 0;
 }
 
+/* ==========================================
+   Лучшее соответствие PPS
+   Высота блока не меняется (задана .pps-reserve)
+   ========================================== */
+
+.pps-reserve.pps-best-fit {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;                 /* блок не растягивается */
+    overflow-y: auto;              /* запасной вариант при очень длинном тексте */
+    overflow-wrap: anywhere;
+    border-left: 4px solid var(--accent);
+}
+
+/* Безопасное центрирование: при нехватке места ничего не обрезается */
+.pps-reserve.pps-best-fit > p {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    width: 100%;
+    margin-block: auto;
+    text-align: center;
+    font-size: 1rem;
+}
+
+/* ---------- Полное совпадение: крупное значение ---------- */
+
+.pps-best-fit__level {
+    display: inline-block;
+    margin: 0;
+    padding: 2px 18px;
+    font-size: clamp(1.5rem, 4.5cqw, 2.25rem);
+    line-height: 1.2;
+    color: var(--accent-active);
+    background-color: var(--background-card);
+    border: 1px solid var(--border-input);
+    border-radius: 8px;
+}
+
+.pps-best-fit__details {
+    display: block;
+    margin: 0;
+    font-size: 1rem;
+    color: var(--text-secondary);
+}
+
+.pps-best-fit__note {
+    display: block;
+    max-width: 32em;
+    margin: 0;
+    font-size: 0.9375rem;
+    line-height: 1.4;
+    color: var(--text-secondary);
+}
+
+/* ---------- Неполное совпадение: компактно, всё в текущую высоту ---------- */
+
+.pps-reserve.pps-best-fit--partial {
+    padding-block: 6px;
+    border-left-color: #d97706;
+}
+
+.pps-best-fit--partial > p {
+    gap: 2px;
+    font-size: 0.9375rem;
+    line-height: 1.3;
+}
+
+/* Заголовок и значение в одну строку */
+.pps-best-fit--partial .pps-best-fit__level {
+    margin-inline: 4px;
+    padding: 0 10px;
+    font-size: 1.25rem;
+    line-height: 1.3;
+    vertical-align: middle;
+    color: var(--text-primary);
+    border-radius: 6px;
+}
+
+.pps-best-fit--partial .pps-best-fit__details {
+    font-size: 0.8125rem;
+    line-height: 1.25;
+}
+
+.pps-best-fit--partial .pps-best-fit__note {
+    max-width: 100%;
+    font-size: 0.75rem;
+    line-height: 1.25;
+}
+
 /* =========================
    PPI
    ========================= */
