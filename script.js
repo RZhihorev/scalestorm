@@ -303,9 +303,85 @@ function toggleImdcBlock() {
 
 imdcCheckbox.addEventListener('change', toggleImdcBlock);
 
+function validateRequiredFields() {
+    const missingFields = [];
+
+    function checkNumberField(id, label) {
+        const input = document.getElementById(id);
+
+        if (
+            input.value.trim() === "" ||
+            !Number.isFinite(input.valueAsNumber)
+        ) {
+            missingFields.push({
+                label,
+                element: input
+            });
+        }
+    }
+
+    // Порядок проверок определяет первое поле для фокуса.
+    checkNumberField("age", "Возраст");
+    checkNumberField("height", "Рост");
+    checkNumberField("weight", "Вес");
+
+    if (!document.querySelector('input[name="sex"]:checked')) {
+        missingFields.push({
+            label: "Пол",
+            element: document.querySelector('input[name="sex"]')
+        });
+    }
+
+    checkNumberField("hemoglobin", "Гемоглобин");
+    checkNumberField("leukocytes", "Лейкоциты");
+    checkNumberField("platelets", "Тромбоциты");
+    checkNumberField("creatinine", "Креатинин");
+
+    const isGokMode =
+        document.getElementById("gok-mode").checked;
+
+    const isPalliativeScenario =
+        document.getElementById("palliative-scenario").checked;
+
+    if (
+        (isGokMode || isPalliativeScenario) &&
+        !document.querySelector('input[name="pps-total"]:checked')
+    ) {
+        missingFields.push({
+            label: "Итоговое значение PPS",
+            element: document.querySelector('input[name="pps-total"]')
+        });
+    }
+
+    if (missingFields.length === 0) {
+        return true;
+    }
+
+    const message = missingFields.length === 1
+        ? `Не заполнен обязательный параметр:\n${missingFields[0].label}`
+        : "Не заполнены обязательные параметры:\n" +
+          missingFields.map(field => `• ${field.label}`).join("\n");
+
+    alert(message);
+
+    const firstMissingElement = missingFields[0].element;
+
+    firstMissingElement.scrollIntoView({
+        behavior: "auto",
+        block: "center"
+    });
+
+    firstMissingElement.focus({ preventScroll: true });
+
+    return false;
+}
 
 // Функция формирования отчёта (ОСНОВНАЯ ФУНКЦИЯ)
 function showCalculationTest() {
+    if (!validateRequiredFields()) {
+        return;
+    }
+    
     imdcPreset();
 
     const gokMode = gokModeCheckbox.checked
