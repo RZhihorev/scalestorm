@@ -11,7 +11,76 @@
     <body>
         <main class="app-container">
             <section class="input-panel">
-                <h1>Scalestorm</h1>
+                <header class="app-header">
+                    <h1 class="app-header__title">Scalestorm</h1>
+
+                    <p class="app-header__subtitle">
+                        Клинические шкалы и калькуляторы
+                    </p>
+
+                    <details class="app-about">
+                        <summary class="app-about__summary">
+                            <span class="app-about__version" data-app-version></span>
+                            <span class="app-about__separator" aria-hidden="true">·</span>
+                            <span class="app-about__toggle">О проекте</span>
+                        </summary>
+
+                        <div class="app-about__content">
+                            <dl class="app-about__list">
+                                <div class="app-about__row">
+                                    <dt>Автор и разработчик</dt>
+                                    <dd data-app-author></dd>
+                                </div>
+
+                                <div class="app-about__row">
+                                    <dt>Версия</dt>
+                                    <dd data-app-version-number></dd>
+                                </div>
+
+                                <div class="app-about__row">
+                                    <dt>Дата сборки</dt>
+                                    <dd>
+                                        <time data-app-build-date></time>
+                                    </dd>
+                                </div>
+                            </dl>
+
+                            <section class="app-about__limitations"
+                                aria-labelledby="app-limitations-title">
+
+                            <h2 id="app-limitations-title">
+                                Назначение и ограничения
+                            </h2>
+
+                            <p>
+                                Scalestorm предназначен для расчёта показателей
+                                по выбранным клиническим шкалам и формирования
+                                текстового представления результатов.
+                            </p>
+
+                            <p>
+                                Результаты зависят от полноты и корректности введённых
+                                данных, а также от применимости выбранной методики
+                                к конкретному пациенту. Перед использованием результатов
+                                необходимо проверить исходные данные, соответствие
+                                используемой версии шкалы и сформированный текст.
+                            </p>
+
+                            <p>
+                                Приложение не заменяет клиническую оценку пациента.
+                                Результаты шкал не должны использоваться как единственное
+                                основание для постановки диагноза, выбора или изменения
+                                лечения.
+                            </p>
+                        </section>
+
+                            <p class="app-about__note">
+                                Авторство приложения не распространяется
+                                на используемые клинические шкалы и методики.
+                            </p>
+                        </div>
+                    </details>
+                </header>
 
                 <div class="settings-block">
                     <label>
@@ -1450,6 +1519,14 @@
                     </div>
                 </div>
                 
+                <aside class="results-disclaimer" aria-label="Ограничения применения">
+                    <p>
+                        Результаты расчётов требуют проверки медицинским работником
+                        с учётом исходных данных и применимости выбранной шкалы.
+                        Приложение не заменяет клиническую оценку пациента.
+                    </p>
+                </aside>
+
                 <div>
                     <button
                         type="button"

@@ -2677,3 +2677,42 @@ if (startButton) {
 if (copyButton) {
     copyButton.addEventListener('click', copyOutput);
 }
+
+// Метаданные приложения
+const APP_INFO = Object.freeze({
+    name: "Scalestorm",
+    version: "0.9.0",
+    author: "Жихорев Р. С.",
+    buildDate: "2026-11-24"
+});
+
+function renderAppInfo() {
+    document.querySelectorAll("[data-app-version]").forEach((element) => {
+        element.textContent = `v${APP_INFO.version}`;
+    });
+
+    document.querySelectorAll("[data-app-version-number]").forEach((element) => {
+        element.textContent = APP_INFO.version;
+    });
+
+    document.querySelectorAll("[data-app-author]").forEach((element) => {
+        element.textContent = APP_INFO.author;
+    });
+
+    // Формат YYYY-MM-DD → DD.MM.YYYY, без пересчёта часового пояса.
+    const [year, month, day] = APP_INFO.buildDate.split("-");
+    const formattedDate = `${day}.${month}.${year}`;
+
+    document.querySelectorAll("[data-app-build-date]").forEach((element) => {
+        element.dateTime = APP_INFO.buildDate;
+        element.textContent = formattedDate;
+    });
+}
+
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", renderAppInfo, {
+        once: true
+    });
+} else {
+    renderAppInfo();
+}

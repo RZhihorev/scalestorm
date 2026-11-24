@@ -1053,3 +1053,202 @@ button:disabled,
     text-align: left;
     font-size: 0.8125rem;
 }
+
+/* Шапка приложения */
+
+.app-header {
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border-default);
+}
+
+.app-header .app-header__title {
+    margin: 0 0 4px;
+}
+
+.app-header .app-header__subtitle {
+    margin: 0 0 8px;
+    font-size: 0.9375rem;
+    line-height: 1.4;
+    color: var(--text-secondary);
+}
+
+/* Компактная строка: версия · О проекте */
+
+.app-about {
+    min-width: 0;
+    color: var(--text-secondary);
+}
+
+.app-about__summary {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+
+    width: fit-content;
+    max-width: 100%;
+    padding: 4px 0;
+
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    list-style: none;
+    cursor: pointer;
+}
+
+.app-about__summary::-webkit-details-marker {
+    display: none;
+}
+
+.app-about__summary::marker {
+    content: "";
+}
+
+.app-about__version {
+    font-variant-numeric: tabular-nums;
+}
+
+.app-about__separator {
+    color: var(--border-input);
+}
+
+.app-about__toggle {
+    color: var(--accent);
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    text-underline-offset: 3px;
+}
+
+.app-about__summary:hover .app-about__toggle {
+    color: var(--accent-hover);
+    text-decoration-style: solid;
+}
+
+.app-about__summary:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+    border-radius: 3px;
+}
+
+.app-about[open] .app-about__toggle {
+    color: var(--accent-active);
+    text-decoration-style: solid;
+}
+
+/* Раскрытая карточка */
+
+.app-about__content {
+    margin-top: 10px;
+    padding: 14px 16px;
+
+    background-color: var(--background-card);
+    border: 1px solid var(--border-default);
+    border-radius: 8px;
+}
+
+.app-about__list {
+    display: grid;
+    gap: 8px;
+    margin: 0;
+}
+
+.app-about__row {
+    display: grid;
+    grid-template-columns: minmax(0, 11rem) minmax(0, 1fr);
+    gap: 4px 12px;
+}
+
+.app-about__row dt,
+.app-about__row dd {
+    margin: 0;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+.app-about__row dt {
+    color: var(--text-secondary);
+}
+
+.app-about__row dd {
+    color: var(--text-primary);
+}
+
+.app-about__content .app-about__note {
+    margin: 12px 0 0;
+    padding-top: 10px;
+
+    font-size: 0.75rem;
+    line-height: 1.5;
+    color: var(--text-secondary);
+
+    border-top: 1px solid var(--border-default);
+}
+
+/* Адаптация к узкой левой панели */
+@container patient-panel (max-width: 28rem) {
+    .app-about__row {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 2px;
+    }
+}
+
+
+/* Короткий дисклеймер перед кнопками */
+.results-disclaimer {
+    min-width: 0;
+    margin: 0 0 20px;
+    padding: 16px 18px;
+
+    color: var(--text-secondary);
+    background-color: #f0f5fb;
+
+    border: 1px solid #cbd8e8;
+    border-left: 3px solid #8ba6c7;
+    border-radius: 12px;
+
+    box-shadow: var(--shadow-card);
+    overflow-wrap: anywhere;
+}
+
+.results-disclaimer p {
+    margin: 0;
+
+    font-size: 0.875rem;
+    line-height: 1.55;
+}
+
+@media (max-width: 36rem) {
+    .results-disclaimer {
+        padding: 14px 16px;
+    }
+}
+
+/* Назначение и ограничения в разделе «О проекте» */
+.app-about__limitations {
+    margin-top: 14px;
+    padding-top: 12px;
+
+    border-top: 1px solid var(--border-default);
+}
+
+.app-about__limitations h2 {
+    margin: 0 0 8px;
+
+    font-size: 0.875rem;
+    font-weight: 700;
+    line-height: 1.4;
+    color: var(--text-primary);
+}
+
+.app-about__limitations p {
+    margin: 0 0 8px;
+
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    color: var(--text-secondary);
+}
+
+.app-about__limitations p:last-child {
+    margin-bottom: 0;
+}
