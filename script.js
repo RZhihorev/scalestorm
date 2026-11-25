@@ -2795,7 +2795,7 @@ if (copyButton) {
 // Метаданные приложения
 const APP_INFO = Object.freeze({
     name: "Scalestorm",
-    version: "0.9.1",
+    version: "0.9.2",
     author: "Жихорев Р. С.",
     buildDate: "2026-11-25"
 });

@@ -82,43 +82,47 @@
                     </details>
                 </header>
 
-                <div class="settings-block">
-                    <label>
-                        <input
-                            type="checkbox"
-                            id="palliative-scenario"
-                            name="palliative-scenario"
-                            checked
-                        >
-                        Радикальное лечение невозможно (на текущем этапе и/или в будущем)
-                    </label>
+                <div class="settings-layout">
+                    <div class="settings-block">
+                        <label>
+                            <input
+                                type="checkbox"
+                                id="palliative-scenario"
+                                name="palliative-scenario"
+                                checked
+                            >
+                            Радикальное лечение невозможно (на текущем этапе и/или в будущем)
+                        </label>
 
-                    <label>
-                        <input
-                            type="checkbox"
-                            id="demo-mode"
-                            aria-describedby="demo-mode-note"
-                        >
-                        Режим демонстрации (не для клинического использования)
-                    </label>
+                        <label>
+                            <input
+                                type="checkbox"
+                                id="imdc-activator"
+                                name="imdc-activator"
+                            >
+                            Почечно-клеточный рак (нужен расчёт IMDC)
+                        </label>
+                    </div>
 
-                    <label>
-                        <input
-                            type="checkbox"
-                            id="gok-mode"
-                            name="gok-mode"
-                        >
-                        GOK MODE (принудительный расчёт основных шкал для ГОК)
-                    </label>
+                    <div class="settings-block">
+                        <label>
+                            <input
+                                type="checkbox"
+                                id="gok-mode"
+                                name="gok-mode"
+                            >
+                            GOK MODE (принудительный расчёт всех шкал для ГОК)
+                        </label>
 
-                    <label>
-                        <input
-                            type="checkbox"
-                            id="imdc-activator"
-                            name="imdc-activator"
-                        >
-                        Почечно-клеточный рак (нужен расчёт IMDC)
-                    </label>
+                        <label>
+                            <input
+                                type="checkbox"
+                                id="demo-mode"
+                                aria-describedby="demo-mode-note"
+                            >
+                            Режим демонстрации (не для клинического использования)
+                        </label>
+                    </div>
                 </div>
 
                 <div class="calculator-block patient-data-block">

@@ -228,6 +228,41 @@ p:last-child {
   margin-bottom: 0;
 }
 
+/* Клинические параметры и режимы приложения */
+.settings-layout {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: stretch;
+    gap: 12px;
+    min-width: 0;
+    margin-bottom: 20px;
+}
+
+.settings-layout > .settings-block {
+    align-content: start;
+    margin-bottom: 0;
+}
+
+.input-panel .settings-layout .settings-block label {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    min-width: 0;
+    margin: 0;
+}
+
+.settings-layout .settings-block input[type="checkbox"] {
+    flex-shrink: 0;
+    margin: 2px 0 0;
+}
+
+/* На узкой панели блоки располагаются друг под другом */
+@container patient-panel (max-width: 36rem) {
+    .settings-layout {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
 .erythropoietin-label {
   display: inline-flex;
   align-items: center;
