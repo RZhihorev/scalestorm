@@ -327,6 +327,9 @@ palliativeScenarioCheckbox.addEventListener(
         });
     });
 
+    // Пересчитываем соответствие после заполнения/сброса демоданных.
+    demoModeCheckbox.addEventListener('change', update);
+
     update();
 })();
 
