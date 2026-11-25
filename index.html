@@ -96,6 +96,15 @@
                     <label>
                         <input
                             type="checkbox"
+                            id="demo-mode"
+                            aria-describedby="demo-mode-note"
+                        >
+                        Режим демонстрации (не для клинического использования)
+                    </label>
+
+                    <label>
+                        <input
+                            type="checkbox"
                             id="gok-mode"
                             name="gok-mode"
                         >
@@ -263,7 +272,6 @@
                                 id="khorana-rbt-low-risk"
                                 name="khorana-site"
                                 value="0"
-                                checked
                             >
                             Низкий риск (молочная железа, колоректальный рак, голова и шея, прочие нозологии)
                         </label>
@@ -292,7 +300,7 @@
                             </label>
 
                             <label>
-                                <input type="radio" name="g8-food-intake" value="2" checked>
+                                <input type="radio" name="g8-food-intake" value="2">
                                 Снижения не было
                             </label>
                         </fieldset>
@@ -316,7 +324,7 @@
                             </label>
 
                             <label>
-                                <input type="radio" name="g8-weight-loss" value="3" checked>
+                                <input type="radio" name="g8-weight-loss" value="3">
                                 Потери массы не было
                             </label>
                         </fieldset>
@@ -329,7 +337,7 @@
                             </label>
 
                             <label>
-                                <input type="radio" name="g8-more-three-drugs" value="1" checked>
+                                <input type="radio" name="g8-more-three-drugs" value="1">
                                 Нет (от 0 до 3-х лекарств)
                             </label>
                         </fieldset>
@@ -348,7 +356,7 @@
                             </label>
 
                             <label>
-                                <input type="radio" name="g8-dementia" value="2" checked>
+                                <input type="radio" name="g8-dementia" value="2">
                                 Психологических проблем нет
                             </label>
                         </fieldset>
@@ -372,7 +380,7 @@
                             </label>
 
                             <label>
-                                <input type="radio" name="g8-self-esteem" value="2" checked>
+                                <input type="radio" name="g8-self-esteem" value="2">
                                 Лучше
                             </label>
                         </fieldset>
@@ -390,7 +398,7 @@
                             </label>
 
                             <label>
-                                <input type="radio" name="g8-mobility" value="2" checked>
+                                <input type="radio" name="g8-mobility" value="2">
                                 Выходит из дома
                             </label>
                         </fieldset>
@@ -411,7 +419,7 @@
                         </label>
 
                         <label>
-                            <input type="checkbox" id="carg-standart-dosage" checked>
+                            <input type="checkbox" id="carg-standart-dosage">
                             Стандартное дозирование химиотерапии (без редукции)
                         </label>
 
@@ -465,7 +473,6 @@
                                         data-min-value="80"
                                         data-max-value="100"
                                         value="0"
-                                        checked
                                     >
                                     Полноценная
                                 </label>
@@ -536,7 +543,6 @@
                                         data-min-value="100"
                                         data-max-value="100"
                                         value="0"
-                                        checked
                                     >
                                     Нормальная деятельность и работоспособность.<br>
                                     Нет признаков заболевания
@@ -639,7 +645,6 @@
                                         data-min-value="70"
                                         data-max-value="100"
                                         value="0"
-                                        checked
                                     >
                                     Полное
                                 </label>
@@ -699,7 +704,6 @@
                                         data-min-value="90"
                                         data-max-value="100"
                                         value="0"
-                                        checked
                                     >
                                     В норме
                                 </label>
@@ -748,7 +752,6 @@
                                         data-min-value="70"
                                         data-max-value="100"
                                         value="0"
-                                        checked
                                     >
                                     Ясное сознание
                                 </label>
@@ -948,7 +951,6 @@
                                             type="radio"
                                             name="ppi-swelling"
                                             value="1"
-                                            checked
                                         >
                                         Нет
                                     </label>
@@ -973,7 +975,6 @@
                                             type="radio"
                                             name="ppi-dyspnoea"
                                             value="1"
-                                            checked
                                         >
                                         Нет
                                     </label>
@@ -998,7 +999,6 @@
                                             type="radio"
                                             name="ppi-delirium"
                                             value="1"
-                                            checked
                                         >
                                         Нет
                                     </label>
@@ -1035,7 +1035,6 @@
                                         type="radio"
                                         name="ppi-food-intake"
                                         value="2"
-                                        checked
                                     >
                                     Нормальный приём пищи
                                 </label>

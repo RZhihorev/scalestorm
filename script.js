@@ -1,5 +1,6 @@
 // Базовые элементы страницы
 const gokModeCheckbox = document.getElementById('gok-mode');
+const demoModeCheckbox = document.getElementById('demo-mode');
 
 const g8Block = document.getElementById('g8-block');
 const cargBlock = document.getElementById('carg-block');
@@ -31,6 +32,116 @@ const erythropoetinCheckbox = document.getElementById('cbx-erythropoietin');
 const leukocytesInput = document.getElementById('leukocytes');
 const plateletsInput = document.getElementById('platelets');
 const creatinineInput = document.getElementById('creatinine');
+
+
+function demoModeSwitch() {
+    const demoMode = demoModeCheckbox.checked;
+    
+    // Определение локализации опухоли по Khorana
+    const khoranaLowRisk = document.getElementById(
+        "khorana-rbt-low-risk"
+    );
+    const khoranaHighRisk = document.getElementById(
+        "khorana-rbt-high-risk"
+    );
+
+    // Учтён предварительный выбор IMDC
+    if (!imdcCheckbox.checked) {
+        khoranaLowRisk.checked = demoMode;
+    } else {
+        khoranaHighRisk = demoMode;
+    }
+    
+    // Определение значений G8
+    const g8FoodIntake = document.querySelector(
+        'input[name="g8-food-intake"][value="2"]'
+    );
+    g8FoodIntake.checked = demoMode;
+
+    const g8WeightLoss = document.querySelector(
+        'input[name="g8-weight-loss"][value="3"]'
+    );
+    g8WeightLoss.checked = demoMode;
+
+    const g8MoreThreeDrugs = document.querySelector(
+        'input[name="g8-more-three-drugs"][value="1"]'
+    );
+    g8MoreThreeDrugs.checked = demoMode;
+
+    const g8Dementia = document.querySelector(
+        'input[name="g8-dementia"][value="2"]'
+    );
+    g8Dementia.checked = demoMode;
+
+    const g8SelfEsteem = document.querySelector(
+        'input[name="g8-self-esteem"][value="2"]'
+    );
+    g8SelfEsteem.checked = demoMode;
+
+    const g8Mobility = document.querySelector(
+        'input[name="g8-mobility"][value="2"]'
+    );
+    g8Mobility.checked = demoMode;
+
+    // Стандартное дозирование химиотерапии для CARG
+    const cargStartDosage = document.getElementById(
+        "carg-standart-dosage"
+    );
+    cargStartDosage.checked = demoMode;
+
+    // Определение значений PPS
+    const ppsMobility = document.querySelector(
+        'input[name="pps-mobility"][value="0"]'
+    );
+    ppsMobility.checked = demoMode;
+
+    const ppsIllness = document.querySelector(
+        'input[name="pps-illness"][value="1"]'
+    );
+    ppsIllness.checked = demoMode;
+
+    const ppsSelfCare = document.querySelector(
+        'input[name="pps-self-care"][value="0"]'
+    );
+    ppsSelfCare.checked = demoMode;
+
+    const ppsFoodIntake = document.querySelector(
+        'input[name="pps-food-intake"][value="0"]'
+    );
+    ppsFoodIntake.checked = demoMode;
+
+    const ppsConsciousness = document.querySelector(
+        'input[name="pps-consciousness"][value="0"]'
+    );
+    ppsConsciousness.checked = demoMode;
+
+    const ppsTotal = document.querySelector(
+        'input[name="pps-total"][value="90"]'
+    );
+    ppsTotal.checked = demoMode;
+
+    const ppiSwelling = document.querySelector(
+        'input[name="ppi-swelling"][value="1"]'
+    );
+    ppiSwelling.checked = demoMode;
+
+    const ppiDyspnoea = document.querySelector(
+        'input[name="ppi-dyspnoea"][value="1"]'
+    );
+    ppiDyspnoea.checked = demoMode;
+
+    const ppiDelirium = document.querySelector(
+        'input[name="ppi-delirium"][value="1"]'
+    );
+    ppiDelirium.checked = demoMode;
+
+    const ppiFoodIntake = document.querySelector(
+        'input[name="ppi-food-intake"][value="2"]'
+    );
+    ppiFoodIntake.checked = demoMode;
+}
+
+demoModeCheckbox.addEventListener("change", demoModeSwitch);
 
 
 // Быстрое заполнение необходимых полей
@@ -2681,9 +2792,9 @@ if (copyButton) {
 // Метаданные приложения
 const APP_INFO = Object.freeze({
     name: "Scalestorm",
-    version: "0.9.0",
+    version: "0.9.1",
     author: "Жихорев Р. С.",
-    buildDate: "2026-11-24"
+    buildDate: "2026-11-25"
 });
 
 function renderAppInfo() {
