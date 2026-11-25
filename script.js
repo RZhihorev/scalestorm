@@ -420,6 +420,85 @@ imdcCheckbox.addEventListener('change', toggleImdcBlock);
 function validateRequiredFields() {
     const missingFields = [];
 
+    // Проверяем скрытие самого элемента и любого его родителя.
+    function isVisible(element) {
+    for (
+        let current = element;
+        current;
+        current = current.parentElement
+    ) {
+        if (current.hidden) return false;
+
+        const style = getComputedStyle(current);
+
+        if (
+        style.display === "none" ||
+        style.visibility === "hidden" ||
+        style.visibility === "collapse"
+        ) {
+        return false;
+        }
+    }
+
+    return true;
+    }
+
+    function checkVisibleRadioGroups() {
+    const labels = {
+        sex: "Пол",
+
+        "g8-food-intake": "G8: потребление пищи",
+        "g8-weight-loss": "G8: потеря массы тела",
+        "g8-mobility": "G8: мобильность",
+        "g8-dementia": "G8: нейропсихологические нарушения",
+        "g8-more-three-drugs": "G8: приём лекарственных препаратов",
+        "g8-self-esteem": "G8: самооценка здоровья",
+
+        "pps-mobility": "PPS: передвижение",
+        "pps-illness": "PPS: активность и проявления заболевания",
+        "pps-self-care": "PPS: самообслуживание",
+        "pps-food-intake": "PPS: потребление пищи",
+        "pps-consciousness": "PPS: уровень сознания",
+        "pps-total": "PPS: итоговая оценка",
+
+        "ppi-food-intake": "PPI: потребление пищи",
+        "ppi-swelling": "PPI: отёки",
+        "ppi-dyspnoea": "PPI: одышка",
+        "ppi-delirium": "PPI: делирий",
+
+        "khorana-site": "Khorana: локализация опухоли",
+    };
+
+    const groups = new Map();
+
+    document
+        .querySelectorAll('input[type="radio"][name]')
+        .forEach((radio) => {
+        if (
+            !radio.name ||
+            radio.matches(":disabled") ||
+            !isVisible(radio)
+        ) {
+            return;
+        }
+
+        if (!groups.has(radio.name)) {
+            groups.set(radio.name, []);
+        }
+
+        groups.get(radio.name).push(radio);
+        });
+
+    for (const [name, radios] of groups) {
+        if (!radios.some((radio) => radio.checked)) {
+        missingFields.push({
+            label: labels[name] ?? `Выбор в группе «${name}»`,
+            element: radios[0],
+        });
+        }
+    }
+    }
+
     function checkNumberField(id, label) {
         const input = document.getElementById(id);
 
@@ -439,33 +518,12 @@ function validateRequiredFields() {
     checkNumberField("height", "Рост");
     checkNumberField("weight", "Вес");
 
-    if (!document.querySelector('input[name="sex"]:checked')) {
-        missingFields.push({
-            label: "Пол",
-            element: document.querySelector('input[name="sex"]')
-        });
-    }
-
     checkNumberField("hemoglobin", "Гемоглобин");
     checkNumberField("leukocytes", "Лейкоциты");
     checkNumberField("platelets", "Тромбоциты");
     checkNumberField("creatinine", "Креатинин");
 
-    const isGokMode =
-        document.getElementById("gok-mode").checked;
-
-    const isPalliativeScenario =
-        document.getElementById("palliative-scenario").checked;
-
-    if (
-        (isGokMode || isPalliativeScenario) &&
-        !document.querySelector('input[name="pps-total"]:checked')
-    ) {
-        missingFields.push({
-            label: "Итоговое значение PPS",
-            element: document.querySelector('input[name="pps-total"]')
-        });
-    }
+    checkVisibleRadioGroups();
 
     if (missingFields.length === 0) {
         return true;
@@ -490,17 +548,27 @@ function validateRequiredFields() {
     return false;
 }
 
+// Числовое значение выбранной радиокнопки.
+// Если ничего не выбрано, возвращаем NaN вместо ошибки.
+function getRadioNumber(name) {
+    const selected = document.querySelector(
+        `input[type="radio"][name="${CSS.escape(name)}"]:checked`
+    );
+
+    return selected ? Number(selected.value) : NaN;
+}
+
 // Функция формирования отчёта (ОСНОВНАЯ ФУНКЦИЯ)
 function showCalculationTest() {
     if (!validateRequiredFields()) {
         return;
     }
     
-    const isPpsZero = document.querySelector(
+    const isPpsZero = !ppsBlock.hidden && document.querySelector(
         'input[name="pps-total"][value="0"]'
     )?.checked === true;
 
-    const isPpsDeath = document.querySelector(
+    const isPpsDeath = !ppsBlock.hidden && document.querySelector(
         'input[name="pps-mobility"][value="5"]'
     )?.checked === true;
 
@@ -734,18 +802,14 @@ function showCalculationTest() {
     const capriniGreatSurgery = capriniGreatSurgeryCheckbox.checked;
 
     // Список переменных для расчёта G8
-    const g8FoodIntakeInput = Number(
-        document.querySelector('input[name="g8-food-intake"]:checked').value
-    );
+    const g8FoodIntakeInput = getRadioNumber("g8-food-intake");
     const g8FoodIntakeAnswers = [
         'выраженное снижение (0 баллов)',
         'умеренное снижение (1 балл)',
         'снижения не было (2 балла)'
     ];
 
-    const g8WeightLossInput = Number(
-        document.querySelector('input[name="g8-weight-loss"]:checked').value
-    );
+    const g8WeightLossInput = getRadioNumber("g8-weight-loss");
     const g8WeightLossAnswers = [
         'более 3 кг (0 баллов)',
         'пациент не знает (1 балл)',
@@ -753,18 +817,14 @@ function showCalculationTest() {
         'потери массы не было (3 балла)'
     ];
     
-    const g8MobilityInput = Number(
-        document.querySelector('input[name="g8-mobility"]:checked').value
-    );
+    const g8MobilityInput = getRadioNumber("g8-mobility");
     const g8MobilityAnswers = [
         'прикован к постели или креслу (0 баллов)',
         'может встать с постели/кресла, но не выходит из дома (1 балл)',
         'выходит из дома (2 балла)'
     ];
 
-    const g8DementiaInput = Number(
-        document.querySelector('input[name="g8-dementia"]:checked').value
-    );
+    const g8DementiaInput = getRadioNumber("g8-dementia");
     const g8DementiaAnswers = [
         'тяжелая деменция или депрессия (0 баллов)',
         'лёгкая деменция (1 балл)',
@@ -788,17 +848,13 @@ function showCalculationTest() {
         '(23 кг/м.кв. и более; 3 балла)'
     ];
 
-    const g8MoreThreeDrugsInput = Number(
-        document.querySelector('input[name="g8-more-three-drugs"]:checked').value
-    );
+    const g8MoreThreeDrugsInput = getRadioNumber("g8-more-three-drugs");
     const g8MoreThreeDrugsAnswers = [
         'да (0 баллов)',
         'нет (1 балл)'
     ];
 
-    const g8SelfEsteemInput = Number(
-        document.querySelector('input[name="g8-self-esteem"]:checked').value
-    );
+    const g8SelfEsteemInput = getRadioNumber("g8-self-esteem");
     const g8SelfEsteemAnswers = [
         'хуже (0 баллов)',
         'затрудняется ответить (1 балл)',
@@ -1045,9 +1101,7 @@ function showCalculationTest() {
     ];
 
     // Переменные для PPS
-    const ppsMobilityInput = Number(
-        document.querySelector('input[name="pps-mobility"]:checked').value
-    );
+    const ppsMobilityInput = getRadioNumber("pps-mobility");
     const ppsMobilityAnswers = [
         'полноценная',
         'снижена',
@@ -1057,9 +1111,7 @@ function showCalculationTest() {
         'смерть'
     ];
 
-    const ppsIllnessInput = Number(
-        document.querySelector('input[name="pps-illness"]:checked').value
-    );
+    const ppsIllnessInput = getRadioNumber("pps-illness");
     const ppsIllnessAnswers = [
         'нормальная деятельность и работоспособность, нет признаков заболевания',
         'нормальная деятельность и работоспособность, заметны некоторые признаки заболевания',
@@ -1071,9 +1123,7 @@ function showCalculationTest() {
         'неспособность к какой-либо деятельности, распространённый патологический процесс'
     ];
     
-    const ppsSelfCareInput = Number(
-        document.querySelector('input[name="pps-self-care"]:checked').value
-    );
+    const ppsSelfCareInput = getRadioNumber("pps-self-care");
     const ppsSelfCareAnswers = [
         'полное',
         'периодически необходима помощь',
@@ -1082,9 +1132,7 @@ function showCalculationTest() {
         'необходима постоянная помощь'
     ];
 
-    const ppsFoodIntakeInput = Number(
-        document.querySelector('input[name="pps-food-intake"]:checked').value
-    );
+    const ppsFoodIntakeInput = getRadioNumber("pps-food-intake");
     const ppsFoodIntakeAnswers = [
         'в норме',
         'в норме или сокращен',
@@ -1092,9 +1140,7 @@ function showCalculationTest() {
         'только уход за полостью рта'
     ];
 
-    const ppsConsciousnessInput = Number(
-        document.querySelector('input[name="pps-consciousness"]:checked').value
-    );
+    const ppsConsciousnessInput = getRadioNumber("pps-consciousness");
     const ppsConsciousnessAnswers = [
         'ясное сознание',
         'ясное или спутанность сознания',
@@ -1102,9 +1148,7 @@ function showCalculationTest() {
         'вялость или кома +/- спутанность сознания'
     ];
 
-    const ppsTotalInput = Number(
-        document.querySelector('input[name="pps-total"]:checked').value
-    );
+    const ppsTotalInput = getRadioNumber("pps-total");
 
     // Переменные для PPI
     let ppiPpsScore;
@@ -1126,9 +1170,7 @@ function showCalculationTest() {
         '(от 10 до 20% включительно; 4 балла)'
     ];
 
-    const ppiFoodIntakeInput = Number(
-        document.querySelector('input[name="ppi-food-intake"]:checked').value
-    );
+    const ppiFoodIntakeInput = getRadioNumber("ppi-food-intake");
 
     let ppiFoodIntakeScore;
     if (ppiFoodIntakeInput === 0) {
@@ -1145,9 +1187,7 @@ function showCalculationTest() {
         'нормальный (0 баллов)'
     ];
 
-    const ppiSwellingInput = Number(
-        document.querySelector('input[name="ppi-swelling"]:checked').value
-    );
+    const ppiSwellingInput = getRadioNumber("ppi-swelling");
 
     let ppiSwellingScore;
     if (ppiSwellingInput === 0) {
@@ -1161,9 +1201,7 @@ function showCalculationTest() {
         'нет (0 баллов)'
     ];
 
-    const ppiDyspnoeaInput = Number(
-        document.querySelector('input[name="ppi-dyspnoea"]:checked').value
-    );
+    const ppiDyspnoeaInput = getRadioNumber("ppi-dyspnoea");
 
     let ppiDyspnoeaScore;
     if (ppiDyspnoeaInput === 0) {
@@ -1177,9 +1215,7 @@ function showCalculationTest() {
         'нет (0 баллов)'
     ];
 
-    const ppiDeliriumInput = Number(
-        document.querySelector('input[name="ppi-delirium"]:checked').value
-    );
+    const ppiDeliriumInput = getRadioNumber("ppi-delirium");
 
     let ppiDeliriumScore;
     if (ppiDeliriumInput === 0) {
@@ -1216,9 +1252,7 @@ function showCalculationTest() {
     ];
 
     // Переменные для Khorana
-    const khoranaSiteInput = Number(
-        document.querySelector('input[name="khorana-site"]:checked').value
-    );
+    const khoranaSiteInput = getRadioNumber("khorana-site");
 
     const khoranaSiteAnswers = [
         'низкий риск (молочная железа, колоректальный рак, голова и шея, прочие нозологии; 0 баллов)',
@@ -2840,7 +2874,7 @@ if (copyButton) {
 // Метаданные приложения
 const APP_INFO = Object.freeze({
     name: "Scalestorm",
-    version: "0.9.3",
+    version: "0.9.4",
     author: "Жихорев Р. С.",
     buildDate: "2026-11-25"
 });
