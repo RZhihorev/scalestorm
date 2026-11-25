@@ -496,6 +496,51 @@ function showCalculationTest() {
         return;
     }
     
+    const isPpsZero = document.querySelector(
+        'input[name="pps-total"][value="0"]'
+    )?.checked === true;
+
+    const isPpsDeath = document.querySelector(
+        'input[name="pps-mobility"][value="5"]'
+    )?.checked === true;
+
+    // Особые варианты PPS проверяем до валидации остальных полей.
+    if (isPpsZero || isPpsDeath) {
+        let message;
+
+        if (isPpsZero && isPpsDeath) {
+            message =
+                'Выбраны PPS 0% и ответ «смерть» в первом вопросе PPS.';
+        } else if (isPpsDeath) {
+            message =
+                'В первом вопросе PPS выбран ответ «смерть».';
+        } else {
+            message =
+                'Выбран итоговый показатель PPS 0%.';
+        }
+
+        output.textContent =
+            message + '\n\n' +
+            'Пациента оценивать уже поздно.\n\n' +
+            'Но можно оценить Вас:\n' +
+            ' - уровень любопытства - 100%\n' +
+            ' - чувство юмора - 0,00000001%\n\n' +
+            'Больше так не делай.\n' +
+            'С уважением, Автор.';
+
+        // Убираем сводку от предыдущего расчёта.
+        gokBriefReport.textContent = '';
+        gokBriefReport.hidden = true;
+
+        copyButton.disabled = false;
+
+        if (appQuote) {
+            appQuote.hidden = true;
+        }
+
+        return;
+    }
+
     imdcPreset();
 
     const gokMode = gokModeCheckbox.checked
@@ -2795,7 +2840,7 @@ if (copyButton) {
 // Метаданные приложения
 const APP_INFO = Object.freeze({
     name: "Scalestorm",
-    version: "0.9.2",
+    version: "0.9.3",
     author: "Жихорев Р. С.",
     buildDate: "2026-11-25"
 });
