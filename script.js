@@ -49,7 +49,7 @@ function demoModeSwitch() {
     if (!imdcCheckbox.checked) {
         khoranaLowRisk.checked = demoMode;
     } else {
-        khoranaHighRisk = demoMode;
+        khoranaHighRisk.checked = true;
     }
     
     // Определение значений G8
