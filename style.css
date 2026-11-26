@@ -1,3 +1,6 @@
+/* ==========================================================
+   Шрифт и переменные
+   ========================================================== */
 @font-face {
   font-family: "Kelly Slab";
   src: url("fonts/KellySlab-Regular.ttf") format("truetype");
@@ -32,9 +35,10 @@
     0 6px 16px rgba(15, 23, 42, 0.05);
 }
 
-* {
-  box-sizing: border-box;
-}
+/* ==========================================================
+   База
+   ========================================================== */
+* { box-sizing: border-box; }
 
 html {
   min-height: 100%;
@@ -51,17 +55,31 @@ body {
   background-color: var(--background-page);
 }
 
-input,
-select,
-textarea,
-button {
-  font: inherit;
-}
+input, select, textarea, button { font: inherit; }
 
+h1, h2, h3 {
+  font-family: var(--font-main);
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+h1 { margin: 0 0 24px; font-size: 1.875rem; }
+h2 { margin: 0 0 20px; font-size: 1.375rem; }
+h3 { margin: 0 0 16px; font-size: 1.125rem; }
+
+p {
+  margin: 0 0 12px;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+p:last-child { margin-bottom: 0; }
+
+/* ==========================================================
+   Каркас приложения
+   ========================================================== */
 .app-container {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    min-height: 100vh;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  min-height: 100vh;
 }
 
 .input-panel,
@@ -73,7 +91,6 @@ button {
 .input-panel {
   background-color: var(--background-input);
   border-right: 1px solid var(--border-default);
-
   container-type: inline-size;
   container-name: patient-panel;
 }
@@ -84,29 +101,6 @@ button {
   height: 100vh;
   overflow-y: auto;
   background-color: var(--background-output);
-}
-
-h1,
-h2,
-h3 {
-  font-family: var(--font-main);
-  line-height: 1.3;
-  overflow-wrap: anywhere;
-}
-
-h1 {
-  margin: 0 0 24px;
-  font-size: 1.875rem;
-}
-
-h2 {
-  margin: 0 0 20px;
-  font-size: 1.375rem;
-}
-
-h3 {
-  margin: 0 0 16px;
-  font-size: 1.125rem;
 }
 
 .settings-block,
@@ -127,11 +121,9 @@ h3 {
   border-color: var(--border-settings);
 }
 
-.calculator-block h2 {
-  margin: 0 0 20px;
-  font-size: 1.375rem;
-}
-
+/* ==========================================================
+   Базовые элементы формы
+   ========================================================== */
 fieldset {
   --fieldset-bg: var(--background-fieldset);
 
@@ -142,10 +134,7 @@ fieldset {
   border: 1px solid var(--border-default);
   border-radius: 8px;
 }
-
-fieldset:last-child {
-  margin-bottom: 0;
-}
+fieldset:last-child { margin-bottom: 0; }
 
 fieldset > legend {
   max-width: 100%;
@@ -181,9 +170,7 @@ label {
 }
 
 label:has(input[type="radio"]),
-label:has(input[type="checkbox"]) {
-  cursor: pointer;
-}
+label:has(input[type="checkbox"]) { cursor: pointer; }
 
 input[type="number"] {
   display: block;
@@ -209,74 +196,21 @@ input[type="checkbox"] {
   accent-color: var(--accent);
 }
 
+/* Единый фокус для всех интерактивных элементов */
 input[type="number"]:focus-visible,
 input[type="radio"]:focus-visible,
 input[type="checkbox"]:focus-visible,
 select:focus-visible,
-textarea:focus-visible {
+textarea:focus-visible,
+button:focus-visible,
+.button:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
 }
 
-p {
-  margin: 0 0 12px;
-  font-size: 1rem;
-  line-height: 1.5;
-}
-
-p:last-child {
-  margin-bottom: 0;
-}
-
-/* Клинические параметры и режимы приложения */
-.settings-layout {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    align-items: stretch;
-    gap: 12px;
-    min-width: 0;
-    margin-bottom: 20px;
-}
-
-.settings-layout > .settings-block {
-    align-content: start;
-    margin-bottom: 0;
-}
-
-.input-panel .settings-layout .settings-block label {
-    display: flex;
-    align-items: flex-start;
-    gap: 8px;
-    min-width: 0;
-    margin: 0;
-}
-
-.settings-layout .settings-block input[type="checkbox"] {
-    flex-shrink: 0;
-    margin: 2px 0 0;
-}
-
-/* На узкой панели блоки располагаются друг под другом */
-@container patient-panel (max-width: 36rem) {
-    .settings-layout {
-        grid-template-columns: minmax(0, 1fr);
-    }
-}
-
-.erythropoietin-label {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-}
-
-#erythropoietin {
-  flex-shrink: 0;
-  width: 1.25rem;
-  height: 1.25rem;
-  margin: 0;
-  accent-color: var(--accent);
-}
-
+/* ==========================================================
+   Кнопки
+   ========================================================== */
 button,
 .button {
   display: inline-flex;
@@ -286,7 +220,6 @@ button,
   max-width: 100%;
   min-height: 42px;
   padding: 9px 16px;
-  font: inherit;
   font-size: 1rem;
   line-height: 1.4;
   text-align: center;
@@ -316,12 +249,6 @@ button:active,
   transform: translateY(1px);
 }
 
-button:focus-visible,
-.button:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 3px;
-}
-
 button:disabled,
 .button:disabled {
   color: #64748b;
@@ -332,6 +259,107 @@ button:disabled,
   box-shadow: none;
 }
 
+/* ==========================================================
+   Общие шаблоны блоков калькуляторов
+   ========================================================== */
+
+/* Сетки: настройки, данные пациента, G8, PPS, PPI, Caprini */
+.settings-layout,
+.patient-data-block,
+.g8-layout,
+.pps-layout,
+.ppi-layout,
+.caprini-layout {
+  display: grid;
+  align-items: stretch;
+  gap: 12px;
+  min-width: 0;
+}
+
+/* Компактные разделы внутри блоков */
+.patient-data-block fieldset,
+.g8-layout > fieldset,
+.pps-layout fieldset,
+.ppi-block .ppi-layout fieldset,
+.caprini-block fieldset {
+  min-width: 0;
+  margin: 0;
+  padding: 8px 10px 10px;
+}
+
+.patient-data-block fieldset > legend,
+.g8-layout > fieldset > legend,
+.pps-layout fieldset > legend,
+.ppi-block .ppi-layout fieldset legend,
+.caprini-block fieldset > legend {
+  padding: 3px 8px;
+}
+
+/* Строка «переключатель слева, текст справа» */
+.patient-data-block .patient-data-cancer > label,
+.input-panel .g8-layout > fieldset > label,
+.input-panel .pps-layout fieldset > label,
+.input-panel .ppi-block fieldset label,
+.input-panel .caprini-block fieldset > label {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  min-width: 0;
+  margin: 6px 0;
+  line-height: 1.35;
+}
+
+/* Переключатели не сжимаются и стоят у первой строки */
+.settings-layout .settings-block input[type="checkbox"],
+.patient-data-block .patient-data-cancer > label > input,
+.g8-layout input[type="radio"],
+#carg-block > fieldset > label > input[type="checkbox"],
+.pps-layout fieldset > label > input[type="radio"],
+.ppi-block fieldset input[type="radio"],
+.caprini-block fieldset > label > input[type="checkbox"],
+.imdc-questions input[type="checkbox"] {
+  flex-shrink: 0;
+  margin: 2px 0 0;
+}
+
+/* ==========================================================
+   Настройки
+   ========================================================== */
+.settings-layout {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-bottom: 20px;
+}
+
+.settings-layout > .settings-block {
+  align-content: start;
+  margin-bottom: 0;
+}
+
+.input-panel .settings-layout .settings-block label {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  min-width: 0;
+  margin: 0;
+}
+
+.erythropoietin-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+#erythropoietin {
+  flex-shrink: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin: 0;
+  accent-color: var(--accent);
+}
+
+/* ==========================================================
+   Вывод результатов
+   ========================================================== */
 .results-output {
   min-width: 0;
   font-family: var(--font-main);
@@ -356,964 +384,612 @@ button:disabled,
   gap: 6px;
 }
 
-#pps-total > label input {
+#pps-total > label input { margin: 0; }
+
+.results-disclaimer {
+  min-width: 0;
+  margin: 0 0 20px;
+  padding: 16px 18px;
+  color: var(--text-secondary);
+  background-color: #f0f5fb;
+  border: 1px solid #cbd8e8;
+  border-left: 3px solid #8ba6c7;
+  border-radius: 12px;
+  box-shadow: var(--shadow-card);
+  overflow-wrap: anywhere;
+}
+
+.results-disclaimer p {
   margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.55;
 }
 
-/* На узком экране отчёт располагается под формой */
-@media (max-width: 60rem) {
-    .app-container {
-        grid-template-columns: minmax(0, 1fr);
-    }
-
-    .input-panel {
-        border-right: none;
-        border-bottom: 1px solid var(--border-default);
-    }
-
-    .output-panel {
-        position: static;
-        height: auto;
-        overflow-y: visible;
-    }
-}
-
-@media (max-width: 36rem) {
-  .input-panel,
-  .output-panel {
-    padding: 16px;
-  }
-
-  .settings-block,
-  .calculator-block {
-    padding: 16px;
-  }
-
-  fieldset {
-    padding: 10px 12px 14px;
-  }
-
-  h1 {
-    font-size: 1.625rem;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  button,
-  .button {
-    transition: none;
-  }
-}
-
-/* Общая структура первого блока */
+/* ==========================================================
+   Данные пациента
+   ========================================================== */
 .patient-data-block {
-    display: grid;
-    grid-template-columns:
-        minmax(0, 1fr)
-        minmax(0, 1.2fr)
-        minmax(0, 1.25fr);
-    align-items: stretch;
-    gap: 12px;
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(0, 1.2fr)
+    minmax(0, 1.25fr);
 }
 
-/* Верхняя часть: левая колонка и лабораторные показатели */
-.patient-data-top {
-    display: contents;
-}
+.patient-data-top { display: contents; }
 
-/* Антропометрия и пол идут друг за другом */
 .patient-data-left {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    gap: 10px;
-    min-width: 0;
-}
-
-/* Отступами между разделами управляют контейнеры */
-.patient-data-block fieldset {
-    margin: 0;
-    padding: 8px 10px 10px;
-}
-
-/* Чуть компактнее заголовки разделов */
-.patient-data-block fieldset > legend {
-    padding: 3px 8px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 10px;
+  min-width: 0;
 }
 
 /* Подпись слева, числовое поле справа */
 .patient-data-block .compact-field {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) 5.5rem;
-    align-items: center;
-    gap: 8px;
-    margin-top: 6px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 5.5rem;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
 }
 
 .patient-data-block .compact-field > label {
-    margin: 0;
-    line-height: 1.3;
+  margin: 0;
+  line-height: 1.3;
 }
 
 .patient-data-block .compact-field > input[type="number"] {
-    width: 100%;
-    max-width: none;
-    min-width: 0;
-    min-height: 34px;
-    margin: 0;
-    padding: 4px 6px;
+  width: 100%;
+  max-width: none;
+  min-width: 0;
+  min-height: 34px;
+  margin: 0;
+  padding: 4px 6px;
 }
 
-/* Варианты пола в одну строку, если хватает места */
 .patient-data-block .sex-options {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
 }
 
 .patient-data-block .sex-options > label {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    margin: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
 }
 
 .patient-data-block .sex-options input[type="radio"] {
-    flex-shrink: 0;
-    margin: 0;
+  flex-shrink: 0;
+  margin: 0;
 }
 
 /* Чекбокс под гемоглобином */
 .patient-data-block .erythropoietin-label {
-    display: flex;
-    align-items: flex-start;
-    gap: 6px;
-    margin: 8px 0;
-    line-height: 1.3;
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  margin: 8px 0;
+  line-height: 1.3;
 }
 
-.patient-data-block .erythropoietin-label > input {
-    flex-shrink: 0;
-    margin: 2px 0 0;
-}
-
-/* Тип рака занимает всю ширину нижней части */
-.patient-data-block .patient-data-cancer > label {
-    display: flex;
-    align-items: flex-start;
-    gap: 8px;
-    margin: 6px 0;
-    line-height: 1.35;
-}
-
-.patient-data-block .patient-data-cancer > label > input {
-    flex-shrink: 0;
-    margin: 2px 0 0;
-}
-
-/* На узкой панели — одна колонка без промежуточных двух */
-@container patient-panel (max-width: 46rem) {
-    .patient-data-block {
-        grid-template-columns: minmax(0, 1fr);
-    }
-}
-
-/* G8 */
+/* ==========================================================
+   G8
+   ========================================================== */
 .g8-layout {
-    display: grid;
-    grid-template-columns:
-        minmax(0, 1.1fr)
-        minmax(0, 0.9fr);
-
-    align-items: stretch;
-    gap: 12px;
-    min-width: 0;
+  grid-template-columns:
+    minmax(0, 1.1fr)
+    minmax(0, 0.9fr);
 }
 
-.g8-layout > fieldset {
-    min-width: 0;
-    margin: 0;
-    padding: 8px 10px 10px;
-}
-
-.g8-layout > fieldset > legend {
-    max-width: 100%;
-    padding: 3px 8px;
-}
-
-.input-panel .g8-layout > fieldset > label {
-    display: flex;
-    align-items: flex-start;
-    gap: 8px;
-
-    margin: 6px 0;
-    line-height: 1.35;
-}
-
-.g8-layout input[type="radio"] {
-    flex-shrink: 0;
-    margin: 2px 0 0;
-}
-
-@container patient-panel (max-width: 46rem) {
-    .g8-layout {
-        grid-template-columns: minmax(0, 1fr);
-    }
-}
-
-/* CARG */
+/* ==========================================================
+   CARG
+   ========================================================== */
 #carg-block > fieldset {
-    display: grid;
-    gap: 10px;
-
-    min-width: 0;
-    margin: 0;
-    padding: 14px;
+  display: grid;
+  gap: 10px;
+  min-width: 0;
+  margin: 0;
+  padding: 14px;
 }
 
 .input-panel #carg-block > fieldset > label {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-
-    min-width: 0;
-    margin: 0;
-    line-height: 1.4;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  min-width: 0;
+  margin: 0;
+  line-height: 1.4;
 }
 
-#carg-block > fieldset > label > input[type="checkbox"] {
-    flex-shrink: 0;
-    margin: 2px 0 0;
-}
-
-/* PPS: сетка только для разделов 1–5 */
+/* ==========================================================
+   PPS
+   ========================================================== */
 .pps-layout {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    align-items: stretch;
-    gap: 12px;
-    min-width: 0;
-    margin-bottom: 20px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  margin-bottom: 20px;
 }
 
-/* Левая колонка: 1–2; правая колонка: 3–5 */
+/* Левая колонка: разделы 1–2; правая: 3–5 */
 .pps-primary,
 .pps-secondary {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
 }
 
-/* Отступами между разделами управляют контейнеры */
-.pps-layout fieldset {
-    min-width: 0;
-    margin: 0;
-    padding: 8px 10px 10px;
-}
-
-/* Компактные заголовки разделов */
-.pps-layout fieldset > legend {
-    padding: 3px 8px;
-}
-
-/* Радиокнопка слева, текст справа */
-.input-panel .pps-layout fieldset > label {
-    display: flex;
-    align-items: flex-start;
-    gap: 8px;
-    margin: 6px 0;
-    line-height: 1.35;
-}
-
-/* Переключатель не сжимается и стоит у первой строки */
-.pps-layout fieldset > label > input[type="radio"] {
-    flex-shrink: 0;
-    margin: 2px 0 0;
-}
-
-/* На узкой панели: разделы 1–5 в одну колонку */
-@container patient-panel (max-width: 46rem) {
-    .pps-layout {
-        grid-template-columns: minmax(0, 1fr);
-    }
-}
-
-/* Существующие разделы сохраняют естественную высоту */
 .pps-primary > fieldset,
-.pps-secondary > fieldset {
-    flex-shrink: 0;
-}
+.pps-secondary > fieldset { flex-shrink: 0; }
 
 /* Резервный блок заполняет остаток правой колонки */
 .pps-reserve {
-    flex: 1 0 0;
-    min-width: 0;
-    min-height: 0;
-
-    background-color: var(--background-fieldset);
-    border: 1px solid var(--border-default);
-    border-radius: 8px;
+  flex: 1 0 0;
+  min-width: 0;
+  min-height: 0;
+  padding: 12px 14px;
+  text-align: left;
+  background-color: var(--background-fieldset);
+  border: 1px solid var(--border-default);
+  border-radius: 8px;
 }
 
-@container patient-panel (max-width: 46rem) {
-    .pps-layout {
-        grid-template-columns: minmax(0, 1fr);
-    }
-}
-
-/* Отступы и выравнивание содержимого */
-.pps-reserve {
-    padding: 12px 14px;
-    text-align: left;
-}
-
-.pps-reserve > p {
-    margin: 0;
-}
+.pps-reserve > p { margin: 0; }
 
 .pps-disclaimer {
-    margin-top: 12px;
-    color: var(--text-secondary);
+  margin-top: 12px;
+  color: var(--text-secondary);
 }
 
 .pps-disclaimer > p {
-    margin: 0 0 8px;
-    font-size: 0.875rem;
-    line-height: 1.5;
+  margin: 0 0 8px;
+  font-size: 0.875rem;
+  line-height: 1.5;
 }
+.pps-disclaimer > p:last-child { margin-bottom: 0; }
 
-.pps-disclaimer > p:last-child {
-    margin-bottom: 0;
-}
-
-/* ==========================================
-   Лучшее соответствие PPS
-   Высота блока не меняется (задана .pps-reserve)
-   ========================================== */
-
+/* Лучшее соответствие PPS (высота блока задаёт .pps-reserve) */
 .pps-reserve.pps-best-fit {
-    display: flex;
-    flex-direction: column;
-    min-height: 0;                 /* блок не растягивается */
-    overflow-y: auto;              /* запасной вариант при очень длинном тексте */
-    overflow-wrap: anywhere;
-    border-left: 4px solid var(--accent);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  overflow-wrap: anywhere;
+  border-left: 4px solid var(--accent);
 }
 
 /* Безопасное центрирование: при нехватке места ничего не обрезается */
 .pps-reserve.pps-best-fit > p {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 6px;
-    width: 100%;
-    margin-block: auto;
-    text-align: center;
-    font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  margin-block: auto;
+  text-align: center;
+  font-size: 1rem;
 }
 
-/* ---------- Полное совпадение: крупное значение ---------- */
-
 .pps-best-fit__level {
-    display: inline-block;
-    margin: 0;
-    padding: 2px 18px;
-    font-size: clamp(1.5rem, 4.5cqw, 2.25rem);
-    line-height: 1.2;
-    color: var(--accent-active);
-    background-color: var(--background-card);
-    border: 1px solid var(--border-input);
-    border-radius: 8px;
+  display: inline-block;
+  margin: 0;
+  padding: 2px 18px;
+  font-size: clamp(1.5rem, 4.5cqw, 2.25rem);
+  line-height: 1.2;
+  color: var(--accent-active);
+  background-color: var(--background-card);
+  border: 1px solid var(--border-input);
+  border-radius: 8px;
 }
 
 .pps-best-fit__details {
-    display: block;
-    margin: 0;
-    font-size: 1rem;
-    color: var(--text-secondary);
+  display: block;
+  margin: 0;
+  font-size: 1rem;
+  color: var(--text-secondary);
 }
 
 .pps-best-fit__note {
-    display: block;
-    max-width: 32em;
-    margin: 0;
-    font-size: 0.9375rem;
-    line-height: 1.4;
-    color: var(--text-secondary);
+  display: block;
+  max-width: 32em;
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.4;
+  color: var(--text-secondary);
 }
 
-/* ---------- Неполное совпадение: компактно, всё в текущую высоту ---------- */
-
+/* Неполное совпадение: компактно, в текущую высоту */
 .pps-reserve.pps-best-fit--partial {
-    padding-block: 6px;
-    border-left-color: #d97706;
+  padding-block: 6px;
+  border-left-color: #d97706;
 }
 
 .pps-best-fit--partial > p {
-    gap: 2px;
-    font-size: 0.9375rem;
-    line-height: 1.3;
+  gap: 2px;
+  font-size: 0.9375rem;
+  line-height: 1.3;
 }
 
-/* Заголовок и значение в одну строку */
 .pps-best-fit--partial .pps-best-fit__level {
-    margin-inline: 4px;
-    padding: 0 10px;
-    font-size: 1.25rem;
-    line-height: 1.3;
-    vertical-align: middle;
-    color: var(--text-primary);
-    border-radius: 6px;
+  margin-inline: 4px;
+  padding: 0 10px;
+  font-size: 1.25rem;
+  line-height: 1.3;
+  vertical-align: middle;
+  color: var(--text-primary);
+  border-radius: 6px;
 }
 
 .pps-best-fit--partial .pps-best-fit__details {
-    font-size: 0.8125rem;
-    line-height: 1.25;
+  font-size: 0.8125rem;
+  line-height: 1.25;
 }
 
 .pps-best-fit--partial .pps-best-fit__note {
-    max-width: 100%;
-    font-size: 0.75rem;
-    line-height: 1.25;
+  max-width: 100%;
+  font-size: 0.75rem;
+  line-height: 1.25;
 }
 
-/* =========================
+/* ==========================================================
    PPI
-   ========================= */
+   ========================================================== */
+.ppi-layout { grid-template-columns: minmax(10rem, 1fr) minmax(0, 4fr); }
 
-/* Слева — узкая колонка, справа — широкая */
-.ppi-layout {
-    display: grid;
-    grid-template-columns: minmax(10rem, 1fr) minmax(0, 4fr);
-    align-items: stretch;
-    gap: 12px;
-    min-width: 0;
-}
-
-/* Колонки одинаковой высоты */
 .ppi-secondary,
 .ppi-primary {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
 }
 
-/* Общие стили разделов */
-.ppi-block .ppi-layout fieldset {
-    min-width: 0;
-    margin: 0;
-    padding: 8px 10px 10px;
-}
+.ppi-block .ppi-secondary > fieldset,
+.ppi-block .ppi-primary > .ppi-food { flex: 1 0 auto; }
 
-.ppi-block .ppi-layout fieldset legend {
-    padding: 3px 8px;
-}
-
-/* Разделы слева заполняют высоту колонки */
-.ppi-block .ppi-secondary > fieldset {
-    flex: 1 0 auto;
-}
-
-/* Приём пищи занимает свободное место над примечанием */
-.ppi-block .ppi-primary > .ppi-food {
-    flex: 1 0 auto;
-}
-
-/* Подписи и радиокнопки */
-.input-panel .ppi-block fieldset label {
-    display: flex;
-    align-items: flex-start;
-    gap: 8px;
-    margin: 6px 0;
-    line-height: 1.35;
-}
-
-.ppi-block fieldset input[type="radio"] {
-    flex-shrink: 0;
-    margin: 2px 0 0;
-}
-
-/* Горизонтальное расположение ответов Да / Нет */
+/* Ответы Да / Нет в строку */
 .ppi-options {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 6px 14px;
-    min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 14px;
+  min-width: 0;
 }
 
 .input-panel .ppi-block .ppi-options label {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    margin: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
 }
 
-.ppi-block .ppi-options input[type="radio"] {
-    margin: 0;
-}
+.ppi-block .ppi-options input[type="radio"] { margin: 0; }
 
-/* Определение делирия в правой колонке */
 .ppi-note {
-    flex: 0 0 auto;
-    min-width: 0;
-    margin: 0;
-    padding: 8px 10px;
-
-    color: var(--text-secondary);
-    background-color: var(--background-fieldset);
-
-    border: 1px solid var(--border-default);
-    border-radius: 8px;
-
-    overflow-wrap: anywhere;
+  flex: 0 0 auto;
+  min-width: 0;
+  margin: 0;
+  padding: 8px 10px;
+  color: var(--text-secondary);
+  background-color: var(--background-fieldset);
+  border: 1px solid var(--border-default);
+  border-radius: 8px;
+  overflow-wrap: anywhere;
 }
 
 .ppi-note p {
-    margin: 0;
-    font-size: 0.8125rem;
-    line-height: 1.4;
+  margin: 0;
+  font-size: 0.8125rem;
+  line-height: 1.4;
 }
+.ppi-note p + p { margin-top: 6px; }
 
-.ppi-note p + p {
-    margin-top: 6px;
-}
-
-/* На узкой панели — одна колонка */
-@container patient-panel (max-width: 46rem) {
-    .ppi-layout {
-        grid-template-columns: minmax(0, 1fr);
-    }
-
-    .ppi-block .ppi-secondary > fieldset,
-    .ppi-block .ppi-primary > .ppi-food {
-        flex: 0 0 auto;
-    }
-}
-
-/* ========================================
+/* ==========================================================
    Caprini
-   ======================================== */
-
-/* Общая сетка: две колонки и две строки */
+   ========================================================== */
 .caprini-layout {
-    display: grid;
-
-    grid-template-columns:
-        minmax(0, 1fr)
-        minmax(0, 1fr);
-
-    grid-template-areas:
-        "one        upper-right"
-        "additional five";
-
-    align-items: stretch;
-    gap: 12px;
-    min-width: 0;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-areas:
+    "one        upper-right"
+    "additional five";
 }
 
-/* Верхняя строка: раздел на 1 балл */
-.caprini-block .caprini-one {
-    grid-area: one;
-}
+.caprini-block .caprini-one { grid-area: one; }
 
-/* Верхняя строка: разделы на 2 и 3 балла */
 .caprini-block .caprini-upper-right {
-    grid-area: upper-right;
-
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    min-width: 0;
+  grid-area: upper-right;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
 }
 
-/* Нижняя строка: дополнительные факторы */
-.caprini-block .caprini-additional {
-    grid-area: additional;
-}
+.caprini-block .caprini-additional { grid-area: additional; }
+.caprini-block .caprini-five { grid-area: five; }
 
-/* Нижняя строка: раздел на 5 баллов */
-.caprini-block .caprini-five {
-    grid-area: five;
-}
-
-/* Отступами между разделами управляют контейнеры */
-.caprini-block fieldset {
-    box-sizing: border-box;
-    min-width: 0;
-    margin: 0;
-    padding: 8px 10px 10px;
-}
-
-/* Компактные заголовки с переносом длинного текста */
-.caprini-block fieldset > legend {
-    box-sizing: border-box;
-    max-width: 100%;
-    padding: 3px 8px;
-    white-space: normal;
-    overflow-wrap: anywhere;
-}
-
-/* Чекбокс слева, текст справа */
-.input-panel .caprini-block fieldset > label {
-    display: flex;
-    align-items: flex-start;
-    gap: 8px;
-
-    min-width: 0;
-    margin: 6px 0;
-    line-height: 1.35;
-}
-
-/* Чекбокс не сжимается и выравнивается по первой строке */
-.caprini-block fieldset > label > input[type="checkbox"] {
-    flex-shrink: 0;
-    margin: 2px 0 0;
-}
-
-/* Узкая панель: все разделы располагаются в одну колонку */
-@container patient-panel (max-width: 46rem) {
-    .caprini-layout {
-        grid-template-columns: minmax(0, 1fr);
-
-        grid-template-areas:
-            "one"
-            "additional"
-            "upper-right"
-            "five";
-    }
-}
-
-/* ========================================
-   IMDC
-   ======================================== */
-
-/*
- * Исходное соотношение колонок — 2:1.
- * Затем 76px передаются от левой колонки правой.
- */
+/* ==========================================================
+   IMDC (колонки 2:1, 76px переданы от левой правой)
+   ========================================================== */
 .imdc-layout {
-    --imdc-gap: 12px;
-    --imdc-shift: 76px;
+  --imdc-gap: 12px;
+  --imdc-shift: 76px;
 
-    display: grid;
-    grid-template-columns:
-        minmax(
-            0,
-            calc(
-                (100% - var(--imdc-gap)) * 2 / 3
-                - var(--imdc-shift)
-            )
-        )
-        minmax(0, 1fr);
-
-    align-items: stretch;
-    gap: var(--imdc-gap);
-    min-width: 0;
+  display: grid;
+  grid-template-columns:
+    minmax(0, calc((100% - var(--imdc-gap)) * 2 / 3 - var(--imdc-shift)))
+    minmax(0, 1fr);
+  align-items: stretch;
+  gap: var(--imdc-gap);
+  min-width: 0;
 }
 
-/* Одинаковое оформление обеих колонок */
 .imdc-block .imdc-questions,
 .imdc-block .imdc-note {
-    min-width: 0;
-    margin: 0;
-    padding: 12px;
-
-    background-color: var(--background-fieldset);
-    border: 1px solid var(--border-default);
-    border-radius: 8px;
+  min-width: 0;
+  margin: 0;
+  padding: 12px;
+  background-color: var(--background-fieldset);
+  border: 1px solid var(--border-default);
+  border-radius: 8px;
 }
 
-/* Левая колонка: постоянные промежутки между вопросами */
 .imdc-block .imdc-questions {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    gap: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 10px;
 }
 
-/* Чекбокс слева, текст справа */
 .input-panel .imdc-block .imdc-questions > label {
-    display: flex;
-    align-items: flex-start;
-    gap: 8px;
-
-    margin: 0;
-    line-height: 1.35;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 0;
+  line-height: 1.35;
 }
 
-/* Чекбоксы не сжимаются при переносе текста */
-.imdc-questions input[type="checkbox"] {
-    flex-shrink: 0;
-    margin: 2px 0 0;
-}
-
-/* Правая колонка: абзацы распределены по высоте */
 .imdc-block .imdc-note {
-    container-type: inline-size;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: stretch;
-    gap: 10px;
-
-    color: var(--text-secondary);
-    overflow-wrap: anywhere;
+  container-type: inline-size;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 10px;
+  color: var(--text-secondary);
+  overflow-wrap: anywhere;
 }
 
-/* Адаптивный размер текста дисклеймера */
 .imdc-block .imdc-note > p {
-    margin: 0;
-
-    /* Запасной размер */
-    font-size: 0.8125rem;
-
-    /* Размер зависит от ширины правой колонки */
-    font-size: clamp(
-        0.75rem,
-        calc(0.625rem + 1cqi),
-        0.875rem
-    );
-
-    line-height: 1.4;
+  margin: 0;
+  font-size: 0.8125rem; /* запасной размер */
+  font-size: clamp(0.75rem, calc(0.625rem + 1cqi), 0.875rem);
+  line-height: 1.4;
 }
 
-/* Узкая панель: вопросы и дисклеймер друг под другом */
-@container patient-panel (max-width: 36rem) {
-    .imdc-layout {
-        grid-template-columns: minmax(0, 1fr);
-    }
-
-    .imdc-block .imdc-questions,
-    .imdc-block .imdc-note {
-        justify-content: flex-start;
-    }
-}
-
-/* Цитата */
-.app-quote {
-    margin: 32px 0 0;
-    padding: 14px 0 0;
-    border-top: 1px solid var(--border-default);
-    color: var(--text-secondary);
-    font-size: 0.875rem;
-    line-height: 1.5;
-}
-
-.app-quote blockquote {
-    margin: 0;
-}
-
-.app-quote blockquote p {
-    margin: 0;
-    font-size: inherit;
-    line-height: inherit;
-}
-
-.app-quote figcaption {
-    margin-top: 6px;
-    text-align: left;
-    font-size: 0.8125rem;
-}
-
-/* Шапка приложения */
-
+/* ==========================================================
+   Шапка, «О проекте», цитата
+   ========================================================== */
 .app-header {
-    margin-bottom: 24px;
-    padding-bottom: 16px;
-    border-bottom: 1px solid var(--border-default);
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border-default);
 }
 
-.app-header .app-header__title {
-    margin: 0 0 4px;
-}
+.app-header .app-header__title { margin: 0 0 4px; }
 
 .app-header .app-header__subtitle {
-    margin: 0 0 8px;
-    font-size: 0.9375rem;
-    line-height: 1.4;
-    color: var(--text-secondary);
+  margin: 0 0 8px;
+  font-size: 0.9375rem;
+  line-height: 1.4;
+  color: var(--text-secondary);
 }
 
-/* Компактная строка: версия · О проекте */
-
 .app-about {
-    min-width: 0;
-    color: var(--text-secondary);
+  min-width: 0;
+  color: var(--text-secondary);
 }
 
 .app-about__summary {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 6px;
-
-    width: fit-content;
-    max-width: 100%;
-    padding: 4px 0;
-
-    font-size: 0.8125rem;
-    line-height: 1.5;
-    list-style: none;
-    cursor: pointer;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  width: fit-content;
+  max-width: 100%;
+  padding: 4px 0;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  list-style: none;
+  cursor: pointer;
 }
 
-.app-about__summary::-webkit-details-marker {
-    display: none;
-}
+.app-about__summary::-webkit-details-marker { display: none; }
+.app-about__summary::marker { content: ""; }
 
-.app-about__summary::marker {
-    content: "";
-}
-
-.app-about__version {
-    font-variant-numeric: tabular-nums;
-}
-
-.app-about__separator {
-    color: var(--border-input);
-}
+.app-about__version { font-variant-numeric: tabular-nums; }
+.app-about__separator { color: var(--border-input); }
 
 .app-about__toggle {
-    color: var(--accent);
-    text-decoration: underline;
-    text-decoration-style: dotted;
-    text-underline-offset: 3px;
+  color: var(--accent);
+  text-decoration: underline dotted;
+  text-underline-offset: 3px;
 }
 
 .app-about__summary:hover .app-about__toggle {
-    color: var(--accent-hover);
-    text-decoration-style: solid;
+  color: var(--accent-hover);
+  text-decoration-style: solid;
 }
 
 .app-about__summary:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 4px;
-    border-radius: 3px;
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+  border-radius: 3px;
 }
 
 .app-about[open] .app-about__toggle {
-    color: var(--accent-active);
-    text-decoration-style: solid;
+  color: var(--accent-active);
+  text-decoration-style: solid;
 }
 
-/* Раскрытая карточка */
-
 .app-about__content {
-    margin-top: 10px;
-    padding: 14px 16px;
-
-    background-color: var(--background-card);
-    border: 1px solid var(--border-default);
-    border-radius: 8px;
+  margin-top: 10px;
+  padding: 14px 16px;
+  background-color: var(--background-card);
+  border: 1px solid var(--border-default);
+  border-radius: 8px;
 }
 
 .app-about__list {
-    display: grid;
-    gap: 8px;
-    margin: 0;
+  display: grid;
+  gap: 8px;
+  margin: 0;
 }
 
 .app-about__row {
-    display: grid;
-    grid-template-columns: minmax(0, 11rem) minmax(0, 1fr);
-    gap: 4px 12px;
+  display: grid;
+  grid-template-columns: minmax(0, 11rem) minmax(0, 1fr);
+  gap: 4px 12px;
 }
 
 .app-about__row dt,
 .app-about__row dd {
-    margin: 0;
-    font-size: 0.875rem;
-    line-height: 1.5;
-    overflow-wrap: anywhere;
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
 }
-
-.app-about__row dt {
-    color: var(--text-secondary);
-}
-
-.app-about__row dd {
-    color: var(--text-primary);
-}
+.app-about__row dt { color: var(--text-secondary); }
+.app-about__row dd { color: var(--text-primary); }
 
 .app-about__content .app-about__note {
-    margin: 12px 0 0;
-    padding-top: 10px;
-
-    font-size: 0.75rem;
-    line-height: 1.5;
-    color: var(--text-secondary);
-
-    border-top: 1px solid var(--border-default);
+  margin: 12px 0 0;
+  padding-top: 10px;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  border-top: 1px solid var(--border-default);
 }
 
-/* Адаптация к узкой левой панели */
-@container patient-panel (max-width: 28rem) {
-    .app-about__row {
-        grid-template-columns: minmax(0, 1fr);
-        gap: 2px;
-    }
-}
-
-
-/* Короткий дисклеймер перед кнопками */
-.results-disclaimer {
-    min-width: 0;
-    margin: 0 0 20px;
-    padding: 16px 18px;
-
-    color: var(--text-secondary);
-    background-color: #f0f5fb;
-
-    border: 1px solid #cbd8e8;
-    border-left: 3px solid #8ba6c7;
-    border-radius: 12px;
-
-    box-shadow: var(--shadow-card);
-    overflow-wrap: anywhere;
-}
-
-.results-disclaimer p {
-    margin: 0;
-
-    font-size: 0.875rem;
-    line-height: 1.55;
-}
-
-@media (max-width: 36rem) {
-    .results-disclaimer {
-        padding: 14px 16px;
-    }
-}
-
-/* Назначение и ограничения в разделе «О проекте» */
 .app-about__limitations {
-    margin-top: 14px;
-    padding-top: 12px;
-
-    border-top: 1px solid var(--border-default);
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border-default);
 }
 
 .app-about__limitations h2 {
-    margin: 0 0 8px;
-
-    font-size: 0.875rem;
-    font-weight: 700;
-    line-height: 1.4;
-    color: var(--text-primary);
+  margin: 0 0 8px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--text-primary);
 }
 
 .app-about__limitations p {
-    margin: 0 0 8px;
+  margin: 0 0 8px;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+.app-about__limitations p:last-child { margin-bottom: 0; }
 
-    font-size: 0.8125rem;
-    line-height: 1.5;
-    color: var(--text-secondary);
+.app-quote {
+  margin: 32px 0 0;
+  padding: 14px 0 0;
+  border-top: 1px solid var(--border-default);
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  line-height: 1.5;
 }
 
-.app-about__limitations p:last-child {
-    margin-bottom: 0;
+.app-quote blockquote { margin: 0; }
+
+.app-quote blockquote p {
+  margin: 0;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+.app-quote figcaption {
+  margin-top: 6px;
+  text-align: left;
+  font-size: 0.8125rem;
+}
+
+/* ==========================================================
+   Адаптивность (всегда после базовых правил)
+   ========================================================== */
+
+/* Узкая панель ввода: блоки в одну колонку */
+@container patient-panel (max-width: 46rem) {
+  .patient-data-block,
+  .g8-layout,
+  .pps-layout,
+  .ppi-layout,
+  .caprini-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .caprini-layout {
+    grid-template-areas:
+      "one"
+      "additional"
+      "upper-right"
+      "five";
+  }
+
+  .ppi-block .ppi-secondary > fieldset,
+  .ppi-block .ppi-primary > .ppi-food { flex: 0 0 auto; }
+}
+
+@container patient-panel (max-width: 36rem) {
+  .settings-layout,
+  .imdc-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .imdc-block .imdc-questions,
+  .imdc-block .imdc-note { justify-content: flex-start; }
+}
+
+@container patient-panel (max-width: 28rem) {
+  .app-about__row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2px;
+  }
+}
+
+/* Узкий экран: отчёт под формой */
+@media (max-width: 60rem) {
+  .app-container { grid-template-columns: minmax(0, 1fr); }
+
+  .input-panel {
+    border-right: none;
+    border-bottom: 1px solid var(--border-default);
+  }
+
+  .output-panel {
+    position: static;
+    height: auto;
+    overflow-y: visible;
+  }
+}
+
+@media (max-width: 36rem) {
+  .input-panel,
+  .output-panel { padding: 16px; }
+
+  .settings-block,
+  .calculator-block { padding: 16px; }
+
+  fieldset { padding: 10px 12px 14px; }
+
+  h1 { font-size: 1.625rem; }
+
+  .results-disclaimer { padding: 14px 16px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  button,
+  .button { transition: none; }
 }
